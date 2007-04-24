@@ -9,11 +9,16 @@ uses
 type
   TForm1 = class(TForm)
     Button1: TButton;
+    ListBox1: TListBox;
+    Button2: TButton;
+    Button3: TButton;
     procedure Button1Click(Sender: TObject);
+    procedure ListBox1DblClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure rename;
   end;
 
 var
@@ -23,17 +28,31 @@ implementation
 
 {$R *.dfm}
 
+var cnt:integer;
 procedure TForm1.Button1Click(Sender: TObject);
-  var z : TRepTable; r:Treport;
+  var z:TFtable;
 begin
-(*  r:=Treport.Create;
-  r.add(TRepTable.create(3,7,'asdf'#13#10'sdf'#13#10'<&" >'#13#10'sdf'#13#10'sdf'#13#10'sdf'#13#10'sdf'));
-  r.add(TRepImage.create('test.gif'));
-  r.add(TRepText.create('<html src="bla"> &nbsp'));
-  r.view;//*)
+  z:=TFtable.Create(owner);
+  z.name:='table'+IntToStr(cnt);
+  inc(cnt);
+  z.tablename:='Таблица '+ inttostr(ListBox1.Count+1);
+  ListBox1.AddItem(z.tablename,z);
+  z.Show;
+  z.rename:=rename;
+end;
 
-Ftable.Show;;
+procedure TForm1.rename;
+var i:integer;
+begin
+  for i:= 0 to ListBox1.Count-1 do
+    ListBox1.Items[i]:=TFtable(ListBox1.Items.Objects[i]).tablename;
 
+end;
+
+procedure TForm1.ListBox1DblClick(Sender: TObject);
+begin
+  if ListBox1.ItemIndex >=0 then
+  TFtable(ListBox1.Items.Objects[ListBox1.ItemIndex]).ShowModal;
 end;
 
 end.

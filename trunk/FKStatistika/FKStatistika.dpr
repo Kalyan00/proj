@@ -13,6 +13,6 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TFtable, Ftable);
+//  Application.CreateForm(TFtable, Ftable);
   Application.Run;
 end.
