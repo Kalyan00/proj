@@ -13,7 +13,6 @@ type
     Edit2: TEdit;
     Label1: TLabel;
     Label2: TLabel;
-    TreeView1: TTreeView;
     Edit3: TEdit;
     Label3: TLabel;
     StringGrid1: TStringGrid;
@@ -41,11 +40,16 @@ type
     procedure StringGrid1SetEditText(Sender: TObject; ACol, ARow: Integer;
       const Value: String);
     procedure rVClick(Sender: TObject);
+    procedure Edit3Change(Sender: TObject);
   private
+    procedure Settablename(const Value: string);
+    function Gettablename: string;
     { Private declarations }
   public
     { Public declarations }
     x,y:integer;
+    rename:procedure of object;
+    property tablename:string read Gettablename write Settablename;
     procedure recols;
     function getTRtable: TRtable;
   end;
@@ -90,8 +94,6 @@ end;
 
 procedure TFtable.FormCreate(Sender: TObject);
 begin
-  TreeView1.Items.GetFirstNode.Expand(true);
-  TreeView1.Items.GetFirstNode.getNextSibling.Expand(true);
   StringGrid1.Cells[1,0]:='“ÂÒÚ 1';
   StringGrid1.Cells[0,1]:='‘»Œ 1';
   StringGrid1.Cells[2,0]:='...';
@@ -229,6 +231,21 @@ end;
 procedure TFtable.rVClick(Sender: TObject);
 begin
   recols;
+end;
+
+procedure TFtable.Settablename(const Value: string);
+begin
+  edit3.Text := Value;
+end;
+
+function TFtable.Gettablename: string;
+begin
+  Result:=edit3.Text;
+end;
+
+procedure TFtable.Edit3Change(Sender: TObject);
+begin
+  if assigned(rename) then rename;
 end;
 
 end.
