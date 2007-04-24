@@ -30,6 +30,7 @@ type
     rSigma: TCheckBox;
     rV: TCheckBox;
     rm: TCheckBox;
+    Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
@@ -41,6 +42,7 @@ type
       const Value: String);
     procedure rVClick(Sender: TObject);
     procedure Edit3Change(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     procedure Settablename(const Value: string);
     function Gettablename: string;
@@ -54,8 +56,7 @@ type
     function getTRtable: TRtable;
   end;
 
-var
-  Ftable: TFtable;
+
 function FloatToStr(f:double):string;
 
 
@@ -187,8 +188,16 @@ end;
 
 function TFtable.getTRtable: TRtable;
 var i,j:integer;s:string;  f:double;r:TRtable;
+  nx,ny:TStringList;
 begin
-  R:=TRtable.create(x,y);
+  nx:=TStringList.Create;
+  ny:=TStringList.Create;
+  for j:=0 to x-1 do
+    nx.Add(StringGrid1.Cells[j+1,0]);
+  for i:=0 to y-1 do
+    ny.Add(StringGrid1.Cells[0,i+1]);
+
+  R:=TRtable.create(x,y,nx,ny);
  for j:=0 to x-1 do
     for i:=0 to y-1 do
       try
@@ -246,6 +255,12 @@ end;
 procedure TFtable.Edit3Change(Sender: TObject);
 begin
   if assigned(rename) then rename;
+  Caption:=Edit3.Text;
+end;
+
+procedure TFtable.Button1Click(Sender: TObject);
+begin
+  close;
 end;
 
 end.

@@ -1,8 +1,8 @@
 object Ftable: TFtable
   Left = 335
   Top = 139
-  Width = 541
-  Height = 383
+  Width = 548
+  Height = 388
   Caption = 'Ftable'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object Ftable: TFtable
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 533
+    Width = 540
     Height = 57
     Align = alTop
     TabOrder = 0
@@ -49,7 +49,7 @@ object Ftable: TFtable
       Top = 32
       Width = 105
       Height = 21
-      TabOrder = 0
+      TabOrder = 1
       Text = '2'
       OnChange = Edit1Change
     end
@@ -58,7 +58,7 @@ object Ftable: TFtable
       Top = 32
       Width = 105
       Height = 21
-      TabOrder = 1
+      TabOrder = 2
       Text = '2'
       OnChange = Edit1Change
     end
@@ -67,7 +67,7 @@ object Ftable: TFtable
       Top = 8
       Width = 193
       Height = 21
-      TabOrder = 2
+      TabOrder = 0
       Text = 'Edit3'
       OnChange = Edit3Change
     end
@@ -84,8 +84,9 @@ object Ftable: TFtable
   object StringGrid1: TStringGrid
     Left = 0
     Top = 57
-    Width = 367
-    Height = 299
+    Width = 378
+    Height = 304
+    TabStop = False
     Align = alClient
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goTabs]
     TabOrder = 1
@@ -94,17 +95,20 @@ object Ftable: TFtable
     OnSetEditText = StringGrid1SetEditText
   end
   object Panel2: TPanel
-    Left = 367
+    Left = 378
     Top = 57
-    Width = 166
-    Height = 299
+    Width = 162
+    Height = 304
     Align = alRight
     Caption = 'Panel2'
     TabOrder = 2
+    DesignSize = (
+      162
+      304)
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
-      Width = 164
+      Width = 160
       Height = 120
       Align = alTop
       Caption = #1044#1086#1073#1072#1074'. '#1082#1086#1083#1086#1085#1082#1080
@@ -162,7 +166,7 @@ object Ftable: TFtable
     object GroupBox2: TGroupBox
       Left = 1
       Top = 121
-      Width = 164
+      Width = 160
       Height = 120
       Align = alTop
       Caption = #1044#1086#1073#1072#1074'. '#1089#1090#1088#1086#1082#1080
@@ -217,6 +221,22 @@ object Ftable: TFtable
         TabOrder = 4
         OnClick = rVClick
       end
+    end
+    object Button1: TButton
+      Left = 8
+      Top = 248
+      Width = 145
+      Height = 49
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Caption = 'OK'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      OnClick = Button1Click
     end
   end
 end

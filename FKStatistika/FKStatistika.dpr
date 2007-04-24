@@ -6,13 +6,15 @@ uses
   report in 'report.pas',
   ras4et in 'ras4et.pas',
   Uvisual in 'Uvisual.pas',
-  UFtable in 'UFtable.pas' {Ftable};
+  UFtable in 'UFtable.pas' {Ftable},
+  UVectorFrame in 'UVectorFrame.pas' {Frame1: TFrame},
+  UparaForm in 'UparaForm.pas' {Form2};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
-//  Application.CreateForm(TFtable, Ftable);
+  Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.
