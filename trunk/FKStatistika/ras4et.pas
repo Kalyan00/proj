@@ -1,18 +1,20 @@
 unit ras4et;
 
 interface
-uses sysutils, Graphics;
+uses sysutils, Graphics, classes;
 const infiniti = 123456;
 
 type tvector = class
   private
     Fitems:array of double;
     Fx: integer;
+    Fname: string;
     function Getitems(i: integer): double;
     procedure Setitems(i: integer; const Value: double);
   public
+    property name:string read Fname;
     property items[i:integer]:double read Getitems write Setitems; default;
-    constructor create(x:integer);
+    constructor create(x:integer;name:string);
     property x:integer read Fx;
     property n:integer read Fx;
     function _min:Double;
@@ -32,8 +34,8 @@ TRtable = class
     Fx: integer;
     function Getitems(i: integer): tvector;
   public
-
-    constructor create(x,y:integer);
+    namex,namey:tstringlist;
+    constructor create(x, y: integer; XName,YName:TStringList);
     property x:integer read Fx ;
     property y:integer read Fy ;
     property items[i:integer]:tvector read Getitems; default;
@@ -132,14 +134,23 @@ const table14:array[0..31] of record n:integer;t5:double;t1:double end = (
 (n:60;t5:2;t1:2.66),
 (n:100000;t5:1.96;t1:2.58));
 
-constructor TRtable.create(x, y: integer);
+constructor TRtable.create(x, y: integer; XName,YName:TStringList);
 var i:integer;
 begin
+  namex:=XName;
+  namey:=YName;
   fx:=x;
   fy:=y;
   SetLength(Fitems,y);
+  if YName<>nil then
+    if YName.Count>y then
+      begin
+        for i:=0 to y-1 do
+          Fitems[i]:=tvector.create(x,YName[i]);
+        exit;
+      end;
   for i:=0 to y-1 do
-    Fitems[i]:=tvector.create(x);
+    Fitems[i]:=tvector.create(x,'');
 end;
 
 
@@ -156,7 +167,7 @@ end;
 function TRtable.getT: trtable;
 var i,j:integer;
 begin
-  Result:=TRtable.create(y,x);
+  Result:=TRtable.create(y,x,namey,namex);
   for i:=0 to x-1 do
     for j:=0 to y-1 do
       Result[i][j]:=items[j][i];
@@ -164,11 +175,12 @@ end;
 
 { tvector }
 
-constructor tvector.create(x: integer);
+constructor tvector.create(x:integer;name:string);
 begin
   if x<2 then raise exception.Create('tvector.create(x<2)');
   fx:=x;
   SetLength(Fitems,x);
+  self.fname:=name;
 end;
 
 
@@ -218,7 +230,7 @@ begin
   for i:=0 to x-1 do
     if abs(items[i])<=s then
       inc(f);
-  Result:=tvector.create(f);
+  Result:=tvector.create(f,name);
   f:=0;
   for i:=0 to x-1 do
     if abs(items[i])<=s then
@@ -397,13 +409,14 @@ end;
 function TKorel._t16: double;
 var i:integer;v:tvector;
 begin
-  v:=tvector.create(n);
+  v:=tvector.create(n,'');
   for i:=0 to n-1 do
     v[i]:=_x[i]-_y[i];
   if v._m<>0 then
     Result:=v._SredArifm/v._m else
     Result:=infiniti;
 end;
+
 
 
 
