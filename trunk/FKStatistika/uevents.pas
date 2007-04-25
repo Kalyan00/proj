@@ -1,16 +1,18 @@
 unit uevents;
 
 interface
-uses classes;
+uses classes,Contnrs;
+{type IobjectWithEvent = interface procedure onEventsRaise; end;
 type tproc = procedure of object;
 type tprocptr = ^tproc;
 type Tevents = class
   private
-    list:tlist;
+    list:tclasslist;
   public
+    procedure del(item:IobjectWithEvent);
     procedure delete;
-    procedure add(item:tprocptr);
-end;
+    procedure add(item:IobjectWithEvent);
+end;      }
 
 {type TEvent_ = procedure of object;
 type Tevents = class
@@ -104,20 +106,34 @@ end;
     *)
 { Tevents }
 
-procedure Tevents.add(item: tprocptr);
+{procedure Tevents.add;
+var t:tproc;tp:tprocptr;
 begin
-  if list=nil then list:=TList.Create;
-  list.Add(item);
+  del(item);
+  if list=nil then list:=TClassList.Create;
+  list.Add(tclass(item));
+end;
+
+procedure Tevents.del;
+var t:tproc;tp:tprocptr;
+begin
+  if list=nil then list:=TClassList.Create;
+  if list.IndexOf(tclass(item))>=0 then
+  list.Delete(list.IndexOf(tclass(item)));
 end;
 
 procedure Tevents.delete;
-var i:integer;
+//var z:record case byte of 1:(t:tproc;);2:(p:pointer;)end;
+var i:integer;p:tproc;
 begin
   if list<> nil then
     for i:=0 to list.Count-1 do
-      tprocptr(list[i])^;
+      begin
+      IobjectWithEvent(list[i]).onEventsRaise;
+      end;
   if list<> nil then list.Destroy;
   Self.Destroy;
 end;
+    }
 
 end.

@@ -50,7 +50,6 @@ type
     { Public declarations }
     x,y:integer;
     rename:procedure of object;
-    events:Tevents;
     property tablename:string read Gettablename write Settablename;
     procedure recols;
     function getTRtable: TRtable;
@@ -95,7 +94,6 @@ end;
 
 procedure TFtable.FormCreate(Sender: TObject);
 begin
-  events:=Tevents.create;
   StringGrid1.Cells[1,0]:='“ÂÒÚ 1';
   StringGrid1.Cells[0,1]:='‘»Œ 1';
   StringGrid1.Cells[2,0]:='...';
@@ -184,8 +182,7 @@ begin
       StringGrid1.Cells[0,y___]:=str_[i];
       inc(y___);
     end;
-  events.delete;
-  events:=Tevents.Create;
+  Tag:=Tag+1;
 end;
 
 function TFtable.getTRtable: TRtable;
@@ -200,7 +197,7 @@ begin
   for i:=0 to y-1 do
     ny.Add(StringGrid1.Cells[0,i+1]);
 
-  R:=TRtable.create(x,y,nx,ny,events);
+  R:=TRtable.create(x,y,nx,ny);
  for j:=0 to x-1 do
     for i:=0 to y-1 do
       try
@@ -218,7 +215,7 @@ end;
 
 procedure TFtable.FormActivate(Sender: TObject);
 begin
-  if notferst then Edit1Change(nil);
+  if not notferst then Edit1Change(nil);
 end;
 
 procedure TFtable.StringGrid1KeyUp(Sender: TObject; var Key: Word;

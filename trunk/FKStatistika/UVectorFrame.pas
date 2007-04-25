@@ -15,16 +15,19 @@ type
     procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure ComboBox1Enter(Sender: TObject);
+    procedure ComboBox1StartDrag(Sender: TObject;
+      var DragObject: TDragObject);
+    procedure ComboBox1DropDown(Sender: TObject);
   private
     { Private declarations }
     tabl1,tabl2:TRtable;
   public
     { Public declarations }
+    Ftable:TFtable;
     rslt:Tvector;
     lbb:TListBox;
-    events:Tevents;
     procedure show(lb: TListBox);
-    procedure onEventsRaise;
+    function actual:boolean;
   end;
 
 implementation
@@ -41,13 +44,14 @@ begin
     ComboBox3.Enabled:=false;
     exit;
   end;
-  if events<>nil then events.free;
+  ComboBox2.ItemIndex:=-1;
   ComboBox2.Enabled:=true;
-  tabl1:=TFtable(ComboBox1.Items.Objects[ComboBox1.ItemIndex]).getTRtable;
-  events:=tabl1.events;
-  events.add(@(onEventsRaise));
+  Ftable:=TFtable(ComboBox1.Items.Objects[ComboBox1.ItemIndex]);
+  Tag:=Ftable.Tag;
+  tabl1:=Ftable.getTRtable;
   tabl2:=nil;
   ComboBox3.Clear;
+  ComboBox3.Enabled:=False;
 end;
 
 procedure TFrame1.ComboBox2Change(Sender: TObject);
@@ -69,31 +73,43 @@ begin
   ComboBox3.Items:=tabl2.namey;
 end;
 
-procedure TFrame1.onEventsRaise;
-begin
-  Label1.Visible:=true;
-  tabl1:=nil;
-  tabl1:=nil;
-  rslt:=nil;
-  ComboBox2.Enabled:=false;
-  ComboBox3.Enabled:=false;
-
-end;
 
 procedure TFrame1.show(lb: TListBox);
 begin
-  if events=nil then events:=Tevents.create;
   lbb:=lb;
   if ComboBox1.Items.Count=0 then
     ComboBox1.Items:=lb.Items;
+  Label1.Visible:=not actual;
 end;
 
 procedure TFrame1.ComboBox1Enter(Sender: TObject);
+begin
+{  Label1.Visible:=false;
+  if lbb <> nil then
+    if lbb.Items <>nil then
+      ComboBox1.Items:=lbb.Items;     }
+end;
+
+procedure TFrame1.ComboBox1StartDrag(Sender: TObject;
+  var DragObject: TDragObject);
+begin
+Application.ProcessMessages;
+end;
+
+procedure TFrame1.ComboBox1DropDown(Sender: TObject);
 begin
   Label1.Visible:=false;
   if lbb <> nil then
     if lbb.Items <>nil then
       ComboBox1.Items:=lbb.Items;
+end;
+
+function TFrame1.actual: boolean;
+begin
+  Result:=true;
+  if Ftable<>nil then
+    if lbb.Items.IndexOfObject(Ftable)<>-1 then
+      Result:=Ftable.Tag=tag;
 end;
 
 end.

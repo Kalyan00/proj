@@ -27,7 +27,9 @@ object Frame1: TFrame1
     ItemHeight = 13
     TabOrder = 0
     OnChange = ComboBox1Change
+    OnDropDown = ComboBox1DropDown
     OnEnter = ComboBox1Enter
+    OnStartDrag = ComboBox1StartDrag
   end
   object ComboBox2: TComboBox
     Left = 168
@@ -35,6 +37,7 @@ object Frame1: TFrame1
     Width = 81
     Height = 21
     Style = csDropDownList
+    Enabled = False
     ItemHeight = 13
     TabOrder = 1
     OnChange = ComboBox2Change
@@ -48,6 +51,7 @@ object Frame1: TFrame1
     Width = 161
     Height = 21
     Style = csDropDownList
+    Enabled = False
     ItemHeight = 13
     TabOrder = 2
   end
