@@ -31,19 +31,18 @@ type
     rV: TCheckBox;
     rm: TCheckBox;
     Button1: TButton;
+
     procedure FormCreate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
-    procedure StringGrid1KeyPress(Sender: TObject; var Key: Char);
     procedure StringGrid1KeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure StringGrid1SetEditText(Sender: TObject; ACol, ARow: Integer;
-      const Value: String);
     procedure rVClick(Sender: TObject);
     procedure Edit3Change(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
+    notferst:boolean;
     procedure Settablename(const Value: string);
     function Gettablename: string;
     { Private declarations }
@@ -185,13 +184,15 @@ begin
       StringGrid1.Cells[0,y___]:=str_[i];
       inc(y___);
     end;
-
+  events.delete;
+  events:=Tevents.Create;
 end;
 
 function TFtable.getTRtable: TRtable;
 var i,j:integer;s:string;  f:double;r:TRtable;
   nx,ny:TStringList;
 begin
+  notferst:=true;
   nx:=TStringList.Create;
   ny:=TStringList.Create;
   for j:=0 to x-1 do
@@ -199,7 +200,7 @@ begin
   for i:=0 to y-1 do
     ny.Add(StringGrid1.Cells[0,i+1]);
 
-  R:=TRtable.create(x,y,nx,ny);
+  R:=TRtable.create(x,y,nx,ny,events);
  for j:=0 to x-1 do
     for i:=0 to y-1 do
       try
@@ -217,26 +218,13 @@ end;
 
 procedure TFtable.FormActivate(Sender: TObject);
 begin
-  Edit1Change(nil);
-end;
-
-procedure TFtable.StringGrid1KeyPress(Sender: TObject; var Key: Char);
-begin
- //
+  if notferst then Edit1Change(nil);
 end;
 
 procedure TFtable.StringGrid1KeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-//
-Application.ProcessMessages;
   recols;
-end;
-
-procedure TFtable.StringGrid1SetEditText(Sender: TObject; ACol,
-  ARow: Integer; const Value: String);
-begin
-//
 end;
 
 procedure TFtable.rVClick(Sender: TObject);
@@ -258,6 +246,7 @@ procedure TFtable.Edit3Change(Sender: TObject);
 begin
   if assigned(rename) then rename;
   Caption:=Edit3.Text;
+  recols;
 end;
 
 procedure TFtable.Button1Click(Sender: TObject);

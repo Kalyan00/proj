@@ -1,8 +1,8 @@
 object ParaForm: TParaForm
   Left = 191
   Top = 242
-  Width = 646
-  Height = 175
+  Width = 566
+  Height = 227
   Caption = 'ParaForm'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -22,29 +22,29 @@ object ParaForm: TParaForm
   end
   object Label2: TLabel
     Left = 16
-    Top = 48
-    Width = 78
-    Height = 26
-    Caption = #1074#1099#1073#1077#1088#1080#1090#1077', '#13#10#1095#1090#1086' '#1089#1088#1072#1074#1085#1080#1074#1072#1090#1100
+    Top = 40
+    Width = 172
+    Height = 13
+    Caption = #1074#1099#1073#1077#1088#1080#1090#1077' '#1089#1088#1072#1074#1085#1080#1074#1072#1077#1084#1099#1077' '#1076#1072#1085#1085#1099#1077':'
   end
   inline Frame11: TFrame1
-    Left = 112
-    Top = 40
-    Width = 489
+    Left = 16
+    Top = 56
+    Width = 532
     Height = 25
     TabOrder = 0
   end
   inline Frame12: TFrame1
-    Left = 112
-    Top = 64
-    Width = 489
+    Left = 16
+    Top = 80
+    Width = 537
     Height = 25
     TabOrder = 1
   end
   object Edit1: TEdit
     Left = 240
     Top = 8
-    Width = 361
+    Width = 305
     Height = 21
     TabOrder = 2
     Text = 'Edit1'

@@ -30,7 +30,7 @@ type tvector = class
 
 TRtable = class
   private
-    events:tevents;
+    Fevents:tevents;
     Fitems:array of Tvector;
     Fy: integer;
     Fx: integer;
@@ -42,10 +42,12 @@ TRtable = class
     property y:integer read Fy ;
     property items[i:integer]:tvector read Getitems; default;
     function getT: trtable;
+    property events:tevents read Fevents;
   end;
 
 TKorel = class
   private
+    events:tevents;
     bitmap:tbitmap;
     _x,_y:tvector;
     Fpirks:boolean;
@@ -139,7 +141,7 @@ const table14:array[0..31] of record n:integer;t5:double;t1:double end = (
 constructor TRtable.create(x, y: integer; XName,YName:TStringList;events:tevents);
 var i:integer;
 begin
-  Self.events:=events;
+  Self.Fevents:=events;
   namex:=XName;
   namey:=YName;
   fx:=x;
@@ -149,11 +151,11 @@ begin
     if YName.Count>y then
       begin
         for i:=0 to y-1 do
-          Fitems[i]:=tvector.create(x,YName[i],events.NewSubScriber);
+          Fitems[i]:=tvector.create(x,YName[i],events);
         exit;
       end;
   for i:=0 to y-1 do
-    Fitems[i]:=tvector.create(x,'',events.NewSubScriber);
+    Fitems[i]:=tvector.create(x,'',events);
 end;
 
 
@@ -170,11 +172,12 @@ end;
 function TRtable.getT: trtable;
 var i,j:integer;
 begin
-  Result:=TRtable.create(y,x,namey,namex,events.NewSubScriber);
+  Result:=TRtable.create(y,x,namey,namex,events);
   for i:=0 to x-1 do
     for j:=0 to y-1 do
       Result[i][j]:=items[j][i];
 end;
+
 
 { tvector }
 
@@ -234,7 +237,7 @@ begin
   for i:=0 to x-1 do
     if abs(items[i])<=s then
       inc(f);
-  Result:=tvector.create(f,name,events.NewSubScriber);
+  Result:=tvector.create(f,name,events);
   f:=0;
   for i:=0 to x-1 do
     if abs(items[i])<=s then
@@ -276,8 +279,9 @@ end;
 
 { TKorelGrafic }
 
-constructor TKorel.create(X, Y: tvector;pirks:boolean);
+constructor TKorel.create(X, Y: tvector;pirks:boolean;events:tevents);
 begin
+  Self.events:=events;
   Fpirks:=pirks;
   _x:=x;
   _y:=y;
@@ -373,8 +377,8 @@ function TKorel._rxy_z(z: tvector): Double;
 var rxy,rxz,ryz:Double;
 begin
   rxy:=self._r;
-  rxz:=TKorel.create(_x,z,Fpirks)._r;
-  ryz:=TKorel.create(_y,z,Fpirks)._r;
+  rxz:=TKorel.create(_x,z,Fpirks,events)._r;
+  ryz:=TKorel.create(_y,z,Fpirks,events)._r;
   if (1-rxz*rxz)*(1-ryz*ryz)<>0 then
     Result:=(rxy-rxz*ryz)/sqrt((1-rxz*rxz)*(1-ryz*ryz)) else
     Result:=infiniti;
@@ -413,7 +417,7 @@ end;
 function TKorel._t16: double;
 var i:integer;v:tvector;
 begin
-  v:=tvector.create(n,'');
+  v:=tvector.create(n,'',events);
   for i:=0 to n-1 do
     v[i]:=_x[i]-_y[i];
   if v._m<>0 then
