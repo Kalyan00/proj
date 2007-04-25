@@ -92,7 +92,7 @@ object Form1: TForm1
     Width = 323
     Height = 153
     Align = alTop
-    Caption = 'GroupBox1'
+    Caption = ' '#1076#1072#1085#1085#1099#1077' '
     TabOrder = 1
     object Button5: TButton
       Left = 16

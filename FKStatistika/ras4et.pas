@@ -143,7 +143,7 @@ begin
   fy:=y;
   SetLength(Fitems,y);
   if YName<>nil then
-    if YName.Count>y then
+    if YName.Count>=y then
       begin
         for i:=0 to y-1 do
           Fitems[i]:=tvector.create(x,YName[i]);
@@ -260,7 +260,7 @@ var i:integer;
 begin
   Result:=items[0];
   for i:=0 to x-1 do
-    if items[i]>Result then Result:=items[0];
+    if items[i]>Result then Result:=items[i];
 end;
 
 function tvector._min: Double;
@@ -268,7 +268,7 @@ var i:integer;
 begin
   Result:=items[0];
   for i:=0 to x-1 do
-    if items[i]<Result then Result:=items[0];
+    if items[i]<Result then Result:=items[i];
 end;
 
 { TKorelGrafic }
@@ -282,7 +282,7 @@ begin
 end;
 
 function TKorel._bitmap:tbitmap;
-var i:integer; minx,maxx,miny,maxy:double;size:integer;
+var i:integer; M,minx,maxx,miny,maxy:double;size:integer;
 begin
   Result:=bitmap;
   if bitmap<>nil then exit;
@@ -290,26 +290,32 @@ begin
   maxx:=_x._max;   if maxx<0 then maxx:=0;
   miny:=_y._min; if miny>0 then miny:=0;
   maxy:=_y._max; if maxy<0 then maxy:=0;
-  if (maxx=minx)or(maxy=miny)then raise Exception.Create('_bitmap((maxx=minx)or(maxy=miny))');
-  size:=100;
+  M:=maxx-minx;
+  if M<maxy-miny then M:=maxy-miny;
+  if m=0 then M:=1;           
+  size:=130;
   bitmap:=TBitmap.Create;
   bitmap.Height:=size;
   bitmap.Width:=size;
+  bitmap.Canvas.Brush.Color:=clWhite;
+  bitmap.Canvas.Pen.Color:=clBlack;
   for i:=0 to n-1 do
-    bitmap.Canvas.Pixels[
-            round(10+(_x.items[i]-minx)*(size-20)/(maxx-minx)),
-            round(10+(_y.items[i]-miny)*(size-20)/(maxy-miny))]:=clBlack;
+    bitmap.Canvas.Ellipse (
+            round(      10+(_x.items[i]-minx)*(size-20)/M)-2,
+            round(size -10-(_y.items[i]-miny)*(size-20)/M)-2,
+            round(      10+(_x.items[i]-minx)*(size-20)/M)+2,
+            round(size -10-(_y.items[i]-miny)*(size-20)/M)+2);
   bitmap.Canvas.Rectangle(
-            round(10+(0-minx)*(size-20)/(maxx-minx)),
+            round(10+(0-minx)*(size-20)/M),
             round(0),
-            round(10+(0-minx)*(size-20)/(maxx-minx)),
+            round(10+(0-minx)*(size-20)/M)+1,
             round(size)
             );
   bitmap.Canvas.Rectangle(
             round(0),
-            round(10+(0-miny)*(size-20)/(maxy-miny)),
+            round(size -10-(0-miny)*(size-20)/M),
             round(size),
-            round(10+(0-miny)*(size-20)/(maxy-miny))
+            round(size -10-(0-miny)*(size-20)/M)+1
             );
   Result:=bitmap;
 end;
@@ -322,6 +328,7 @@ end;
 function TKorel._D: double;
 begin
   Result:=_rPirs*_rPirs*100;
+  if _rPirs = infiniti then Result:=infiniti;
 end;
 
 function TKorel._r: double;
