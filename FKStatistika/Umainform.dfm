@@ -149,4 +149,20 @@ object Form1: TForm1
       ImageIndex = 1
     end
   end
+  inline Frame11: TFrame1
+    Left = 16
+    Top = 360
+    Width = 457
+    Height = 49
+    TabOrder = 8
+  end
+  object Button12: TButton
+    Left = 344
+    Top = 384
+    Width = 65
+    Height = 57
+    Caption = 'Button12'
+    TabOrder = 9
+    OnClick = Button12Click
+  end
 end

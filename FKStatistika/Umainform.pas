@@ -25,6 +25,8 @@ type
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
+    Frame11: TFrame1;
+    Button12: TButton;
     procedure Button1Click(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -39,6 +41,7 @@ type
     procedure ListBox2DblClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
     procedure ListBox2KeyPress(Sender: TObject; var Key: Char);
+    procedure Button12Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,6 +100,10 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 begin
 //  if ListBox1.ItemIndex<>-1 then
+      with ListBox1 do
+    if ItemIndex<>-1 then
+    if TFtable(items.objects[ItemIndex]).events <>nil then
+    TFtable(Items[ItemIndex]).events.delete;
     ListBox1.DeleteSelected;
 end;
 
@@ -196,6 +203,11 @@ procedure TForm1.ListBox2KeyPress(Sender: TObject; var Key: Char);
 begin
     IF Key = #13 then
     ListBox2DblClick(nil);
+end;
+
+procedure TForm1.Button12Click(Sender: TObject);
+begin
+ Frame11.show(ListBox1);
 end;
 
 end.

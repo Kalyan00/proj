@@ -90,9 +90,7 @@ object Ftable: TFtable
     Align = alClient
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goTabs]
     TabOrder = 1
-    OnKeyPress = StringGrid1KeyPress
     OnKeyUp = StringGrid1KeyUp
-    OnSetEditText = StringGrid1SetEditText
   end
   object Panel2: TPanel
     Left = 378

@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, UVectorFrame;
+  Dialogs, StdCtrls, UVectorFrame, Uevents;
 
 type
   TParaForm = class(TForm)
@@ -22,8 +22,11 @@ type
     { Public declarations }
     rename:procedure of object;
     lb:tlistbox;
+    events:tevents;
     property paraname:string read getparaname write Setparaname;
     function ShowModal: Integer; override;
+    procedure onEventsRaise;
+    constructor Create(AOwner: TComponent); override;
   end;
 
 
@@ -51,12 +54,26 @@ end;
 
 function TParaForm.ShowModal: Integer;
 begin
-
   if lb=nil then
     raise exception.Create('TParaForm.ShowModal');
   Frame11.show(lb);
   Frame12.show(lb);
+  Frame11.events.add(onEventsRaise);
+  Frame12.events.add(onEventsRaise);
   result:=inherited ShowModal;
+end;
+
+procedure TParaForm.onEventsRaise;
+begin
+  events.delete;
+  events:=Tevents.Create;
+end;
+
+
+constructor TParaForm.Create(AOwner: TComponent);
+begin
+  inherited;
+  events:=Tevents.Create;
 end;
 
 end.
