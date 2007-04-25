@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 192
-  Top = 127
-  Width = 601
-  Height = 635
+  Left = 198
+  Top = 128
+  Width = 507
+  Height = 455
   Caption = 'Form1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -58,11 +58,11 @@ object Form1: TForm1
     Height = 49
     Caption = 'v'
     TabOrder = 5
-    OnClick = Button5Click
+    OnClick = ButtonClick
   end
   object Button6: TButton
-    Left = 248
-    Top = 408
+    Left = 336
+    Top = 56
     Width = 129
     Height = 57
     Caption = 'Button6'
@@ -76,5 +76,77 @@ object Form1: TForm1
     Caption = #1091#1076#1072#1083#1080#1090#1100
     TabOrder = 3
     OnClick = Button2Click
+  end
+  object PageControl1: TPageControl
+    Left = 8
+    Top = 136
+    Width = 457
+    Height = 177
+    ActivePage = TabSheet1
+    TabIndex = 0
+    TabOrder = 7
+    object TabSheet1: TTabSheet
+      Caption = #1083#1080#1085#1077#1081#1085#1072#1103' '#1082#1086#1088#1088#1077#1083#1103#1094#1080#1103
+      object ListBox2: TListBox
+        Left = 24
+        Top = 8
+        Width = 153
+        Height = 97
+        ItemHeight = 13
+        TabOrder = 1
+        OnDblClick = ListBox2DblClick
+        OnKeyPress = ListBox2KeyPress
+      end
+      object Button9: TButton
+        Left = 184
+        Top = 8
+        Width = 113
+        Height = 33
+        Caption = #1076#1086#1073#1072#1074#1080#1090#1100
+        TabOrder = 2
+        OnClick = Button9Click
+      end
+      object Button8: TButton
+        Left = 184
+        Top = 40
+        Width = 113
+        Height = 33
+        Caption = #1088#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
+        TabOrder = 3
+        OnClick = Button8Click
+      end
+      object Button11: TButton
+        Left = 8
+        Top = 8
+        Width = 17
+        Height = 49
+        Caption = '^'
+        TabOrder = 4
+        TabStop = False
+        OnClick = Button11Click
+      end
+      object Button10: TButton
+        Left = 8
+        Top = 56
+        Width = 17
+        Height = 49
+        Caption = 'v'
+        TabOrder = 5
+        OnClick = Button10Click
+      end
+      object Button7: TButton
+        Left = 184
+        Top = 72
+        Width = 113
+        Height = 33
+        Caption = #1091#1076#1072#1083#1080#1090#1100
+        TabOrder = 0
+        OnClick = Button7Click
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = #1088#1072#1085#1086#1075#1074#1072#1103' '#1082#1086#1088#1088#1077#1083#1103#1094#1080#1103
+      ImageIndex = 1
+    end
   end
 end
