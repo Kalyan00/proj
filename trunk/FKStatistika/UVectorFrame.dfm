@@ -1,11 +1,11 @@
 object Frame1: TFrame1
   Left = 0
   Top = 0
-  Width = 536
-  Height = 26
+  Width = 449
+  Height = 24
   TabOrder = 0
   object Label1: TLabel
-    Left = 424
+    Left = 312
     Top = 5
     Width = 108
     Height = 13
@@ -21,18 +21,16 @@ object Frame1: TFrame1
   object ComboBox1: TComboBox
     Left = 0
     Top = 0
-    Width = 161
+    Width = 129
     Height = 21
     Style = csDropDownList
     ItemHeight = 13
     TabOrder = 0
     OnChange = ComboBox1Change
     OnDropDown = ComboBox1DropDown
-    OnEnter = ComboBox1Enter
-    OnStartDrag = ComboBox1StartDrag
   end
   object ComboBox2: TComboBox
-    Left = 168
+    Left = 128
     Top = 0
     Width = 81
     Height = 21
@@ -46,13 +44,14 @@ object Frame1: TFrame1
       #1075#1088#1072#1092#1072)
   end
   object ComboBox3: TComboBox
-    Left = 256
+    Left = 208
     Top = 0
-    Width = 161
+    Width = 105
     Height = 21
     Style = csDropDownList
     Enabled = False
     ItemHeight = 13
     TabOrder = 2
+    OnChange = ComboBox3Change
   end
 end
