@@ -1,11 +1,12 @@
 unit ras4et;
 
 interface
-uses sysutils, Graphics, classes;
+uses sysutils, Graphics, classes, uevents;
 const infiniti = 123456;
 
 type tvector = class
   private
+    events:tevents;
     Fitems:array of double;
     Fx: integer;
     Fname: string;
@@ -14,7 +15,7 @@ type tvector = class
   public
     property name:string read Fname;
     property items[i:integer]:double read Getitems write Setitems; default;
-    constructor create(x:integer;name:string);
+    constructor create(x:integer;name:string;events:tevents);
     property x:integer read Fx;
     property n:integer read Fx;
     function _min:Double;
@@ -29,13 +30,14 @@ type tvector = class
 
 TRtable = class
   private
+    events:tevents;
     Fitems:array of Tvector;
     Fy: integer;
     Fx: integer;
     function Getitems(i: integer): tvector;
   public
     namex,namey:tstringlist;
-    constructor create(x, y: integer; XName,YName:TStringList);
+    constructor create(x, y: integer; XName,YName:TStringList;events:tevents);
     property x:integer read Fx ;
     property y:integer read Fy ;
     property items[i:integer]:tvector read Getitems; default;
@@ -52,7 +54,7 @@ TKorel = class
     function _rspirmen:double; //ранговый коэффициент корреляции
   public
     function _bitmap: tbitmap;
-    constructor create(X,Y:tvector;pirks:boolean);
+    constructor create(X,Y:tvector;pirks:boolean;events:tevents);
     property n:integer  read getn;
     function _r:double; //коэффициент корреляции
     function _D:double; //коэффициент детерминации
@@ -134,9 +136,10 @@ const table14:array[0..31] of record n:integer;t5:double;t1:double end = (
 (n:60;t5:2;t1:2.66),
 (n:100000;t5:1.96;t1:2.58));
 
-constructor TRtable.create(x, y: integer; XName,YName:TStringList);
+constructor TRtable.create(x, y: integer; XName,YName:TStringList;events:tevents);
 var i:integer;
 begin
+  Self.events:=events;
   namex:=XName;
   namey:=YName;
   fx:=x;
@@ -146,11 +149,11 @@ begin
     if YName.Count>y then
       begin
         for i:=0 to y-1 do
-          Fitems[i]:=tvector.create(x,YName[i]);
+          Fitems[i]:=tvector.create(x,YName[i],events.NewSubScriber);
         exit;
       end;
   for i:=0 to y-1 do
-    Fitems[i]:=tvector.create(x,'');
+    Fitems[i]:=tvector.create(x,'',events.NewSubScriber);
 end;
 
 
@@ -167,7 +170,7 @@ end;
 function TRtable.getT: trtable;
 var i,j:integer;
 begin
-  Result:=TRtable.create(y,x,namey,namex);
+  Result:=TRtable.create(y,x,namey,namex,events.NewSubScriber);
   for i:=0 to x-1 do
     for j:=0 to y-1 do
       Result[i][j]:=items[j][i];
@@ -175,8 +178,9 @@ end;
 
 { tvector }
 
-constructor tvector.create(x:integer;name:string);
+constructor tvector.create(x:integer;name:string;events:tevents);
 begin
+  Self.events:=events;
   if x<2 then raise exception.Create('tvector.create(x<2)');
   fx:=x;
   SetLength(Fitems,x);
@@ -230,7 +234,7 @@ begin
   for i:=0 to x-1 do
     if abs(items[i])<=s then
       inc(f);
-  Result:=tvector.create(f,name);
+  Result:=tvector.create(f,name,events.NewSubScriber);
   f:=0;
   for i:=0 to x-1 do
     if abs(items[i])<=s then

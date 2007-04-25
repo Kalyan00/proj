@@ -20,7 +20,7 @@ type
     { Public declarations }
     rslt:Tvector;
     lbb:TListBox;
-    constructor create(lb:TListBox);
+    procedure show(lb: TListBox);
   end;
 
 implementation
@@ -61,10 +61,11 @@ begin
   ComboBox3.Items:=tabl2.namey;
 end;
 
-constructor TFrame1.create(lb: TListBox);
+procedure TFrame1.show(lb: TListBox);
 begin
   lbb:=lb;
-  ComboBox1.Items:=lb.Items;
+  if ComboBox1.Items.Count=0 then
+    ComboBox1.Items:=lb.Items;
 end;
 
 end.

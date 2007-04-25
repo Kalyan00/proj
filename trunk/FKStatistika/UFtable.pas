@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, ExtCtrls, Grids, ras4et;
+  Dialogs, ComCtrls, StdCtrls, ExtCtrls, Grids, ras4et, uevents;
 
 type
   TFtable = class(TForm)
@@ -51,6 +51,7 @@ type
     { Public declarations }
     x,y:integer;
     rename:procedure of object;
+    events:Tevents;
     property tablename:string read Gettablename write Settablename;
     procedure recols;
     function getTRtable: TRtable;
@@ -95,6 +96,7 @@ end;
 
 procedure TFtable.FormCreate(Sender: TObject);
 begin
+  events:=Tevents.create;
   StringGrid1.Cells[1,0]:='“ÂÒÚ 1';
   StringGrid1.Cells[0,1]:='‘»Œ 1';
   StringGrid1.Cells[2,0]:='...';
