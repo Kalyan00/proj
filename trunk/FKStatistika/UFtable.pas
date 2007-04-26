@@ -33,6 +33,7 @@ type
     Button1: TButton;
     PopupMenu1: TPopupMenu;
     N1: TMenuItem;
+    N2: TMenuItem;
 
     procedure FormCreate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
@@ -44,6 +45,7 @@ type
     procedure Edit3Change(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
   private
     notferst:boolean;
     procedure Settablename(const Value: string);
@@ -305,6 +307,19 @@ begin
 
 
 
+end;
+
+procedure TFtable.N2Click(Sender: TObject);
+var i,j:integer;s:string;
+begin
+  s:='';
+  for j:=0 to StringGrid1.rowCount-1 do
+    begin
+    for i:=0 to StringGrid1.colCount-2 do
+      s:=s+StringGrid1.Cells[i,j]+#9;
+    s:=s+StringGrid1.Cells[i,j]+#13#10;
+    end;
+  Clipboard.SetTextBuf(pchar(s));
 end;
 
 end.

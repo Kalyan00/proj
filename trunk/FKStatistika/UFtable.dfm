@@ -245,5 +245,9 @@ object Ftable: TFtable
       Caption = #1074#1089#1090#1072#1074#1080#1090#1100
       OnClick = N1Click
     end
+    object N2: TMenuItem
+      Caption = #1082#1086#1087#1080#1088#1086#1074#1072#1090#1100' '#1090#1072#1073#1083#1080#1094#1091
+      OnClick = N2Click
+    end
   end
 end
