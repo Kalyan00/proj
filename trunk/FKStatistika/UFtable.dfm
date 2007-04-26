@@ -89,6 +89,7 @@ object Ftable: TFtable
     TabStop = False
     Align = alClient
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goEditing, goTabs]
+    PopupMenu = PopupMenu1
     TabOrder = 1
     OnKeyUp = StringGrid1KeyUp
   end
@@ -116,7 +117,7 @@ object Ftable: TFtable
         Top = 16
         Width = 137
         Height = 17
-        Caption = 'Sum'
+        Caption = 'Sum ('#1089#1091#1084#1084#1072')'
         TabOrder = 0
         OnClick = rVClick
       end
@@ -126,7 +127,7 @@ object Ftable: TFtable
         Top = 32
         Width = 137
         Height = 17
-        Caption = 'Avg'
+        Caption = 'Avg ('#1089#1088#1077#1076#1085#1077#1077')'
         TabOrder = 1
         OnClick = rVClick
       end
@@ -136,7 +137,7 @@ object Ftable: TFtable
         Top = 48
         Width = 137
         Height = 17
-        Caption = 'Sigma'
+        Caption = 'Sigma ('#1089#1088'.'#1082#1074'.'#1086#1090#1082#1083#1086#1085'.)'
         TabOrder = 2
         OnClick = rVClick
       end
@@ -146,7 +147,7 @@ object Ftable: TFtable
         Top = 64
         Width = 137
         Height = 17
-        Caption = 'V'
+        Caption = 'V ('#1082#1086#1101#1092'. '#1074#1072#1088#1080#1072#1094#1080#1080')'
         TabOrder = 3
         OnClick = rVClick
       end
@@ -156,7 +157,7 @@ object Ftable: TFtable
         Top = 80
         Width = 137
         Height = 17
-        Caption = 'm'
+        Caption = 'm ('#1086#1096#1080#1073#1082#1072' '#1089#1088#1077#1076#1085#1077#1081')'
         TabOrder = 4
         OnClick = rVClick
       end
@@ -175,7 +176,7 @@ object Ftable: TFtable
         Top = 16
         Width = 137
         Height = 17
-        Caption = 'Sum'
+        Caption = 'Sum ('#1089#1091#1084#1084#1072')'
         TabOrder = 0
         OnClick = rVClick
       end
@@ -185,7 +186,7 @@ object Ftable: TFtable
         Top = 32
         Width = 137
         Height = 17
-        Caption = 'Avg'
+        Caption = 'Avg ('#1089#1088#1077#1076#1085#1077#1077')'
         TabOrder = 1
         OnClick = rVClick
       end
@@ -195,7 +196,7 @@ object Ftable: TFtable
         Top = 48
         Width = 137
         Height = 17
-        Caption = 'Sigma'
+        Caption = 'Sigma ('#1089#1088'.'#1082#1074'.'#1086#1090#1082#1083#1086#1085'.)'
         TabOrder = 2
         OnClick = rVClick
       end
@@ -205,7 +206,7 @@ object Ftable: TFtable
         Top = 64
         Width = 137
         Height = 17
-        Caption = 'V'
+        Caption = 'V ('#1082#1086#1101#1092'. '#1074#1072#1088#1080#1072#1094#1080#1080')'
         TabOrder = 3
         OnClick = rVClick
       end
@@ -215,7 +216,7 @@ object Ftable: TFtable
         Top = 80
         Width = 137
         Height = 17
-        Caption = 'm'
+        Caption = 'm ('#1086#1096#1080#1073#1082#1072' '#1089#1088#1077#1076#1085#1077#1081')'
         TabOrder = 4
         OnClick = rVClick
       end
@@ -235,6 +236,14 @@ object Ftable: TFtable
       ParentFont = False
       TabOrder = 2
       OnClick = Button1Click
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 144
+    Top = 216
+    object N1: TMenuItem
+      Caption = #1074#1089#1090#1072#1074#1080#1090#1100
+      OnClick = N1Click
     end
   end
 end

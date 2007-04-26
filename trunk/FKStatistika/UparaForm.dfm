@@ -1,6 +1,6 @@
 object ParaForm: TParaForm
-  Left = 191
-  Top = 242
+  Left = 185
+  Top = 183
   Width = 516
   Height = 467
   Caption = 'ParaForm'

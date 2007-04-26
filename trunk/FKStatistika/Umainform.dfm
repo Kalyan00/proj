@@ -15,7 +15,7 @@ object Form1: TForm1
   TextHeight = 13
   object PageControl1: TPageControl
     Left = 0
-    Top = 186
+    Top = 194
     Width = 323
     Height = 159
     ActivePage = TabSheet1
@@ -88,7 +88,7 @@ object Form1: TForm1
   end
   object GroupBox1: TGroupBox
     Left = 0
-    Top = 33
+    Top = 41
     Width = 323
     Height = 153
     Align = alTop
@@ -155,10 +155,10 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 323
-    Height = 33
+    Height = 41
     Align = alTop
     BevelOuter = bvNone
-    Caption = #1089#1072#1081#1090' '#1087#1088#1086#1075#1088#1072#1084#1084#1099
+    Caption = #1089#1072#1081#1090'  -  kalyan00.narod.ru/FKStatistika'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
     Font.Height = -12

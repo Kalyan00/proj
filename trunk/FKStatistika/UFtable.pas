@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, ExtCtrls, Grids, ras4et, uevents;
+  Dialogs, ComCtrls, StdCtrls, ExtCtrls, Grids, ras4et, uevents, Menus,Clipbrd;
 
 type
   TFtable = class(TForm)
@@ -31,6 +31,8 @@ type
     rV: TCheckBox;
     rm: TCheckBox;
     Button1: TButton;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
 
     procedure FormCreate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
@@ -41,6 +43,7 @@ type
     procedure rVClick(Sender: TObject);
     procedure Edit3Change(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
   private
     notferst:boolean;
     procedure Settablename(const Value: string);
@@ -96,8 +99,8 @@ procedure TFtable.FormCreate(Sender: TObject);
 begin
   StringGrid1.Cells[1,0]:='“ÂÒÚ 1';
   StringGrid1.Cells[0,1]:='‘»Œ 1';
-  StringGrid1.Cells[2,0]:='...';
-  StringGrid1.Cells[0,2]:='...';
+  StringGrid1.Cells[2,0]:='“ÂÒÚ 2';
+  StringGrid1.Cells[0,2]:='‘»Œ 2';
   x:=1000;
   y:=1000;
 end;
@@ -157,10 +160,16 @@ begin
   StringGrid1.ColCount:=x+1+x___;
   for i:=oldr to y+1+y___ do
     for j:=0 to x+1+x___ do
-      StringGrid1.Cells[j,i]:='';
+      if j=0 then
+        if i<y+1 then
+          StringGrid1.Cells[j,i]:='‘»Œ '+IntToStr(j) else else
+        StringGrid1.Cells[j,i]:='';
   for j:=oldc to x+1+x___ do
     for i:=0 to y+1+y___ do
-      StringGrid1.Cells[j,i]:='';
+      if i=0 then
+        if j<x+1 then
+          StringGrid1.Cells[j,i]:='“ÂÒÚ '+IntToStr(j) else else
+        StringGrid1.Cells[j,i]:='';
   Application.ProcessMessages;
   y___:=y+1;
   x___:=x+1;
@@ -249,6 +258,41 @@ end;
 procedure TFtable.Button1Click(Sender: TObject);
 begin
   close;
+end;
+
+procedure TFtable.N1Click(Sender: TObject);
+var ss,s:string;i,j,xx,yy:integer;
+begin
+  Application.ProcessMessages;
+  s:=clipboard.AsText;
+  i:=0;j:=0; xx:=StringGrid1.Col;yy:=StringGrid1.row;
+  while length(s)<>0do
+    begin
+    case s[1] of
+      #9:begin
+        delete(s,1,1);
+        StringGrid1.Cells[xx+i,yy+j]:=ss;
+        inc(i);
+        ss:='';
+        end;
+      #13:begin
+        delete(s,1,1);
+        StringGrid1.Cells[xx+i,yy+j]:=ss;
+        i:=0;
+        inc(j);
+        ss:=''
+        end;
+      #10:delete(s,1,1);
+      else
+        begin
+          ss:=ss+s[1];
+          delete(s,1,1);
+        end;
+    end;
+    end;
+
+
+
 end;
 
 end.
