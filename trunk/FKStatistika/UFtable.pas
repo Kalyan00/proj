@@ -66,6 +66,18 @@ implementation
 
 {$R *.dfm}
 
+function StrToFloat(s:string):double;
+var i:integer;
+begin
+  Result:=0;
+  if s='-' then exit;
+  for i:=1 to length(s)do
+    case s[i] of
+      ',','.':s[i]:=floattostr(0.1)[2];
+    end;
+  Result:=sysutils.StrToFloat(s);
+end;
+
 
 function FloatToStr(f:double):string;
 var i,j:integer;b,d:boolean; dot:char;
