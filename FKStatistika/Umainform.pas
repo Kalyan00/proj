@@ -26,6 +26,8 @@ type
     TabSheet2: TTabSheet;
     GroupBox1: TGroupBox;
     Panel1: TPanel;
+    Button6: TButton;
+    Button12: TButton;
     procedure Button1Click(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -41,6 +43,7 @@ type
     procedure Button10Click(Sender: TObject);
     procedure ListBox2KeyPress(Sender: TObject; var Key: Char);
     procedure Panel1Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -204,7 +207,20 @@ end;
 
 procedure TForm1.Panel1Click(Sender: TObject);
 begin
-  WinExec('cmd /c start http://kalyan00.narod.ru/FKStatistika',SW_hide); 
+  WinExec('explorer http://kalyan00.narod.ru/FKStatistika',SW_SHOWNORMAL); 
+end;
+
+procedure TForm1.Button6Click(Sender: TObject);
+var report:Treport; i:integer;
+begin
+  report:=Treport.Create;
+  with ListBox1 do
+    for i:=0 to Count -1 do
+     TFtable(Items.Objects[i]).report(report);
+  with ListBox2 do
+    for i:=0 to Count -1 do
+     TParaForm(Items.Objects[i]).report(report);
+  report.view(sender=Button6);
 end;
 
 end.

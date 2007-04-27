@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, ExtCtrls, Grids, ras4et, uevents, Menus,Clipbrd;
+  Dialogs, ComCtrls, StdCtrls, ExtCtrls, Grids, ras4et, uevents, Menus,Clipbrd,
+  report;
 
 type
   TFtable = class(TForm)
@@ -58,6 +59,7 @@ type
     property tablename:string read Gettablename write Settablename;
     procedure recols;
     function getTRtable: TRtable;
+    procedure report(r:treport);
   end;
 
 
@@ -320,6 +322,21 @@ begin
     s:=s+StringGrid1.Cells[i,j]+#13#10;
     end;
   Clipboard.SetTextBuf(pchar(s));
+end;
+
+procedure TFtable.report(r: treport);
+  function gettable:string;
+    var i,j:integer; s:TStringList;
+    begin
+      s:=TStringList.Create;
+      for i := 0 to StringGrid1.RowCount-1 do
+        for j := 0 to StringGrid1.ColCount-1 do
+          s.Add(StringGrid1.Cells[j,i]);
+      Result:=s.Text;
+    end;
+begin
+  r.add(TRepHeader.create('Таблица "'+tablename+'"'));
+  r.add(TRepTable.create(StringGrid1.ColCount,StringGrid1.RowCount,gettable));
 end;
 
 end.

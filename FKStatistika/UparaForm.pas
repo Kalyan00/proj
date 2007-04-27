@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, UVectorFrame, Uevents, ras4et, ExtCtrls, uftable;
+  Dialogs, StdCtrls, UVectorFrame, Uevents, ras4et, ExtCtrls, uftable,report;
 
 type
   TParaForm = class(TForm)
@@ -59,6 +59,7 @@ type
     constructor Create(AOwner: TComponent); override;
     procedure ondone;
     procedure onotstav;
+    procedure report(r:treport);
   end;
 
 function FloatToStr(f:double):string;
@@ -86,6 +87,7 @@ end;
 
 procedure TParaForm.Edit1Change(Sender: TObject);
 begin
+  Caption:=paraname;
   if assigned(rename) then
     rename;
 end;
@@ -177,6 +179,11 @@ end;
 procedure TParaForm.RadioButton2Click(Sender: TObject);
 begin
   ondone;
+end;
+
+procedure TParaForm.report(r: treport);
+begin
+
 end;
 
 end.
