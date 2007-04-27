@@ -9,20 +9,20 @@ File_6=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\Delphi-
 File_7=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\Delphi-dip\UFtable.pas',0,1,125,32,126,1,0
 
 [Modules]
-Module0=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr
+Module0=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UparaForm.pas
 Module1=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\report.pas
-Module2=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.pas
-Module3=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UparaForm.pas
-Module4=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UVectorFrame.pas
+Module2=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UVectorFrame.pas
+Module3=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.pas
+Module4=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr
 Module5=d:\program files\borland\delphi6\source\rtl\common\classes.pas
 Module6=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\uevents.pas
 Module7=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\ras4et.pas
 Count=8
 EditWindowCount=1
 
-[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr]
+[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UparaForm.pas]
 ModuleType=SourceModule
-FormState=0
+FormState=1
 FormOnTop=0
 
 [D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\report.pas]
@@ -30,19 +30,19 @@ ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
+[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UVectorFrame.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
 [D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UparaForm.pas]
+[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr]
 ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UVectorFrame.pas]
-ModuleType=SourceModule
-FormState=1
+FormState=0
 FormOnTop=0
 
 [d:\program files\borland\delphi6\source\rtl\common\classes.pas]
@@ -66,7 +66,7 @@ FormOnTop=0
 
 [EditWindow0]
 ViewCount=8
-CurrentView=0
+CurrentView=3
 View0=0
 View1=1
 View2=2
@@ -92,9 +92,9 @@ LeftPanelSize=140
 LeftPanelClients=CodeExplorer@EditWindow0
 LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000000C000000436F64654578706C6F726572FFFFFFFF
 RightPanelSize=0
-BottomPanelSize=0
+BottomPanelSize=108
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=00000400010000000B0000004D657373616765566965773B03000000000000026C000000000000000100000000000000000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000B0000004D65737361676556696577FFFFFFFF
+BottomPanelData=00000400000000003B03000000000000026C000000000000000100000000000000000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000B0000004D65737361676556696577FFFFFFFF
 
 [View0]
 Module=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr
@@ -105,9 +105,9 @@ LeftCol=1
 
 [View1]
 Module=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\report.pas
-CursorX=1
-CursorY=74
-TopLine=57
+CursorX=66
+CursorY=62
+TopLine=45
 LeftCol=1
 
 [View2]
@@ -119,9 +119,9 @@ LeftCol=1
 
 [View3]
 Module=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UparaForm.pas
-CursorX=1
-CursorY=90
-TopLine=79
+CursorX=11
+CursorY=189
+TopLine=181
 LeftCol=1
 
 [View4]
@@ -172,8 +172,8 @@ Left=0
 Top=0
 Width=1024
 Height=105
-MaxLeft=-4
-MaxTop=-4
+MaxLeft=-1
+MaxTop=-1
 MaxWidth=1032
 MaxHeight=105
 ClientWidth=1024
@@ -242,8 +242,8 @@ LRDockWidth=190
 Dockable=1
 SplitPos=102
 ArrangeBy=Name
-SelectedItem=OnChange
-ExpandedItems=Font,Font.Style,Options
+SelectedItem=Caption
+ExpandedItems=Options
 HiddenCategories=
 
 [CallStackWindow]
@@ -285,18 +285,18 @@ State=0
 Left=0
 Top=12
 Width=140
-Height=551
+Height=440
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=140
-ClientHeight=551
+ClientHeight=440
 TBDockHeight=305
 LRDockWidth=140
 Dockable=1
 
 [MessageView@EditWindow0]
 Create=1
-Visible=0
+Visible=1
 State=0
 Left=12
 Top=0

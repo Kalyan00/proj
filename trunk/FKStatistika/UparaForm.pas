@@ -58,7 +58,6 @@ type
     function ShowModal: Integer; override;
     constructor Create(AOwner: TComponent); override;
     procedure ondone;
-    procedure onotstav;
     procedure report(r:treport);
   end;
 
@@ -171,10 +170,6 @@ begin
   end;
 end;
 
-procedure TParaForm.onotstav;
-begin
-
-end;
 
 procedure TParaForm.RadioButton2Click(Sender: TObject);
 begin
@@ -182,7 +177,28 @@ begin
 end;
 
 procedure TParaForm.report(r: treport);
+var s:string;
 begin
+  ondone;
+  if not Panel4.Visible then exit;
+  r.add(TRepHeader.create(paraname));
+  r.add(TRepText.create('Выполним расчет статистических показателей для пары X, Y'));
+  with Frame11 do
+  begin
+    if ComboBox2.ItemIndex=1 then
+    s:='колонка из таблицы ' else
+    s:='строка из таблицы ' ;
+    r.add(TRepText.create('X - '+rslt.name+' ('+s+Ftable.tablename+')'));
+  end;
+  with Frame12 do
+  begin
+    if ComboBox2.ItemIndex=1 then
+    s:='колонка из таблицы ' else
+    s:='строка из таблицы ' ;
+    r.add(TRepText.create('Y - '+rslt.name+' ('+s+Ftable.tablename+')'));
+  end;
+  r.add(TRepText.create(''));
+
 
 end;
 
