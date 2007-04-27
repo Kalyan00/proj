@@ -1,37 +1,33 @@
 [Closed Files]
-File_0=SourceModule,'d:\program files\borland\delphi6\source\vcl\Forms.pas',0,1,2480,52,2494,0,0
-File_1=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\report.pas',0,1,118,59,129,0,0
-File_2=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Uvisual.pas',0,1,1,1,1,0,0
-File_3=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.dfm',0,1,1,1,1,0,0
-File_4=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\Delphi-dip\ras4et.pas',0,1,137,1,151,0,0
-File_5=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\Delphi-dip\FKStatistika.dpr',0,1,1,1,13,0,0
-File_6=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\Delphi-dip\UFtable.pas',0,1,125,32,126,1,0
+File_0=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UFtable.pas',0,1,322,37,339,1,0
+File_1=SourceModule,'d:\program files\borland\delphi6\source\vcl\Controls.pas',0,1,478,34,489,0,0
+File_2=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.dfm',0,1,1,1,1,0,0
+File_3=SourceModule,'d:\program files\borland\delphi6\source\vcl\Forms.pas',0,1,2480,52,2494,0,0
+File_4=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Uvisual.pas',0,1,1,1,1,0,0
+File_5=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\Delphi-dip\ras4et.pas',0,1,137,1,151,0,0
+File_6=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\Delphi-dip\FKStatistika.dpr',0,1,1,1,13,0,0
+File_7=SourceModule,'D:\Documents and Settings\NKolomeytsev\Рабочий стол\Delphi-dip\UFtable.pas',0,1,125,32,126,1,0
 
 [Modules]
-Module0=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UVectorFrame.pas
-Module1=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\uevents.pas
-Module2=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UFtable.pas
-Module3=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.pas
-Module4=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UparaForm.pas
-Module5=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr
-Module6=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\ras4et.pas
-Module7=d:\program files\borland\delphi6\source\rtl\common\classes.pas
+Module0=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr
+Module1=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\report.pas
+Module2=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.pas
+Module3=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UparaForm.pas
+Module4=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UVectorFrame.pas
+Module5=d:\program files\borland\delphi6\source\rtl\common\classes.pas
+Module6=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\uevents.pas
+Module7=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\ras4et.pas
 Count=8
 EditWindowCount=1
 
-[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UVectorFrame.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\uevents.pas]
+[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr]
 ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
-[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UFtable.pas]
+[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\report.pas]
 ModuleType=SourceModule
-FormState=1
+FormState=0
 FormOnTop=0
 
 [D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.pas]
@@ -44,17 +40,22 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr]
+[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UVectorFrame.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[d:\program files\borland\delphi6\source\rtl\common\classes.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\uevents.pas]
 ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
 [D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\ras4et.pas]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
-[d:\program files\borland\delphi6\source\rtl\common\classes.pas]
 ModuleType=SourceModule
 FormState=0
 FormOnTop=0
@@ -65,7 +66,7 @@ FormOnTop=0
 
 [EditWindow0]
 ViewCount=8
-CurrentView=4
+CurrentView=0
 View0=0
 View1=1
 View2=2
@@ -91,9 +92,9 @@ LeftPanelSize=140
 LeftPanelClients=CodeExplorer@EditWindow0
 LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000000C000000436F64654578706C6F726572FFFFFFFF
 RightPanelSize=0
-BottomPanelSize=108
+BottomPanelSize=0
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=00000400000000003B03000000000000026C000000000000000100000000000000000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000B0000004D65737361676556696577FFFFFFFF
+BottomPanelData=00000400010000000B0000004D657373616765566965773B03000000000000026C000000000000000100000000000000000000000001000000003B0300000000000001000000003B0300000000000001000000003B0300000B0000004D65737361676556696577FFFFFFFF
 
 [View0]
 Module=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\FKStatistika.dpr
@@ -103,24 +104,24 @@ TopLine=1
 LeftCol=1
 
 [View1]
-Module=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UFtable.pas
+Module=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\report.pas
 CursorX=1
-CursorY=187
-TopLine=170
+CursorY=74
+TopLine=57
 LeftCol=1
 
 [View2]
 Module=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.pas
-CursorX=25
-CursorY=105
-TopLine=93
+CursorX=29
+CursorY=223
+TopLine=196
 LeftCol=1
 
 [View3]
 Module=D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UparaForm.pas
-CursorX=2
-CursorY=69
-TopLine=39
+CursorX=1
+CursorY=90
+TopLine=79
 LeftCol=1
 
 [View4]
@@ -155,12 +156,10 @@ LeftCol=1
 Count=0
 
 [Breakpoints]
-Count=5
+Count=3
 Breakpoint0='D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\uevents.pas',72,'',0,1,'',1,0,0,'',1,'','',''
 Breakpoint1='D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\uevents.pas',57,'',0,1,'',1,0,0,'',1,'','',''
 Breakpoint2='D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\uevents.pas',116,'',0,1,'',1,0,0,'',1,'','',''
-Breakpoint3='D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\Umainform.pas',104,'',0,1,'',1,0,0,'',1,'','',''
-Breakpoint4='D:\Documents and Settings\NKolomeytsev\Рабочий стол\FKStatistika\UFtable.pas',187,'',0,1,'',1,0,0,'',1,'','',''
 
 [AddressBreakpoints]
 Count=0
@@ -243,25 +242,9 @@ LRDockWidth=190
 Dockable=1
 SplitPos=102
 ArrangeBy=Name
-SelectedItem=Action
-ExpandedItems=Options
+SelectedItem=OnChange
+ExpandedItems=Font,Font.Style,Options
 HiddenCategories=
-
-[WatchWindow]
-Create=1
-Visible=0
-State=0
-Left=191
-Top=689
-Width=289
-Height=211
-MaxLeft=-1
-MaxTop=-1
-ClientWidth=281
-ClientHeight=187
-TBDockHeight=187
-LRDockWidth=421
-Dockable=1
 
 [CallStackWindow]
 Create=1
@@ -275,7 +258,7 @@ MaxLeft=-1
 MaxTop=-1
 ClientWidth=286
 ClientHeight=137
-TBDockHeight=137
+TBDockHeight=161
 LRDockWidth=294
 Dockable=1
 
@@ -302,18 +285,18 @@ State=0
 Left=0
 Top=12
 Width=140
-Height=440
+Height=551
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=140
-ClientHeight=440
-TBDockHeight=440
+ClientHeight=551
+TBDockHeight=305
 LRDockWidth=140
 Dockable=1
 
 [MessageView@EditWindow0]
 Create=1
-Visible=1
+Visible=0
 State=0
 Left=12
 Top=0

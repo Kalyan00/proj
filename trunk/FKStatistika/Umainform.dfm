@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 198
   Top = 128
   Width = 331
-  Height = 513
+  Height = 449
   Caption = 'FKStatistika'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -167,5 +167,29 @@ object Form1: TForm1
     ParentFont = False
     TabOrder = 2
     OnClick = Panel1Click
+  end
+  object Button6: TButton
+    Left = 8
+    Top = 360
+    Width = 153
+    Height = 57
+    Caption = #1055#1088#1077#1076#1087#1088#1086#1089#1084#1086#1090#1088
+    TabOrder = 3
+    OnClick = Button6Click
+  end
+  object Button12: TButton
+    Left = 168
+    Top = 360
+    Width = 153
+    Height = 57
+    Caption = #1054#1090#1095#1077#1090
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 4
+    OnClick = Button6Click
   end
 end

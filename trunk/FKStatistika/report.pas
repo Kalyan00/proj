@@ -14,7 +14,7 @@ type
     items:Array[0..1000] of TrepItems;
     count:integer;
   public
-    procedure view;
+    procedure view(adv:boolean);
     procedure add(item: TrepItems);
   end;
 
@@ -35,7 +35,9 @@ type
   end;
 
 
+
 implementation
+
 
 { Treport }
 
@@ -45,19 +47,31 @@ begin
   inc(count);
 end;
 
-procedure Treport.view;
+procedure Treport.view(adv:boolean);
   var s:string; i:integer;l:TStringList;
+  const sadd:array[false..true]of string = ('<html '+
+  '><head><style><!--'#13#10+
+  'table{width:100%;background-color:000000;border-collapse:collapse;}'#13#10+
+  'td{background-color:FFFFFF;border:solid windowtext .5pt}'#13#10+
+  '--></style>'#13#10#13#10'</head><body>',
+
+  '<html><head><style><!--'#13#10+
+  'table{width:100%;background-color:000000;border-collapse:collapse;}'#13#10+
+  'td{background-color:FFFFFF;border:solid windowtext .5pt}'#13#10+
+  '--></style>'#13#10#13#10'</head><body bgcolor=888888><center>'#13#10+
+  '<table style="width=800"><tr><td> <center><br><br><br>'#13#10+
+  '<table style="width=600;background-color:FFFFFF"><tr><td style=";border-width:0">');
 begin
-  s:='<html><head></head><body>';
+  s:=sadd[adv]+#13#10;
   for i:=0 to 1000 do
     if items[i]<>nil then
       s:=s+items[i].write;
-  s:=s+'</body></html>';
+  s:=s+'<br><p align="right"><font size=2>данный расчет проведен при помощи программы <a href="http://kalyan00.narod.ru/FKStatistika">FKStatistika</a> &copy</font></p>'#13#10'</body></html>';
   l:=TStringList.Create;
   l.Text:=s;
   l.SaveToFile('temp.htm');
-  s:='cmd /c start '+getcurrentdir+'\temp.htm';
-  i:= WinExec(pchar(s),SW_NORMAL);
+  s:='explorer '+getcurrentdir+'\temp.htm';
+  WinExec(pchar(s),SW_NORMAL);
 end;
 
 { TrepItems }
@@ -71,8 +85,8 @@ begin
       '<': result:='&lt'+result;
       '>': result:='&gt'+result;
       '&': result:='&amp'+result;
-      ' ': result:='&nbsp'+result;
-      '"': result:='&quot'+result;
+//      ' ': result:='&nbsp'+result;
+//      '"': result:='&quot'+result;
       else result:=s[i]+result;
     end;
 end;
@@ -89,7 +103,7 @@ constructor TRepTable.create(x, y:integer; text: string);
 begin
   text_:= TStringList.Create;
   text_.Text:=text;
-  html:='<p><table border=1 cellspacing=0 cellpadding=0>';
+  html:='<p><table>';
   k:=0;
   for i:=0 to y-1 do
   begin
@@ -98,10 +112,11 @@ begin
     begin
       z:='&nbsp';
       if k<text_.Count then z:=convertHTML(text_[k]);
-      html:=html+'<td>'+z+'</td>';
+      if z= '' then z:='&nbsp';
+      html:=html+'<td>'+z+'</td>'#13#10;
       inc(K);
     end;
-    html:=html+'</tr>'#13#10;
+    html:=html+'</tr>';
   end;
   html:=html+'</table></p>';
 end;
@@ -126,5 +141,7 @@ constructor TRepHeader.create(Text: string);
 begin
   html:='<p><h1>'+convertHTML(text)+'</h1></p>';
 end;
+
+
 
 end.
