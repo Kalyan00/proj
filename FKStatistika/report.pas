@@ -58,9 +58,8 @@ procedure Treport.view(adv:boolean);
   '<html><head><style><!--'#13#10+
   'table{width:100%;background-color:000000;border-collapse:collapse;}'#13#10+
   'td{background-color:FFFFFF;border:solid windowtext .5pt}'#13#10+
-  '--></style>'#13#10#13#10'</head><body bgcolor=888888><center>'#13#10+
-  '<table style="width=800"><tr><td> <center><br><br><br>'#13#10+
-  '<table style="width=600;background-color:FFFFFF"><tr><td style=";border-width:0">');
+  '--></style>'#13#10#13#10'</head><body bgcolor=888888>'#13#10+
+  '<table style="width:800;margin:50"><tr><td style="padding:30">');
 begin
   s:=sadd[adv]+#13#10;
   for i:=0 to 1000 do
