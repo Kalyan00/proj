@@ -1,28 +1,23 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeadHunterResumeGrubber", "HeadHunterResumeGrubber.csproj", "{F00D2719-82ED-41A3-A934-7CA90E41B8D6}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{034F7E6E-273B-4992-9855-8E3ED0FB1D5D}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{F00D2719-82ED-41A3-A934-7CA90E41B8D6}.Debug.ActiveCfg = Debug|.NET
-		{F00D2719-82ED-41A3-A934-7CA90E41B8D6}.Debug.Build.0 = Debug|.NET
-		{F00D2719-82ED-41A3-A934-7CA90E41B8D6}.Release.ActiveCfg = Release|.NET
-		{F00D2719-82ED-41A3-A934-7CA90E41B8D6}.Release.Build.0 = Release|.NET
-		{034F7E6E-273B-4992-9855-8E3ED0FB1D5D}.Debug.ActiveCfg = Debug
-		{034F7E6E-273B-4992-9855-8E3ED0FB1D5D}.Release.ActiveCfg = Release
-		{034F7E6E-273B-4992-9855-8E3ED0FB1D5D}.Release.Build.0 = Release
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F00D2719-82ED-41A3-A934-7CA90E41B8D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F00D2719-82ED-41A3-A934-7CA90E41B8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F00D2719-82ED-41A3-A934-7CA90E41B8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F00D2719-82ED-41A3-A934-7CA90E41B8D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{034F7E6E-273B-4992-9855-8E3ED0FB1D5D}.Debug|Any CPU.ActiveCfg = Debug
+		{034F7E6E-273B-4992-9855-8E3ED0FB1D5D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
