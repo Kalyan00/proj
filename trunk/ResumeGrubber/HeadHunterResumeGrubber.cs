@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
@@ -20,6 +21,8 @@ namespace HeadHunterResumeGrubber
 
 		private static Mutex mutexGetResumeId = new Mutex();
 		private static SortedList resumeList = new SortedList();
+		private static Dictionary<int,string> resumeLinkList = new Dictionary<int, string>();
+
 		private static IEnumerator resumeEnumerator = null;
 		private static IList threadList = new ArrayList();
 		private static byte daysCount = 1;
@@ -128,18 +131,32 @@ namespace HeadHunterResumeGrubber
 */
 			try
 			{
-				using( StreamWriter writeStream = new StreamWriter( fileName, false, Encoding.UTF8 ) )
+				using(FileStream fs = new FileStream(fileName, FileMode.Create,FileAccess.Write))
 				{
-					using( StreamReader readStream = new StreamReader( content, Encoding.UTF8 ) )
-					{
-						Char[] read = new Char[256];
-						int count;
-						while( ( count = readStream.Read( read, 0, 256 ) ) > 0 )
-						{
-							writeStream.Write( new String( read, 0, count ) );
-						}
-					}
+					using (BinaryReader readStream = new BinaryReader(content))
+				   {
+				      Byte[] read = new Byte[256];
+				      int count;
+				      while( ( count = readStream.Read( read, 0, 256 ) ) > 0 )
+				      {
+				         //writeStream.Write( new String( read, 0, count ) );
+							fs.Write(read,0,count);
+				      }
+				   }
+					
 				}
+				//using( StreamWriter writeStream = new StreamWriter( fileName, false, Encoding.ASCII ) )
+				//{
+				//   using( StreamReader readStream = new StreamReader( content, Encoding.ASCII ) )
+				//   {
+				//      Char[] read = new Char[256];
+				//      int count;
+				//      while( ( count = readStream.Read( read, 0, 256 ) ) > 0 )
+				//      {
+				//         writeStream.Write( new String( read, 0, count ) );
+				//      }
+				//   }
+				//}
 			}
 			catch( Exception ex )
 			{
@@ -157,7 +174,11 @@ namespace HeadHunterResumeGrubber
 				{
 					user = (User)Config.UserList[ rnd.Next( 0, Config.UserList.Count ) ];
 					Config.ConsoleLog.Info( String.Format( "Process the resume id: '{0}', login: '{1}'", resumeId, user.Login ) );
-					content = GetFromWeb( String.Format( Config.GET_RESUME_URI, resumeId ), user );
+					string link = Config.UseRssLink.ToUpper() == "TRUE"
+					              	? resumeLinkList[resumeId]
+					              	: String.Format(Config.GET_RESUME_URI, resumeId);
+
+					content = GetFromWeb(link, user);
 				}
 				catch( UnauthorizedUserException )
 				{
@@ -178,6 +199,10 @@ namespace HeadHunterResumeGrubber
 
 		private static void GetResumeList()
 		{
+			bool xPathIdNotFound = false,
+			     xPathPubDateNotFound = false,
+			     cannotExtractDate = false,
+				  xPathLinkNotFound = false;
 			try
 			{
 				XmlDocument xmlDoc = new XmlDocument();
@@ -193,23 +218,63 @@ namespace HeadHunterResumeGrubber
 					xmlDoc.Load( GetFromWeb( String.Format( Config.GET_RESUME_LIST_URI, Config.MaxResumeCountInList, daysCount ), user ) );
 					xmlDoc.Save( Config.RESUME_LIST_FILE );
 				}
-				XmlNodeList itemNodeList = xmlDoc.SelectNodes( "/rss/channel/item" );
+				XmlNodeList itemNodeList = xmlDoc.SelectNodes(Config.xPathItem);//"/rss/channel/item");
+				if (itemNodeList == null)
+				{
+					Config.FileLog.Warn("Cannot find xPathItem");
+					return;
+				}
+
 				for( int i = itemNodeList.Count - 1; i >= 0 && resumeList.Count < Config.TotalResumeCount; i-- )
 				{
 					XmlNode itemNode = itemNodeList.Item( i );
-					DateTime pubDate =
-						DateTime.ParseExact( itemNode.SelectSingleNode( "pubDate" ).InnerText.Replace( " (MSD)", "" ), "ddd, dd MMM yyyy H:mm:ss zzz",
-						                     CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal );
-					string link = itemNode.InnerText;
-					Regex regEx = new Regex( @"id=(\d+)" );
-					Match m = regEx.Match( link );
-					if( m.Success && pubDate > Config.LastProcessedResumeTimestamp )
+					XmlNode pubDateNode = itemNode.SelectSingleNode(Config.xPathPubDate);//"pubDate");
+					if (pubDateNode == null)
+					{
+						if (!xPathPubDateNotFound)
+							Config.FileLog.Warn("Cannot find xPathPubDate");
+						xPathPubDateNotFound = true;
+						continue;
+					}
+
+					DateTime pubDate;
+					if(!
+						DateTime.TryParseExact( pubDateNode.InnerText.Replace( " (MSD)", "" ), Config.DateFormat,//"ddd, dd MMM yyyy H:mm:ss zzz",
+													CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out pubDate))
+					{
+						if (!cannotExtractDate)
+							Config.FileLog.Warn("Cannot extract date");
+						cannotExtractDate = true;
+						continue;
+						
+					}
+					XmlNode linkNode = itemNode.SelectSingleNode(Config.xPathLink);//"pubDate");
+					if (linkNode == null)
+					{
+						if (!xPathLinkNotFound)
+							Config.FileLog.Warn("Cannot find xPathLink");
+						xPathLinkNotFound = true;
+						continue;
+					}
+
+					XmlNode idNode = itemNode.SelectSingleNode(Config.xPathId);//"id");
+					if (idNode == null)
+					{
+						if (!xPathIdNotFound)
+							Config.FileLog.Warn("Cannot find xPathId");
+						xPathIdNotFound = true;
+						continue;
+					}
+					if( pubDate > Config.LastProcessedResumeTimestamp )
 					{
 						while( resumeList.ContainsKey( pubDate ) )
 						{
 							pubDate = pubDate.AddMilliseconds( 1 );
 						}
-						resumeList.Add( pubDate, Convert.ToInt32( m.Groups[ 1 ].Value ) );
+						string id = Regex.Match(idNode.InnerText, Config.xPathIdRegex).Groups["result"].ToString();
+
+						resumeList.Add(pubDate, Convert.ToInt32(id));
+						resumeLinkList[Convert.ToInt32(id)] = linkNode.InnerText;
 					}
 				}
 			}
@@ -268,13 +333,6 @@ namespace HeadHunterResumeGrubber
 
 	internal class Config
 	{
-		public const string URI = "http://hh.ru/";
-
-		public const string GET_RESUME_LIST_URI =
-			URI +
-			"employer/resumesSearch.do?itemsOnPage={0}&areaId=113&professionalAreaId=0&keyword1=&allFields=true&salaryFrom=0&salaryTo=0&gender=&includeNoGender=10&ageFrom=0&ageTo=0&includeNoAge=10&educationId=0&englishLevel=0&frenchLevel=0&germanLevel=0&additionalLanguageLevel=0&additionalLanguageId=0&searchPeriod={1}&orderBy=2&actionSearch=actionSearch&showRss=1&basicLogin=1";
-
-		public const string GET_RESUME_URI = URI + "resume.do?id={0}&baseLogin=1";
 		public const string LAST_PROCESSED_DATETIME_FILE = "last_processed_time";
 		public const string RESUME_LIST_FILE = "resume_list.xml";
 
@@ -291,39 +349,97 @@ namespace HeadHunterResumeGrubber
 
 		public static DateTime LastProcessedResumeTimestamp = DateTime.MinValue;
 
+		//StringConstants
+		public static string xPathPubDate = "pubDate";
+		public static string xPathItem = "/rss/channel/item";
+		public static string DateFormat = "ddd, dd MMM yyyy H:mm:ss zzz";
+		public static string xPathId = "id";
+		public static string xPathIdRegex = "(?<result>.*)";
+		public static string xPathLink = "link";
+		public static string UseRssLink = "true";
+
+		public static string URI = "http://hh.ru/";
+		public static string GET_RESUME_LIST_URI = "http://hh.ru/employer/resumesSearch.do?itemsOnPage={0}&areaId=113&professionalAreaId=0&keyword1=&allFields=true&salaryFrom=0&salaryTo=0&gender=&includeNoGender=10&ageFrom=0&ageTo=0&includeNoAge=10&educationId=0&englishLevel=0&frenchLevel=0&germanLevel=0&additionalLanguageLevel=0&additionalLanguageId=0&searchPeriod={1}&orderBy=2&actionSearch=actionSearch&showRss=1&basicLogin=1";
+		public static string GET_RESUME_URI = "http://hh.ru/resume.do?id={0}&baseLogin=1";
+
 		static Config()
 		{
 			DOMConfigurator.Configure();
 			try
 			{
-				AttemptHttpRequestCount = Convert.ToInt32( ConfigurationSettings.AppSettings[ "AttemptHttpRequestCount" ] );
+				AttemptHttpRequestCount = Convert.ToInt32(ConfigurationSettings.AppSettings["AttemptHttpRequestCount"]);
 			}
-			catch
-			{
-			}
+			catch{}
 			try
 			{
-				MaxResumeCountInList = Convert.ToInt32( ConfigurationSettings.AppSettings[ "MaxResumeCountInList" ] );
+				MaxResumeCountInList = Convert.ToInt32(ConfigurationSettings.AppSettings["MaxResumeCountInList"]);
 			}
-			catch
-			{
-			}
-			IDictionary resumes = (IDictionary)ConfigurationSettings.GetConfig( "Resumes" );
+			catch { }
+			IDictionary resumes = (IDictionary)ConfigurationSettings.GetConfig("Resumes");
 			try
 			{
-				ResumeFilePattern = resumes[ "filePattern" ].ToString();
+				ResumeFilePattern = resumes["filePattern"].ToString();
 			}
-			catch
-			{
-			}
+			catch { }
 			try
 			{
-				TotalResumeCount = Convert.ToInt32( resumes[ "count" ] );
+				TotalResumeCount = Convert.ToInt32(resumes["count"]);
 			}
-			catch
+			catch { }
+			Hashtable StringConstants = (Hashtable)ConfigurationSettings.GetConfig("StringConstants");
+			try
 			{
+				xPathPubDate = StringConstants["xPathPubDate"].ToString();
 			}
-			Hashtable loginList = (Hashtable)ConfigurationSettings.GetConfig( "Logins" );
+			catch { }
+			try
+			{
+				xPathItem = StringConstants["xPathItem"].ToString();
+			}
+			catch { }
+			try
+			{
+				DateFormat = StringConstants["DateFormat"].ToString();
+			}
+			catch { }
+			try
+			{
+				xPathId = StringConstants["xPathId"].ToString();
+			}
+			catch { }
+			try
+			{
+				xPathIdRegex = StringConstants["xPathIdRegex"].ToString();
+			}
+			catch { }
+			try
+			{
+				URI = StringConstants["URI"].ToString();
+			}
+			catch { }
+			try
+			{
+				GET_RESUME_LIST_URI = StringConstants["GET_RESUME_LIST_URI"].ToString();
+			}
+			catch { }
+			try
+			{
+				GET_RESUME_URI = StringConstants["GET_RESUME_URI"].ToString();
+			}
+			catch { }
+			try
+			{
+				xPathLink = StringConstants["xPathLink"].ToString();
+			}
+			catch { }
+			try
+			{
+				UseRssLink = StringConstants["UseRssLink"].ToString();
+			}
+			catch { }
+
+
+			Hashtable loginList = (Hashtable)ConfigurationSettings.GetConfig("Logins");
 			foreach( string key in loginList.Keys )
 			{
 				string password = loginList[ key ].ToString();
