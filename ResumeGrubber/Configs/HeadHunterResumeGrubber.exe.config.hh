@@ -9,11 +9,11 @@
 		<section name="Resumes" type="System.Configuration.SingleTagSectionHandler"/>
 		<section name="StringConstants" type="System.Configuration.DictionarySectionHandler"/>
 	</configSections>
-
+	
 	<system.net>
 		<defaultProxy useDefaultCredentials="true"/>
 	</system.net>
-
+	
 	<!-- This section contains the log configuration settings -->
 	<log4net>
 		<appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender">
@@ -47,9 +47,9 @@
 		<add key="oper1@human-capital.ru" value="123456"/>
 		<add key="oper2@human-capital.ru" value="111"/>
 		<add key="oper3@human-capital.ru" value="111"/>
-		<!--
+<!--
 		<add key="alexander.gorlov@human-capital.ru" value="111111"/>
--->
+-->		
 	</Logins>
 	<StringConstants>
 		<add key="xPathItem" value="/rss/channel/item"/>
