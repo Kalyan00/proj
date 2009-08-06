@@ -9,11 +9,11 @@
 		<section name="Resumes" type="System.Configuration.SingleTagSectionHandler"/>
 		<section name="StringConstants" type="System.Configuration.DictionarySectionHandler"/>
 	</configSections>
-	
+
 	<system.net>
 		<defaultProxy useDefaultCredentials="true"/>
 	</system.net>
-	
+
 	<!-- This section contains the log configuration settings -->
 	<log4net>
 		<appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender">
@@ -57,8 +57,8 @@
 		<add key="UseRssLink" value="true"/>
 
 		<add key="URI" value="http://hh.ru/"/>
-		<add key="GET_RESUME_LIST_URI" value="http://rss.superjob.ru/vacancy/search/?period={1}#{0}"/>
-		<add key="GET_RESUME_URI" value="http://superjob.ru/vacancy/?id={0}"/>
+		<add key="GET_RESUME_LIST_URI" value="http://rss.superjob.ru/resume/search_resume.html?submit=1&amp;period={1}&amp;town=0&amp;language=1&amp;kwc=or&amp;rws=7&amp;tree_keyword=#itemsonpage={0}"/>
+		<add key="GET_RESUME_URI" value="http://superjob.ru/resume/?id={0}"/>
 		<!--
 			В дате сначала удаляется подстрока " (MSD)", а после парсится по указанному формату
 			========================
