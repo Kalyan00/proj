@@ -99,7 +99,6 @@
     <None Include="Resources\this.Icon.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Result.htm" />
     <Content Include="Resources\multiskanex.gif" />
     <None Include="Resources\this.icon1.png" />
   </ItemGroup>
