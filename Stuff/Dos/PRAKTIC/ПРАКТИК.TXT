@@ -1,0 +1,10 @@
+program Lab_work;
+Uses dos,crt;
+label 10,20,30;
+const
+  nmax = 20;
+  xmax = 100;
+  Kz   = 2;
+type
+  mass1 = array[1..nmax+1] of real;
+var
