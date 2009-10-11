@@ -114,6 +114,7 @@ namespace OptScanner
 		{
 			if(_ScannedMethod == null)
 				return;
+			webBrowser1.GoHome();
 			var path = cfg.ChangeDescription(_ScannedMethod, txtDescr.Text);
 			WebOpen(path);
 		}

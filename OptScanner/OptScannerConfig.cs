@@ -49,6 +49,19 @@ namespace OptScanner
 						Matr[i, j] = f;
 				}
 		}
+
+		public string GetHtmlTable()
+		{
+			var Result = "<table class='Matrix'>" + Environment.NewLine;
+			for(int i = 0; i<= Matr.GetUpperBound(0);i++)
+			{
+				Result+="<tr>";
+				for (int j = 0; j <= Matr.GetUpperBound(1); j++)
+					Result += "<td>" + Matr[i, j] + "</td>";
+				Result += "</tr>" + Environment.NewLine;
+			}
+			return Result + "</table>" + Environment.NewLine;
+		}
 	}
 	public enum ActionType
 	{
@@ -82,6 +95,13 @@ namespace OptScanner
 				default:
 					break;
 			}
+		}
+
+		public string GetResult()
+		{
+			if (Type != ActionType.Matrix)
+				return Result ?? "";
+			return Matrix.GetHtmlTable();
 		}
 	}
 	public class ScanMethod:List<ScanAction>
@@ -231,8 +251,7 @@ namespace OptScanner
 				if (item.Identity != null)
 				{
 					identities += item.Identity + Environment.NewLine;
-					if (item.Result != null)
-						str = str.Replace("%%" + item.Identity + "%%", item.Result);
+					str = str.Replace("%%" + item.Identity + "%%", item.GetResult());
 				}
 			}
 			str = str.Replace("%%" + VarMatrixes + "%%", sm.GetVarMatrixes());
@@ -243,6 +262,7 @@ namespace OptScanner
 	public class PathFormatter
 	{ 
 		public string Source { get; set; }
+		public string Extension { get; set; }
 		public string BaseFolder { get; set; }
 		public string Format { get; set; }
 
@@ -252,7 +272,7 @@ namespace OptScanner
 			DateTime result = DateTime.Now;
 			if(!DateTime.TryParse(sm[Source].Result, out result))
 				DateTime.TryParse(sm["CurrentTime"].Result, out result);
-			return BaseFolder + result.ToString(Format)+".htm";
+			return BaseFolder + result.ToString(Format) + Extension;
 		}
 	}
 	public class OptScannerWork : List<ScanMethod>
@@ -282,7 +302,14 @@ namespace OptScanner
 		{
 			if (!Directory.Exists(Path.GetDirectoryName(_Path)))
 				Directory.CreateDirectory(Path.GetDirectoryName(_Path));
-			File.WriteAllText(_Path, html);
+			try
+			{
+				File.WriteAllText(_Path, html);
+			}
+			catch(Exception exc)
+			{
+				System.Windows.Forms.MessageBox.Show(exc.Message, "ошибка", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+			}
 			return _Path;
 		}
 		public string ChangeDescription(ScanMethod sm, string Description)
