@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO.Ports;
-using System.Timers;
-using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -9,10 +7,10 @@ namespace OptScanner
 {
 	public class ComPort
 	{
-		private byte[] Enter = new byte[2] { 10, 13 };
+		readonly object Locker = new object();
 		private bool sleep;
-		private System.Windows.Forms.Control _Control;
-		private TimerHandler th = new TimerHandler();
+		private Control _Control;
+		private readonly TimerHandler th = new TimerHandler();
 
 		public event EventHandler Recive;
 
@@ -26,7 +24,7 @@ namespace OptScanner
 
 		public void WaitResponse()
 		{
-			lock (Enter)
+			lock (Locker)
 			{
 				sleep = true;
 				while (sleep)
@@ -40,18 +38,20 @@ namespace OptScanner
 		}
 		public string Ask(string Text)
 		{
+			string result = "123456789";
 			Say(Text);
 			WaitResponse();
-			return ComPortInternal.ReadExisting();
+			result = ComPortInternal.ReadExisting();
+			return result;
+			
 		}
 		public void Say(string Text)
 		{
-			ComPortInternal.Write(Text);
-			ComPortInternal.Write(Enter,0,2);
+			ComPortInternal.Write(Text + Environment.NewLine);
 		}
 
 
-		public void Init(System.Windows.Forms.Control control)
+		public void Init(Control control)
 		{
 			ComPortInternal.Open();
 			

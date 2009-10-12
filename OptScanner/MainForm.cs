@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
@@ -103,25 +104,19 @@ namespace OptScanner
 			if (method == null)
 				return;
 			_ScannedMethod = method;
-			Enabled = false;
+			panel7.Enabled = false;
 			var path = cfg.Do(method, User);
-			Enabled = true;
+			panel7.Enabled = true;
 
-			WebOpen(path);
 		}
 
 		private void btnAddDescr_Click(object sender, EventArgs e)
 		{
 			if(_ScannedMethod == null)
 				return;
-			webBrowser1.GoHome();
 			var path = cfg.ChangeDescription(_ScannedMethod, txtDescr.Text);
-			WebOpen(path);
+			Process.Start(path);
 		}
 
-		private void WebOpen(string path)
-		{
-			webBrowser1.Url = new Uri(path);
-		}
 	}
 }

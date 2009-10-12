@@ -49,6 +49,31 @@ namespace OptScanner
 						Matr[i, j] = f;
 				}
 		}
+		public Matrix(ScanMethod sm, string s)
+		{
+			string[] mNames = s.Split(",".ToCharArray());
+			float[,] m1 = sm[mNames[0]].Matrix.Matr;
+			float[,] m2 = sm[mNames[1]].Matrix.Matr;
+			Matr = Dif(m1, m2);
+		}
+
+		private float[,] Dif(float[,] m1, float[,] m2)
+		{
+			float[,] result = new float[m1.GetUpperBound(0) + 1,m1.GetUpperBound(1) + 1];
+			for (int i = 0; i <= m1.GetUpperBound(0); i++)
+				for (int j = 0; j <= m1.GetUpperBound(1); j++)
+				{
+					try
+					{
+						result[i, j] = m1[i, j] - m2[i, j];
+					}
+               catch
+					{
+						
+					}
+				}
+			return result;
+		}
 
 		public string GetHtmlTable()
 		{
@@ -69,6 +94,7 @@ namespace OptScanner
 		Say,
 		Matrix,
 		TextParam,
+		MatrixDif,
 	}
 	public class ScanAction
 	{
@@ -78,7 +104,7 @@ namespace OptScanner
 		public string Identity { get; set; }
 		public Matrix Matrix { get; set; }
 
-		public void Do(ComPort _ComPort)
+		public void Do(ComPort _ComPort, ScanMethod sm)
 		{
 			switch (Type)
 			{ 
@@ -88,6 +114,9 @@ namespace OptScanner
 				case ActionType.Matrix:
 					Result = _ComPort.Ask(Text);
 					Matrix = new Matrix(Result);
+					break;
+				case ActionType.MatrixDif:
+					Matrix = new Matrix(sm, Text);
 					break;
 				case ActionType.Say:
 					_ComPort.Say(Text);
@@ -99,7 +128,7 @@ namespace OptScanner
 
 		public string GetResult()
 		{
-			if (Type != ActionType.Matrix)
+			if (Type != ActionType.Matrix && Type != ActionType.MatrixDif)
 				return Result ?? "";
 			return Matrix.GetHtmlTable();
 		}
@@ -114,7 +143,7 @@ namespace OptScanner
 		{
 			get
 			{
-				return Find((a) => a.Identity == identity);
+				return Find(a => a.Identity == identity);
 			}
 
 		}
@@ -164,7 +193,7 @@ namespace OptScanner
 		public void Do()
 		{
 			foreach (var action in this)
-				action.Do(_ComPort);
+				action.Do(_ComPort, this);
 			string s = _ComPort.ReadExisting();
 			if (!string.IsNullOrEmpty(s))
 				Add(new ScanAction { Type = ActionType.TextParam, Result = s, Identity = "LastString" });
@@ -210,7 +239,7 @@ namespace OptScanner
 		public string Do(ScanMethod sm)
 		{
 			var s = sm.GetXml();
-			return "<!--" + s + "-->" + Environment.NewLine + Replace(Html, sm);
+			return "<!--" + s + "-->" + Environment.NewLine + Replace(Html, sm, true);
 
 			/*
 			 - <ScanMethod MethodName="Простейшее измерение" MethodId="Simple1" Capacity="16" Count="10">
@@ -241,9 +270,10 @@ namespace OptScanner
 			 */
 		}
 
-		private string Replace(string str, ScanMethod sm)
+		public string Replace(string str, ScanMethod sm, bool addIdenties)
 		{
-			string VarMatrixes = "VarMatrixes";
+			
+			const string VarMatrixes = "VarMatrixes";
 			string identities = "<!-- Identities:" + Environment.NewLine;
 			identities += VarMatrixes + Environment.NewLine;
 			foreach (var item in sm)
@@ -255,7 +285,10 @@ namespace OptScanner
 				}
 			}
 			str = str.Replace("%%" + VarMatrixes + "%%", sm.GetVarMatrixes());
-			return str + Environment.NewLine + identities+"-->";
+			identities += "-->" + Environment.NewLine;
+			if(addIdenties)
+				str += identities;
+			return str;
 		}
 	}
 
@@ -267,12 +300,13 @@ namespace OptScanner
 		public string Format { get; set; }
 
 
-		public string GetPath(ScanMethod sm)
+		public string GetPath(ScanMethod sm, HtmlFormatter hf)
 		{
-			DateTime result = DateTime.Now;
+			DateTime result;
 			if(!DateTime.TryParse(sm[Source].Result, out result))
-				DateTime.TryParse(sm["CurrentTime"].Result, out result);
-			return BaseFolder + result.ToString(Format) + Extension;
+				if(!DateTime.TryParse(sm["CurrentTime"].Result, out result))
+					result = DateTime.Now;
+			return hf.Replace(BaseFolder,sm, false) + result.ToString(Format) + Extension;
 		}
 	}
 	public class OptScannerWork : List<ScanMethod>
@@ -294,7 +328,7 @@ namespace OptScanner
 		{
 			sm.Init(ComPort, userName);
 			sm.Do();
-			_Path = PathFormatter.GetPath(sm);
+			_Path = PathFormatter.GetPath(sm, HtmlFormatter);
 			return FileSave(HtmlFormatter.Do(sm));
 		}
 		
