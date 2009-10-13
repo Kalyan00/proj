@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Xml;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace OptScanner
 {
@@ -43,8 +45,8 @@ namespace OptScanner
 					float f;
 					if (result[i].Count > j 
 						&& float.TryParse(result[i][j].Trim(), 
-												System.Globalization.NumberStyles.Any, 
-												System.Globalization.CultureInfo.InvariantCulture , 
+												NumberStyles.Any, 
+												CultureInfo.InvariantCulture , 
 												out f))
 						Matr[i, j] = f;
 				}
@@ -68,9 +70,9 @@ namespace OptScanner
 						result[i, j] = m1[i, j] - m2[i, j];
 					}
                catch
-					{
+               {
 						
-					}
+               }
 				}
 			return result;
 		}
@@ -239,7 +241,7 @@ namespace OptScanner
 		public string Do(ScanMethod sm)
 		{
 			var s = sm.GetXml();
-			return "<!--" + s + "-->" + Environment.NewLine + Replace(Html, sm, true);
+			return Replace(Html, sm, true) + Environment.NewLine + "<!--" + s + "-->";
 
 			/*
 			 - <ScanMethod MethodName="Простейшее измерение" MethodId="Simple1" Capacity="16" Count="10">
@@ -317,7 +319,7 @@ namespace OptScanner
 
 		public HtmlFormatter HtmlFormatter { get; set; }
 		public PathFormatter PathFormatter { get; set; }
-		public void Init(System.Windows.Forms.Control control)
+		public void Init(Control control)
 		{
 			ComPort.Init(control);
 			if (Users == null || Users.Count == 0)
@@ -342,7 +344,7 @@ namespace OptScanner
 			}
 			catch(Exception exc)
 			{
-				System.Windows.Forms.MessageBox.Show(exc.Message, "ошибка", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+				MessageBox.Show(exc.Message, "ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			return _Path;
 		}
