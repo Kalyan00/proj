@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
+using System.Timers;
 using System.Windows.Forms;
 using System.Xml;
 using System.Collections;
+using Timer = System.Timers.Timer;
 
 namespace OptScanner
 {
@@ -257,7 +259,7 @@ namespace OptScanner
 
 	public class ConfigHandler : IConfigurationSectionHandler
 	{
-		System.Xml.XmlNode _Xml;
+		XmlNode _Xml;
 		static public T GetConfig<T>(string sectionName)
 		{
 			ConfigHandler z = null;
@@ -274,7 +276,7 @@ namespace OptScanner
 		}
 
 		//IConfigurationSectionHandler
-		public object Create(object parent, object configContext, System.Xml.XmlNode section)
+		public object Create(object parent, object configContext, XmlNode section)
 		{
 			_Xml = section;
 			return this;
@@ -286,7 +288,7 @@ namespace OptScanner
 		object Method;
 		object[] Param;
 		Control _Control;
-		System.Timers.Timer _timer = new System.Timers.Timer();
+		Timer _timer = new Timer();
 
 		public void DoAfter(int ms, VoidDelegate method, params object[] param)
 		{
@@ -323,14 +325,14 @@ namespace OptScanner
 				Param = param;
 			}
 		}
-		void Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+		void Elapsed(object sender, ElapsedEventArgs e)
 		{
 			_timer.Elapsed -= Elapsed;
 			_timer.Stop();
 
 			if (_Control != null && _Control.InvokeRequired)
 			{
-				_Control.Invoke(new System.Timers.ElapsedEventHandler(Elapsed), sender, e);
+				_Control.Invoke(new ElapsedEventHandler(Elapsed), sender, e);
 				return;
 			}
 			if(Method is ParamDelegate)
