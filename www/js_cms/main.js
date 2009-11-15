@@ -48,9 +48,8 @@ function createMenu()
 		this.style.backgroundColor ="transparent"; 
 		timer = setTimeout(function()
 		{
-			menug.lastChild.lastChild.lastChild.lastChild.style.display="none";
-			menug.lastChild.lastChild.lastChild.firstChild.firstChild.firstChild.firstChild.firstChild.firstChild.src="plus.gif";
-			
+			if(menug.lastChild.lastChild.lastChild.lastChild.style.display!="none")
+				menug.firstChild.firstChild.firstChild.firstChild.onclick();
 		}, 300);
 	};
 	document.body.appendChild(menu);
@@ -67,6 +66,9 @@ function MenuItemClick()
 		
 		this.firstChild.firstChild.firstChild.firstChild.firstChild.src="plus.gif";
 		this.nextSibling.style.display = "none";
+		menu.style.width=10;
+		menu.style.width="inherit";
+		
 	}
 	
 }
