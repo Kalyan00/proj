@@ -1,16 +1,16 @@
-// <script language="javascript"> 
-var menuGlobal = new Array(new Array("Меню","", new Array(
-new Array("познавательный рассказ 1","yep.htm"),
-new Array("ссылки куда-нибудь","", new Array(
-	new Array("еще раз познавательный рассказ 1","yep.htm"),
+п»ї// <script language="javascript"> 
+var menuGlobal = new Array(new Array("РњРµРЅСЋ","", new Array(
+new Array("РїРѕР·РЅР°РІР°С‚РµР»СЊРЅС‹Р№ СЂР°СЃСЃРєР°Р· 1","yep.htm"),
+new Array("СЃСЃС‹Р»РєРё РєСѓРґР°-РЅРёР±СѓРґСЊ","", new Array(
+	new Array("РµС‰Рµ СЂР°Р· РїРѕР·РЅР°РІР°С‚РµР»СЊРЅС‹Р№ СЂР°СЃСЃРєР°Р· 1","yep.htm"),
 	new Array("google","http://google.ru"),
 	new Array("ya.ru","http://ya.ru"),
-	new Array("тут еще подменюшка на всякий случай","", new Array(
-		new Array("этот раздел наверно по пожже будет."),
-		new Array("познавательный TEXT с картинкой!","htm1.htm")
+	new Array("С‚СѓС‚ РµС‰Рµ РїРѕРґРјРµРЅСЋС€РєР° РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№","", new Array(
+		new Array("СЌС‚РѕС‚ СЂР°Р·РґРµР» РЅР°РІРµСЂРЅРѕ РїРѕ РїРѕР¶Р¶Рµ Р±СѓРґРµС‚."),
+		new Array("РїРѕР·РЅР°РІР°С‚РµР»СЊРЅС‹Р№ TEXT СЃ РєР°СЂС‚РёРЅРєРѕР№!","htm1.htm")
 		))
 	)),
-new Array("познавательный рассказ 2","opa.htm")
+new Array("РїРѕР·РЅР°РІР°С‚РµР»СЊРЅС‹Р№ СЂР°СЃСЃРєР°Р· 2","opa.htm")
 )));
 
 var timer;
