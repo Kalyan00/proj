@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+﻿@CHARSET "UTF-8";
 body					{padding-left:100px;background-color:#FFFAFA;}
 #menuF				{padding:10px;	z-index: 100; position: fixed; *position:absolute; overflow:hidden;  
 						top: 0px;  left: 0px; 
