@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+body					{padding-left:100px;background-color:#FFFAFA;}
+#menuF				{padding:10px;	z-index: 100; position: fixed; *position:absolute; overflow:hidden;  
+						top: 0px;  left: 0px; 
+						*top:expression(			eval(document.compatMode && document.compatMode=="CSS1Compat") 
+														? documentElement.scrollTop 
+														: document.body.scrollTop);
+											} 
+.menuTable  tr td		{}			
