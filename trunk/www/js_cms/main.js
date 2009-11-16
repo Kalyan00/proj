@@ -66,7 +66,9 @@ function MenuItemClick()
 		
 		this.firstChild.firstChild.firstChild.firstChild.firstChild.src="plus.gif";
 		this.nextSibling.style.display = "none";
+		var w = menu.style.width;
 		menu.style.width=10;
+		menu.style.width=w;
 		menu.style.width="inherit";
 		
 	}
