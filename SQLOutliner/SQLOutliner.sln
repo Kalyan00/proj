@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLOutliner", "SQLOutliner\SQLOutliner.csproj", "{9D1E29BE-8FFE-4AB0-AF08-30703D555ACF}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SQLOutlinerSetup", "SQLOutlinerSetup\SQLOutlinerSetup.vdproj", "{17B6ACCD-1BC5-4F02-8C6A-8706809FCD0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D1E29BE-8FFE-4AB0-AF08-30703D555ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D1E29BE-8FFE-4AB0-AF08-30703D555ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D1E29BE-8FFE-4AB0-AF08-30703D555ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D1E29BE-8FFE-4AB0-AF08-30703D555ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17B6ACCD-1BC5-4F02-8C6A-8706809FCD0E}.Debug|Any CPU.ActiveCfg = Debug
+		{17B6ACCD-1BC5-4F02-8C6A-8706809FCD0E}.Release|Any CPU.ActiveCfg = Release
+		{17B6ACCD-1BC5-4F02-8C6A-8706809FCD0E}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
