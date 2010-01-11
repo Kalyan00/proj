@@ -1,17 +1,27 @@
 ﻿// <script language="javascript"> 
 var menuGlobal = new Array(new Array("Меню","", new Array(
-new Array("познавательный рассказ 1","yep.htm"),
-new Array("ссылки куда-нибудь","", new Array(
-	new Array("еще раз познавательный рассказ 1","yep.htm"),
-	new Array("google","http://google.ru"),
-	new Array("ya.ru","http://ya.ru"),
-	new Array("тут еще подменюшка на всякий случай","", new Array(
-		new Array("этот раздел наверно по пожже будет."),
-		new Array("познавательный TEXT с картинкой!","htm1.htm")
-		))
+	new Array("Привет","index.htm"),
+	new Array("Физическое искусство","", new Array(
+		new Array("Архимед","", new Array(
+			new Array("Выступления","vistupleniya.htm"),
+			new Array("Фото","photos.htm"),
+			new Array("Аудио","audi.htm"),
+			new Array("Видео","video.htm"),
+			new Array("Мифы и были","stories.htm"),
+			new Array("Персоналии","persons.htm"),		
+			new Array("Тексты опер","texts.htm")
+		)),
+		new Array("Агитбригады","agit.htm")
 	)),
-new Array("познавательный рассказ 2","opa.htm")
+	new Array("Сахалин","", new Array(
+		new Array("Фото","sklphotos.htm"),
+		new Array("Аудио","sklaudi.htm"),
+		new Array("Видео","sklvideo.htm"),
+		new Array("Мифы и были","sklstories.htm")
+	))
 )));
+
+
 
 var timer;
 var menu;
@@ -40,12 +50,14 @@ function createMenu()
 	
 	menu.onmouseover=function ()
 	{
-		this.style.backgroundColor = "#CCCAAA";
+		//this.style.backgroundColor = "#CCCAAA";
+		this.className ="menuActive";
 		clearTimeout(timer);
 	};
 	menu.onmouseout=function ()
 	{
-		this.style.backgroundColor ="transparent"; 
+		this.className ="menuPassive";
+		//this.style.backgroundColor ="transparent"; 
 		timer = setTimeout(function()
 		{
 			if(menug.lastChild.lastChild.lastChild.lastChild.style.display!="none")
@@ -66,9 +78,7 @@ function MenuItemClick()
 		
 		this.firstChild.firstChild.firstChild.firstChild.firstChild.src="plus.gif";
 		this.nextSibling.style.display = "none";
-		var w = menu.style.width;
 		menu.style.width=10;
-		menu.style.width=w;
 		menu.style.width="inherit";
 		
 	}
@@ -139,9 +149,26 @@ function createMenu2(arr)
 	menu.appendChild(tbody);
 	return menu;
 }
+
+function createBody()
+{
+	var mainDiv=document.createElement('div');
+	mainDiv.id='mainDiv';
+	var body = document.getElementsByTagName("body")[0];
+	for(;body.firstChild; )
+	{
+		var el = body.firstChild;
+		body.removeChild(el);
+		mainDiv.appendChild(el);
+	}
+	body.appendChild(mainDiv);
+	
+}
+
 function load()
 {
 	createCss();
+	createBody();
 	createMenu();
 }
 if(document.getElementsByTagName("head").length == 0) document.write("<head/>");
