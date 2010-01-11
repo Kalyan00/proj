@@ -1,9 +1,12 @@
 ﻿@CHARSET "UTF-8";
-body					{padding-left:100px;background-color:#FFFAFA;}
-#menuF				{padding:10px;	z-index: 100; position: fixed; *position:absolute; overflow:hidden;  
+body					{padding-left:200px;background-color:#CCCCCC;}
+#menuF				{border-color:#AA0000;border-width:10px; margin:10px;
+						padding:10px;	z-index: 100; position: fixed; *position:absolute; overflow:hidden;  
 						top: 0px;  left: 0px; 
 						*top:expression(			eval(document.compatMode && document.compatMode=="CSS1Compat") 
 														? documentElement.scrollTop 
 														: document.body.scrollTop);
 											} 
-.menuTable  tr td		{}			
+.menuActive 			{background-color:#FFFFFF}
+.menuPassive 		{background-color:transparent}
+#mainDiv 			{background-color:#FFFAFA; margin:20px; padding:30px; width:850px;}			
