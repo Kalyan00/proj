@@ -9,4 +9,8 @@ body					{padding-left:200px;background-color:#CCCCCC;}
 											} 
 .menuActive 			{background-color:#FFFFFF}
 .menuPassive 		{background-color:transparent}
-#mainDiv 			{background-color:#FFFAFA; margin:20px; padding:30px; width:850px;}			
+
+#mainDiv 			{background-color:#FFFAFA; margin:20px; padding:30px; width:850px;
+						
+						min-height: 700px;
+						}			
