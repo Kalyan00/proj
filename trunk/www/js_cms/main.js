@@ -43,6 +43,8 @@ function createMenu()
 {
 	menu=document.createElement('div');
 	menu.id="menuF";
+	menu.className="menuPassive";
+	
 	var menug = createMenu2(menuGlobal)
 	menug.style.display="block";
 	menu.appendChild(menug);

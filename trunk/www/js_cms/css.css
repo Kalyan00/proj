@@ -1,17 +1,19 @@
 ﻿@CHARSET "UTF-8";
 body					{padding-left:200px;background-color:#CCCCCC;}
-#menuF				{border-color:#AA0000;border-width:10px; margin:10px;
+#menuF				{margin:5px; border-width:1px; border-style:solid;
 						padding:10px;	z-index: 100; position: fixed; *position:absolute; overflow:hidden;  
 						top: 0px;  left: 0px; 
 						*top:expression(			eval(document.compatMode && document.compatMode=="CSS1Compat") 
 														? documentElement.scrollTop 
 														: document.body.scrollTop);
 											} 
-.menuActive 			{background-color:#FFFFFF}
-.menuPassive 		{background-color:transparent}
+.menuActive 			{background-color:#F0F0E0; border-color:black;}
+.menuPassive 		{background-color:transparent; border-color:transparent;}
 
 #mainDiv 			{background-color:#FFFAFA; margin:20px; padding:30px; width:850px;
 						
 						min-height: 700px;
 						}			
-.photo				{background-color:#FFFFFF; padding:5px; margin:5px; float:left;text-align:center;border: 1px solid black}
+.photo				{background-color:#F0F0E0; padding:2px; margin:5px; float:left;text-align:center;border: 1px solid #AAAAAA; 
+					font-size:10px; font-family:Arial;}
+.photo a, .photo img	{margin-bottom:10px;}
