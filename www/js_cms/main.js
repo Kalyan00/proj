@@ -80,12 +80,16 @@ function MenuItemClick()
 		
 		this.firstChild.firstChild.firstChild.firstChild.firstChild.src="plus.gif";
 		this.nextSibling.style.display = "none";
-		menu.style.width=10;
-		menu.style.width="inherit";
+		if(navigator.appName == "Opera") // в старой версии оперы глюка с автошириной. но эта поправка портит ширину в IE
+		{
+			menu.style.width=10;
+			menu.style.width="inherit";
+		}
 		
 	}
 	
 }
+
 function AddDots(menu)
 {
 	var tr = document.createElement('tr');
