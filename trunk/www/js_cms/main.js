@@ -8,7 +8,11 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Аудио"/*,"audi.htm"*/),
 			new Array("Видео","video.htm"),
 			new Array("Мифы и были"/*,"stories.htm"*/),
-			new Array("Персоналии","persons.htm"),		
+			new Array("Персоналии","",new Array(
+				new Array("Гапонов","gaponov.htm"),
+				new Array("Иванов","ivanov.htm"),
+				new Array("Разные лица","other.htm")
+				)),		
 			new Array("Тексты опер","texts.htm")
 		)),
 		new Array("Агитбригады","agit.htm")
@@ -17,7 +21,12 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 		new Array("Фото"/*,"sklphotos.htm"*/),
 		new Array("Аудио"/*,"sklaudi.htm"*/),
 		new Array("Видео"/*,"sklvideo.htm"*/),
-		new Array("Мифы и были"/*,"sklstories.htm"*/)
+		new Array("Мифы и были"/*,"sklstories.htm"*/),
+		new Array("Персоны","",new Array(
+			new Array("Поплавский","poplavsky.htm"),
+			new Array("Саша Громов","gromov.htm"),
+			new Array("Разные лица","sklother.htm")
+			))
 	))
 )));
 
