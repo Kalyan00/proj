@@ -11,19 +11,17 @@ body					{padding-left:200px;background-color:#CCCCCC;}
 .menuPassive 		{background-color:transparent; border-color:transparent;}
 
 #mainDiv 			{background-color:#FFFAFA; margin:20px; padding:30px; width:850px;
-						
-						min-height: 700px;
-						}			
+					min-height: 700px;}			
+					
 .photo				{background-color:#F0F0E0; padding:2px; margin:5px; float:left;text-align:center;border: 1px solid #AAAAAA; 
 					font-size:10px; font-family:Arial;}
 .photo a, .photo img	{margin-bottom:10px;}
 
 
 
-pre {
-     white-space: pre-wrap;       /* css-3 */
-     white-space: -moz-pre-wrap;  /* Mozilla, с 1999 */
-     white-space: -pre-wrap;      /* Opera 4-6 */
-     white-space: -o-pre-wrap;    /* Opera 7 */
-     word-wrap: break-word;       /* Internet Explorer 5.5+ поддерживается в IE, Safari, и Firefox 3.1.*/
-}
+pre 					{white-space: pre-wrap;       /* css-3 */
+				     white-space: -moz-pre-wrap;  /* Mozilla, с 1999 */
+				     white-space: -pre-wrap;      /* Opera 4-6 */
+				     white-space: -o-pre-wrap;    /* Opera 7 */
+				     word-wrap: break-word;       /* Internet Explorer 5.5+ поддерживается в IE, Safari, и Firefox 3.1.*/}
+
