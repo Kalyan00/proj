@@ -10,7 +10,7 @@ body					{padding-left:200px;background-color:#CCCCCC;}
 .menuActive 			{background-color:#F0F0E0; border-color:black;}
 .menuPassive 		{background-color:transparent; border-color:transparent;}
 
-#mainDiv 			{background-color:#FFFAFA; margin:20px; padding:30px; width:850px;
+#mainDiv 			{background-color:#FFFAFA; margin:20px; padding:30px; width:900px;
 					min-height: 700px;}			
 					
 .photo				{background-color:#F0F0E0; padding:2px; margin:5px; float:left;text-align:center;border: 1px solid #AAAAAA; 
