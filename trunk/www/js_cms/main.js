@@ -176,6 +176,9 @@ function createBody()
 		body.removeChild(el);
 		mainDiv.appendChild(el);
 	}
+	var lastBr = document.createElement('br');
+	lastBr.style.clear = 'both';
+	mainDiv.appendChild(lastBr);
 	body.appendChild(mainDiv);
 	
 }
