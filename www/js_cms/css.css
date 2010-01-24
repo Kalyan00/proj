@@ -1,19 +1,11 @@
 ﻿@CHARSET "UTF-8";
-body					{padding-left:200px;background-color:#CCCCCC;}
-#menuF				{margin:5px; border-width:1px; border-style:solid;
-						padding:10px;	z-index: 100; position: fixed; *position:absolute; overflow:hidden;  
-						top: 0px;  left: 0px; 
-						*top:expression(			eval(document.compatMode && document.compatMode=="CSS1Compat") 
-														? documentElement.scrollTop 
-														: document.body.scrollTop);
-											} 
-.menuActive 			{background-color:#F0F0E0; border-color:black;}
-.menuPassive 		{background-color:transparent; border-color:transparent;}
+body					{background-color:#eee}
+h2					{font-size: 15px;}
 
-#mainDiv 			{background-color:#FFFAFA; margin:20px; padding:30px; width:900px;
-					min-height: 700px;}			
+#mainDiv 			{background-color:#fff; width:950px;min-height: 700px;
+					position:absolute;left:200px; top:50px; padding:25px;}
 					
-.photo				{background-color:#F0F0E0; padding:2px; margin:5px; float:left;text-align:center;border: 1px solid #AAAAAA; 
+.photo				{background-color:#ffd; padding:2px; margin:5px; float:left;text-align:center;border: 1px solid #AAA; 
 					font-size:10px; font-family:Arial;}
 .photo a, .photo img	{margin-bottom:10px;}
 
@@ -25,3 +17,31 @@ pre 					{white-space: pre-wrap;       /* css-3 */
 				     white-space: -o-pre-wrap;    /* Opera 7 */
 				     word-wrap: break-word;       /* Internet Explorer 5.5+ поддерживается в IE, Safari, и Firefox 3.1.*/}
 
+	
+		
+	#mainMenu {position:absolute;left:200px; top:0px; background-color:#eee; width:900px; padding-left:30px;padding-right:30px;}
+	#mainMenu ul {padding: 3px}
+	#mainMenu ul ul {position:absolute}
+	#mainMenu li {background-color:#eee; display:block;position:relative;white-space:nowrap; width:150px; height:20px;}
+	#mainMenu a {font-weight: bold;}
+	
+	#mainMenu li.top {float: left; width:200px; top:0px;}
+	
+	#mainMenu li.sub.fly {background-image:url(arrow_over.gif);background-position:140px 6px; background-repeat:no-repeat; }
+	#mainMenu li.sub ul {left:150px;top:-4px;}
+	#mainMenu li{border:1px solid #eee}
+	#mainMenu li:hover {background-color:#ccc;border:1px solid #000}
+
+	#mainMenu li:hover ul,
+	#mainMenu li:hover li:hover ul,
+	#mainMenu li:hover li:hover li:hover ul,
+	#mainMenu li:hover li:hover li:hover li:hover ul,
+	#mainMenu li:hover li:hover li:hover li:hover li:hover ul {display:block }
+
+	#mainMenu li ul,
+	#mainMenu li:hover li ul,
+	#mainMenu li:hover li:hover li ul,
+	#mainMenu li:hover li:hover li:hover li ul,
+	#mainMenu li:hover li:hover li:hover li:hover li ul {display:none }
+
+	#mainMenuIE ul {margin-left:10px;}
