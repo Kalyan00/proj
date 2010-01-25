@@ -18,20 +18,33 @@ pre 					{white-space: pre-wrap;       /* css-3 */
 				     word-wrap: break-word;       /* Internet Explorer 5.5+ поддерживается в IE, Safari, и Firefox 3.1.*/}
 
 	
-		
-	#mainMenu {position:absolute;left:200px; top:0px; background-color:#eee; width:900px; padding-left:30px;padding-right:30px;}
-	#mainMenu ul {padding: 3px}
-	#mainMenu ul ul {position:absolute}
-	#mainMenu li {background-color:#eee; display:block;position:relative;white-space:nowrap; width:150px; height:20px;}
+	/*главного меню: расположение и цвет */
+	#mainMenu {position:absolute; left:200px; top:0px; background-color:#eee; width:900px; padding-left:25px;padding-right:25px;}
+
+	/*элементы главного меню*/
+	#mainMenu li.top {float: left; width:auto; top:0px; padding-right:30px;}
+	
+	/*Список: убрать сдвиг li относительно ul,   сделанный для маркеров */
+	#mainMenu ul {padding: 0px}
+	
+	/*Элемент списка*/
+	#mainMenu li {display:block;position:relative;white-space:nowrap; width:150px; height:25px; padding-top:5px; padding-left:5px;}
 	#mainMenu a {font-weight: bold;}
 	
-	#mainMenu li.top {float: left; width:200px; top:0px;}
+	/*цвета и бордер для элементов меню.*/
+	#mainMenu li 				{background-color:#eee;border:1px solid #eee;}/* обычный */
+	#mainMenu:hover li		{background-color:#ddd;border:1px solid #ddd;}/* меню активно, элемент не активен */
+	#mainMenu:hover li:hover 	{background-color:#ccc;border:1px solid #000;}/* меню активно, элемент АКТИВЕН !!!*/
 	
-	#mainMenu li.sub.fly {background-image:url(arrow_over.gif);background-position:140px 6px; background-repeat:no-repeat; }
-	#mainMenu li.sub ul {left:150px;top:-4px;}
-	#mainMenu li{border:1px solid #eee}
-	#mainMenu li:hover {background-color:#ccc;border:1px solid #000}
+	/*стрелочка в выпадающем списке*/
+	#mainMenu li.sub.fly {background-image:url(arrow_black.gif);background-position:140px 13px; background-repeat:no-repeat; }
 
+	/*смещение подменюшек. */
+	#mainMenu li ul {position:absolute;}
+	#mainMenu li.top ul {left:-1px;top:31px;}
+	#mainMenu li.sub ul {left:156px;top:-1px;}
+
+	/*обработка скрытия - показа выпадающих...*/
 	#mainMenu li:hover ul,
 	#mainMenu li:hover li:hover ul,
 	#mainMenu li:hover li:hover li:hover ul,
@@ -44,4 +57,5 @@ pre 					{white-space: pre-wrap;       /* css-3 */
 	#mainMenu li:hover li:hover li:hover li ul,
 	#mainMenu li:hover li:hover li:hover li:hover li ul {display:none }
 
+	/*в IE  hover не работает, по этому для него не будет такого хорошего меню...  */
 	#mainMenuIE ul {margin-left:10px;}
