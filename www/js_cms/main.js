@@ -1,4 +1,4 @@
-﻿// <script language="javascript"> 
+﻿
 var menuGlobal = new Array(new Array("Меню","", new Array(
 	new Array("Привет","index.htm"),
 	new Array("Физическое искусство","", new Array(
@@ -30,25 +30,15 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 	))
 )));
 
-function createCss()
-{
-	var lnk=document.createElement('link');
-	lnk.rel="stylesheet"; 
-	lnk.type="text/css";
-    lnk.href="css.css?"+Math.random();
-	var head=document.getElementsByTagName("head")[0];
-	head.appendChild(lnk);
-}
-
 function createDocument()
 {
 	body = document.getElementsByTagName('body')[0];
 	body.innerHTML=''
+		+getMenuText()
 		+'<div id="mainDiv">' 
 		+body.innerHTML
 		+'<br style="clear:both">'
 		+'</div>'
-		+getMenuText()
 		;
 	maindiv=document.getElementById('mainDiv');
 
@@ -57,7 +47,7 @@ function createDocument()
 function getMenuText(arr, clas)
 {
 	var mainMenuClass = 'mainMenu';
-	if(navigator.appName == "Microsoft Internet Explorer")
+	if(navigator.appName.indexOf("Microsoft")!=-1)
 		mainMenuClass = 'mainMenuIE';
 	if(!arr)
 		return '<div id="'+mainMenuClass+'"><ul>'+getMenuText(menuGlobal[0][2],'top')+'</ul></div>';
@@ -77,10 +67,9 @@ function getMenuText(arr, clas)
 
 function start()
 {
-	createCss();
 	createDocument();	
 };
-document.write('<body onload="start();">');
-if(document.getElementsByTagName("head").length == 0) document.write("<head/>");
 
+document.write('<link rel="stylesheet" type="text/css" href="css.css?'+Math.random()+'">');
+document.write('<body onload="start();">');
 
