@@ -25,6 +25,7 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 		new Array("Персоны","",new Array(
 			new Array("Поплавский","poplavsky.htm"),
 			new Array("Саша Громов","gromov.htm"),
+			new Array("Галя Немченко","galka.htm"),
 			new Array("Разные лица","sklother.htm")
 			))
 	))
