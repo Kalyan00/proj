@@ -7,7 +7,7 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Фото","photos.htm"),
 			new Array("Аудио"/*,"audi.htm"*/),
 			new Array("Видео","video.htm"),
-			new Array("Мифы и были"/*,"stories.htm"*/),
+			new Array("Мифы и были","stories.htm"),
 			new Array("Персоналии","",new Array(
 				new Array("Гапонов","gaponov.htm"),
 				new Array("Иванов","ivanov.htm"),
