@@ -71,6 +71,7 @@ function createDocument()
 		+'<br style="clear:both">'
 		+'</div>'
 		;
+	body.charset = "UTF-8";
 	maindiv=document.getElementById('mainDiv');
 	head=document.getElementsByTagName('head')[0];
 	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>harl</title>';
