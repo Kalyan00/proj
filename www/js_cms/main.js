@@ -31,6 +31,36 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 	))
 )));
 
+function applyAudio()
+{
+    while(document.getElementsByTagName('audio').length>0)
+    {
+	a=document.getElementsByTagName('audio')[0];
+	attr=b=document.createAttribute("class");
+	attr.value="audio";
+	b=document.createElement("font");
+	b.setAttributeNode(attr);
+	p=a.parentNode;
+	p.replaceChild(b,a);
+	b.innerHTML = '&nbsp;'
+		+' <object 	id="audioplayer1"'
+				+' 	data="http://junglebook2007.narod.ru/audio/player.swf"'
+				+' 	wmode="transparent" type="application/x-shockwave-flash"'
+				+' 	width="180" height="16">'
+			+' <param value="http://junglebook2007.narod.ru/audio/player.swf" name="movie">'
+			+' <param value="playerID=1&bg=0x67452E&leftbg=0xB3B3B3&lefticon=0xoooooo&'
+					+'rightbg=0x67452E&rightbghover=0x999999&rightcon=0xoooooo&righticonhover=0xffffff&'
+					+'text=0x666666&slider=0x8CA4C0&track=0x8CA4C0&border=0x666666&loader=0x9FFFB8&loop=no&autostart=no&soundFile='
+					+a.innerHTML
+					+'&" name="FlashVars">'
+			+' <param value="high" name="quality">'
+			+' <param value="false" name="menu">'
+			+' <param value="transparent" name="wmode">'
+		+' </object>'
+		+' <a href="'+a.innerHTML+'" title="Правой кнопкой - сохранить ссылку">скачать</a>';
+	
+    }
+}
 function createDocument()
 {
 	body = document.getElementsByTagName('body')[0];
@@ -42,7 +72,9 @@ function createDocument()
 		+'</div>'
 		;
 	maindiv=document.getElementById('mainDiv');
-
+	head=document.getElementsByTagName('head')[0];
+	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>harl</title>';
+	applyAudio();
 };
 
 function getMenuText(arr, clas)
