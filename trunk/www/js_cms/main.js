@@ -1,32 +1,32 @@
-
-var menuGlobal = new Array(new Array("Меню","", new Array(
-	new Array("Привет","index.htm"),
-	new Array("Физическое искусство","", new Array(
-		new Array("Архимед","", new Array(
-			new Array("Выступления"/*,"vistupleniya.htm"*/),
-			new Array("Фото","photos.htm"),
-			new Array("Аудио"/*,"audi.htm"*/),
-			new Array("Видео","video.htm"),
-			new Array("Мифы и были","stories.htm"),
-			new Array("Персоналии","",new Array(
-				new Array("Гапонов","gaponov.htm"),
-				new Array("Иванов","ivanov.htm"),
-				new Array("Разные лица","other.htm")
+п»ї
+var menuGlobal = new Array(new Array("РњРµРЅСЋ","", new Array(
+	new Array("РџСЂРёРІРµС‚","index.htm"),
+	new Array("Р¤РёР·РёС‡РµСЃРєРѕРµ РёСЃРєСѓСЃСЃС‚РІРѕ","", new Array(
+		new Array("РђСЂС…РёРјРµРґ","", new Array(
+			new Array("Р’С‹СЃС‚СѓРїР»РµРЅРёСЏ"/*,"vistupleniya.htm"*/),
+			new Array("Р¤РѕС‚Рѕ","photos.htm"),
+			new Array("РђСѓРґРёРѕ"/*,"audi.htm"*/),
+			new Array("Р’РёРґРµРѕ","video.htm"),
+			new Array("РњРёС„С‹ Рё Р±С‹Р»Рё","stories.htm"),
+			new Array("РџРµСЂСЃРѕРЅР°Р»РёРё","",new Array(
+				new Array("Р“Р°РїРѕРЅРѕРІ","gaponov.htm"),
+				new Array("РРІР°РЅРѕРІ","ivanov.htm"),
+				new Array("Р Р°Р·РЅС‹Рµ Р»РёС†Р°","other.htm")
 				)),		
-			new Array("Тексты опер","texts.htm")
+			new Array("РўРµРєСЃС‚С‹ РѕРїРµСЂ","texts.htm")
 		)),
-		new Array("Агитбригады","agit.htm")
+		new Array("РђРіРёС‚Р±СЂРёРіР°РґС‹","agit.htm")
 	)),
-	new Array("Сахалин","", new Array(
-		new Array("Фото","sklphotos.htm"),
-		new Array("Аудио"/*,"sklaudi.htm"*/),
-		new Array("Видео"/*,"sklvideo.htm"*/),
-		new Array("Мифы и были"/*,"sklstories.htm"*/),
-		new Array("Персоны","",new Array(
-			new Array("Поплавский","poplavsky.htm"),
-			new Array("Саша Громов","gromov.htm"),
-			new Array("Галя Немченко","galka.htm"),
-			new Array("Разные лица","sklother.htm")
+	new Array("РЎР°С…Р°Р»РёРЅ","", new Array(
+		new Array("Р¤РѕС‚Рѕ","sklphotos.htm"),
+		new Array("РђСѓРґРёРѕ"/*,"sklaudi.htm"*/),
+		new Array("Р’РёРґРµРѕ"/*,"sklvideo.htm"*/),
+		new Array("РњРёС„С‹ Рё Р±С‹Р»Рё"/*,"sklstories.htm"*/),
+		new Array("РџРµСЂСЃРѕРЅС‹","",new Array(
+			new Array("РџРѕРїР»Р°РІСЃРєРёР№","poplavsky.htm"),
+			new Array("РЎР°С€Р° Р“СЂРѕРјРѕРІ","gromov.htm"),
+			new Array("Р“Р°Р»СЏ РќРµРјС‡РµРЅРєРѕ","galka.htm"),
+			new Array("Р Р°Р·РЅС‹Рµ Р»РёС†Р°","sklother.htm")
 			))
 	))
 )));
@@ -57,7 +57,7 @@ function applyAudio()
 			+' <param value="false" name="menu">'
 			+' <param value="transparent" name="wmode">'
 		+' </object>'
-		+' <a href="'+a.innerHTML+'" title="Правой кнопкой - сохранить ссылку">скачать</a>';
+		+' <a href="'+a.innerHTML+'" title="РџСЂР°РІРѕР№ РєРЅРѕРїРєРѕР№ - СЃРѕС…СЂР°РЅРёС‚СЊ СЃСЃС‹Р»РєСѓ">СЃРєР°С‡Р°С‚СЊ</a>';
 	
     }
 }
@@ -71,10 +71,10 @@ function createDocument()
 		+'<br style="clear:both">'
 		+'</div>'
 		;
-	body.charset = "windows-1251";
+	body.charset = "utf-8";
 	maindiv=document.getElementById('mainDiv');
 	head=document.getElementsByTagName('head')[0];
-	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=windows-1251"><title>harl</title>';
+	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>harl</title>';
 	applyAudio();
 };
 
