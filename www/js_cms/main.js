@@ -74,7 +74,7 @@ function createDocument()
 	body.charset = "utf-8";
 	maindiv=document.getElementById('mainDiv');
 	head=document.getElementsByTagName('head')[0];
-	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>harl</title>';
+	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>';
 	applyAudio();
 };
 
