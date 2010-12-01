@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+п»ї@CHARSET "UTF-8";
 body					{background-color:#eee}
 h2					{font-size: 15px;}
 
@@ -12,39 +12,39 @@ h2					{font-size: 15px;}
 
 
 pre 					{white-space: pre-wrap;       /* css-3 */
-				     white-space: -moz-pre-wrap;  /* Mozilla, с 1999 */
+				     white-space: -moz-pre-wrap;  /* Mozilla, СЃ 1999 */
 				     white-space: -pre-wrap;      /* Opera 4-6 */
 				     white-space: -o-pre-wrap;    /* Opera 7 */
-				     word-wrap: break-word;       /* Internet Explorer 5.5+ поддерживается в IE, Safari, и Firefox 3.1.*/}
+				     word-wrap: break-word;       /* Internet Explorer 5.5+ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ РІ IE, Safari, Рё Firefox 3.1.*/}
 
 	
-	/*главного меню: расположение и цвет */
+	/*РіР»Р°РІРЅРѕРіРѕ РјРµРЅСЋ: СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ Рё С†РІРµС‚ */
 	#mainMenu {position:absolute; left:200px; top:0px; background-color:#eee; width:900px; padding-left:25px;padding-right:25px;z-index:1000}
 
-	/*элементы главного меню*/
+	/*СЌР»РµРјРµРЅС‚С‹ РіР»Р°РІРЅРѕРіРѕ РјРµРЅСЋ*/
 	#mainMenu li.top {float: left; width:auto; top:0px; padding-right:30px;}
 	
-	/*Список: убрать сдвиг li относительно ul,   сделанный для маркеров */
+	/*РЎРїРёСЃРѕРє: СѓР±СЂР°С‚СЊ СЃРґРІРёРі li РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ ul,   СЃРґРµР»Р°РЅРЅС‹Р№ РґР»СЏ РјР°СЂРєРµСЂРѕРІ */
 	#mainMenu ul {padding: 0px}
 	
-	/*Элемент списка*/
+	/*Р­Р»РµРјРµРЅС‚ СЃРїРёСЃРєР°*/
 	#mainMenu li {display:block;position:relative;white-space:nowrap; width:150px; height:25px; padding-top:5px; padding-left:5px;}
 	#mainMenu a {font-weight: bold;}
 	
-	/*цвета и бордер для элементов меню.*/
-	#mainMenu li 				{background-color:#eee;border:1px solid #eee;}/* обычный */
-	#mainMenu:hover li		{background-color:#ddd;border:1px solid #ddd;}/* меню активно, элемент не активен */
-	#mainMenu:hover li:hover 	{background-color:#ccc;border:1px solid #000;}/* меню активно, элемент АКТИВЕН !!!*/
+	/*С†РІРµС‚Р° Рё Р±РѕСЂРґРµСЂ РґР»СЏ СЌР»РµРјРµРЅС‚РѕРІ РјРµРЅСЋ.*/
+	#mainMenu li 				{background-color:#eee;border:1px solid #eee;}/* РѕР±С‹С‡РЅС‹Р№ */
+	#mainMenu:hover li		{background-color:#ddd;border:1px solid #ddd;}/* РјРµРЅСЋ Р°РєС‚РёРІРЅРѕ, СЌР»РµРјРµРЅС‚ РЅРµ Р°РєС‚РёРІРµРЅ */
+	#mainMenu:hover li:hover 	{background-color:#ccc;border:1px solid #000;}/* РјРµРЅСЋ Р°РєС‚РёРІРЅРѕ, СЌР»РµРјРµРЅС‚ РђРљРўРР’Р•Рќ !!!*/
 	
-	/*стрелочка в выпадающем списке*/
+	/*СЃС‚СЂРµР»РѕС‡РєР° РІ РІС‹РїР°РґР°СЋС‰РµРј СЃРїРёСЃРєРµ*/
 	#mainMenu li.sub.fly {background-image:url(arrow_black.gif);background-position:140px 13px; background-repeat:no-repeat; }
 
-	/*смещение подменюшек. */
+	/*СЃРјРµС‰РµРЅРёРµ РїРѕРґРјРµРЅСЋС€РµРє. */
 	#mainMenu li ul {position:absolute;}
 	#mainMenu li.top ul {left:-1px;top:31px;}
 	#mainMenu li.sub ul {left:156px;top:-1px;}
 
-	/*обработка скрытия - показа выпадающих...*/
+	/*РѕР±СЂР°Р±РѕС‚РєР° СЃРєСЂС‹С‚РёСЏ - РїРѕРєР°Р·Р° РІС‹РїР°РґР°СЋС‰РёС…...*/
 	#mainMenu li:hover ul,
 	#mainMenu li:hover li:hover ul,
 	#mainMenu li:hover li:hover li:hover ul,
@@ -57,5 +57,5 @@ pre 					{white-space: pre-wrap;       /* css-3 */
 	#mainMenu li:hover li:hover li:hover li ul,
 	#mainMenu li:hover li:hover li:hover li:hover li ul {display:none }
 
-	/*в IE  hover не работает, по этому для него не будет такого хорошего меню...  */
+	/*РІ IE  hover РЅРµ СЂР°Р±РѕС‚Р°РµС‚, РїРѕ СЌС‚РѕРјСѓ РґР»СЏ РЅРµРіРѕ РЅРµ Р±СѓРґРµС‚ С‚Р°РєРѕРіРѕ С…РѕСЂРѕС€РµРіРѕ РјРµРЅСЋ...  */
 	#mainMenuIE ul {margin-left:10px;}
