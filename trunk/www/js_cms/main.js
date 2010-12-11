@@ -29,7 +29,7 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Разные лица","sklother.htm")
 			))
 	)),
-	new Array(".")	
+	new Array("")	
 )));
 
 function applyAudio()
@@ -64,7 +64,6 @@ function applyAudio()
 }
 function createDocument()
 {
-	alert(navigator.userAgent);
 	body = document.getElementsByTagName('body')[0];
 	body.innerHTML=''
 		+getMenuText()
@@ -76,13 +75,9 @@ function createDocument()
 	body.charset = "utf-8";
 	maindiv=document.getElementById('mainDiv');
 	head=document.getElementsByTagName('head')[0];
-	alert(3);
 	setTimeout(function(){head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>'},100);
-	alert(4);
 	applyAudio();
-	alert(5);
 	makeMenuSwitch();
-	alert(6);
 };
 
 function makeMenuSwitch()
