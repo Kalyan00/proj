@@ -92,12 +92,12 @@ function makeMenuSwitch()
 			mainMenuIE.id='mainMenu';
 		if(mainMenu)
 			mainMenu.id='mainMenuIE';
-		alert(navigator.appName);
 	};
 };
 
 function getMenuText(arr, clas)
 {
+		alert(navigator.appName);
 	mainMenuClass = 'mainMenuIE';
 	if(	navigator.appName.indexOf("Netscape")!=-1 ||
 		navigator.appName.indexOf("Opera")!=-1)
