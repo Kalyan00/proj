@@ -77,10 +77,7 @@ function createDocument()
 	maindiv=document.getElementById('mainDiv');
 	head=document.getElementsByTagName('head')[0];
 	alert(3);
-	document.setTimeout(function()
-		{
-			head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>';
-		},1);
+	setTimeout(function(){head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>'},100);
 	alert(4);
 	applyAudio();
 	alert(5);
@@ -114,8 +111,8 @@ function getMenuText(arr, clas)
 		mainMenuClass = 'mainMenu';
 	
 	if(	navigator.userAgent.indexOf("iPhone")!=-1||
-		navigator.userAgent.indexOf("MSIE")!=-1) ||
-		mainMenuClass == '')
+		navigator.userAgent.indexOf("MSIE")!=-1 ||
+		mainMenuClass.length == 0	)
 		mainMenuClass = 'mainMenuIE';
 	
 	if(!arr)
