@@ -1,4 +1,4 @@
-﻿
+
 var menuGlobal = new Array(new Array("Меню","", new Array(
 	new Array("Привет","index.htm"),
 	new Array("Физическое искусство","", new Array(
@@ -28,7 +28,8 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Галя Немченко","galka.htm"),
 			new Array("Разные лица","sklother.htm")
 			))
-	))
+	)),
+	new Array(".","#")	
 )));
 
 function applyAudio()
@@ -76,12 +77,30 @@ function createDocument()
 	head=document.getElementsByTagName('head')[0];
 	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>';
 	applyAudio();
+	makeMenuSwitch();
+};
+
+function makeMenuSwitch()
+{
+	a = document.getElementsByTagName('div')[0].getElementsByTagName('span');
+	a = a[a.length-1];
+	a.onclick=function()
+	{
+		mainMenuIE=document.getElementById('mainMenuIE');
+		mainMenu=document.getElementById('mainMenu');
+		if(mainMenuIE)
+			mainMenuIE.id='mainMenu';
+		if(mainMenu)
+			mainMenu.id='mainMenuIE';
+	};
 };
 
 function getMenuText(arr, clas)
 {
 	var mainMenuClass = 'mainMenu';
 	if(navigator.appName.indexOf("Microsoft")!=-1)
+		mainMenuClass = 'mainMenuIE';
+	if(navigator.appName.indexOf("iPhone")!=-1)
 		mainMenuClass = 'mainMenuIE';
 	if(!arr)
 		return '<div id="'+mainMenuClass+'"><ul>'+getMenuText(menuGlobal[0][2],'top')+'</ul></div>';
