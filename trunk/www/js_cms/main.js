@@ -29,7 +29,7 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Разные лица","sklother.htm")
 			))
 	)),
-	new Array(".","#")	
+	new Array(".")	
 )));
 
 function applyAudio()
@@ -92,16 +92,16 @@ function makeMenuSwitch()
 			mainMenuIE.id='mainMenu';
 		if(mainMenu)
 			mainMenu.id='mainMenuIE';
+		alert(navigator.appName);
 	};
 };
 
 function getMenuText(arr, clas)
 {
-	var mainMenuClass = 'mainMenu';
-	if(navigator.appName.indexOf("Microsoft")!=-1)
-		mainMenuClass = 'mainMenuIE';
-	if(navigator.appName.indexOf("iPhone")!=-1)
-		mainMenuClass = 'mainMenuIE';
+	mainMenuClass = 'mainMenuIE';
+	if(	navigator.appName.indexOf("Netscape")!=-1 ||
+		navigator.appName.indexOf("Opera")!=-1)
+		mainMenuClass = 'mainMenu';
 	if(!arr)
 		return '<div id="'+mainMenuClass+'"><ul>'+getMenuText(menuGlobal[0][2],'top')+'</ul></div>';
 	var result='';
