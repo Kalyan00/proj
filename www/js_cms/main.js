@@ -78,6 +78,7 @@ function createDocument()
 	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>';
 	applyAudio();
 	makeMenuSwitch();
+	alert(navigator.userAgent);
 };
 
 function makeMenuSwitch()
@@ -97,10 +98,13 @@ function makeMenuSwitch()
 
 function getMenuText(arr, clas)
 {
-		alert(navigator.appName);
 	mainMenuClass = 'mainMenuIE';
-	if(	navigator.appName.indexOf("Netscape")!=-1 ||
-		navigator.appName.indexOf("Opera")!=-1)
+	if(	navigator.userAgent.indexOf("Netscape")!=-1 ||
+		navigator.userAgent.indexOf("Mozilla")!=-1 ||
+		navigator.userAgent.indexOf("Chrome")!=-1 ||
+		navigator.userAgent.indexOf("Safari")!=-1 ||
+		navigator.userAgent.indexOf("Opera")!=-1 
+)
 		mainMenuClass = 'mainMenu';
 	if(!arr)
 		return '<div id="'+mainMenuClass+'"><ul>'+getMenuText(menuGlobal[0][2],'top')+'</ul></div>';
