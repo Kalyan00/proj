@@ -74,12 +74,13 @@ function createDocument()
 		+'</div>'
 		;
 	body.charset = "utf-8";
-	alert(1);
 	maindiv=document.getElementById('mainDiv');
-	alert(2);
 	head=document.getElementsByTagName('head')[0];
 	alert(3);
-	head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>';
+	document.setTimeout(function()
+		{
+			head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>';
+		},1);
 	alert(4);
 	applyAudio();
 	alert(5);
@@ -104,14 +105,19 @@ function makeMenuSwitch()
 
 function getMenuText(arr, clas)
 {
-	mainMenuClass = 'mainMenuIE';
+	mainMenuClass = '';
 	if(	navigator.userAgent.indexOf("Netscape")!=-1 ||
 		navigator.userAgent.indexOf("Mozilla")!=-1 ||
 		navigator.userAgent.indexOf("Chrome")!=-1 ||
 		navigator.userAgent.indexOf("Safari")!=-1 ||
-		navigator.userAgent.indexOf("Opera")!=-1
-)
+		navigator.userAgent.indexOf("Opera")!=-1)
 		mainMenuClass = 'mainMenu';
+	
+	if(	navigator.userAgent.indexOf("iPhone")!=-1||
+		navigator.userAgent.indexOf("MSIE")!=-1) ||
+		mainMenuClass == '')
+		mainMenuClass = 'mainMenuIE';
+	
 	if(!arr)
 		return '<div id="'+mainMenuClass+'"><ul>'+getMenuText(menuGlobal[0][2],'top')+'</ul></div>';
 	var result='';
