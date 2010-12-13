@@ -58,6 +58,9 @@ pre 					{white-space: pre-wrap;       /* css-3 */
 	#mainMenu li:hover li:hover li:hover li:hover li ul {display:none }
 
 	/*в IE  hover не работает, по этому для него не будет такого хорошего меню...  */
-	#mainMenuIE li ul {margin-left:-30px;}
-	#mainMenuIE li {margin-left:0px;}
-
+	#mainMenuIE li ul {margin-left:10px; padding-left: 0px;}
+	/*
+	#mainMenuIE li {margin-left:0px;vertical-align: bottom}
+	#mainMenuIE li ul{background-color:red;border:10;border-color:black;}
+	#mainMenuIE ul li {background-color:green;border:10;border-color:blue;}
+*/
