@@ -1,4 +1,4 @@
-
+﻿
 var menuGlobal = new Array(new Array("Меню","", new Array(
 	new Array("Привет","index.htm"),
 	new Array("Физическое искусство","", new Array(
@@ -29,21 +29,26 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Разные лица","sklother.htm")
 			))
 	)),
-	new Array("")	
+	new Array(" ")	
 )));
 
 function applyAudio()
 {
     while(document.getElementsByTagName('audio').length>0)
     {
-	a=document.getElementsByTagName('audio')[0];
-	attr=b=document.createAttribute("class");
+	var a=document.getElementsByTagName('audio')[0];
+	var l = a.getAttribute('href');
+	if(!l) l = "missing";
+
+	var attr=document.createAttribute("class");
 	attr.value="audio";
-	b=document.createElement("font");
+	var b=document.createElement("font");
 	b.setAttributeNode(attr);
 	p=a.parentNode;
 	p.replaceChild(b,a);
-	b.innerHTML = '&nbsp;'
+	
+	
+	var ih = '&nbsp;'
 		+' <object 	id="audioplayer1"'
 				+' 	data="http://junglebook2007.narod.ru/audio/player.swf"'
 				+' 	wmode="transparent" type="application/x-shockwave-flash"'
@@ -52,19 +57,21 @@ function applyAudio()
 			+' <param value="playerID=1&bg=0x67452E&leftbg=0xB3B3B3&lefticon=0xoooooo&'
 					+'rightbg=0x67452E&rightbghover=0x999999&rightcon=0xoooooo&righticonhover=0xffffff&'
 					+'text=0x666666&slider=0x8CA4C0&track=0x8CA4C0&border=0x666666&loader=0x9FFFB8&loop=no&autostart=no&soundFile='
-					+a.innerHTML
+					+l
 					+'&" name="FlashVars">'
 			+' <param value="high" name="quality">'
 			+' <param value="false" name="menu">'
 			+' <param value="transparent" name="wmode">'
 		+' </object>'
-		+' <a href="'+a.innerHTML+'" title="Правой кнопкой - сохранить ссылку">скачать</a>';
+		+' <a href="'+l+'" title="Правой кнопкой - сохранить ссылку">скачать</a>';
+		
+	b.innerHTML = ih;
 	
     }
 }
 function createDocument()
 {
-	body = document.getElementsByTagName('body')[0];
+	var body = document.getElementsByTagName('body')[0];
 	body.innerHTML=''
 		+getMenuText()
 		+'<div id="mainDiv">' 
@@ -73,11 +80,24 @@ function createDocument()
 		+'</div>'
 		;
 	body.charset = "utf-8";
-	maindiv=document.getElementById('mainDiv');
-	head=document.getElementsByTagName('head')[0];
-	setTimeout(function(){head.innerHTML=head.innerHTML+'<meta http-equiv="content-type" content="text/html; charset=utf-8"><title>AHarlamov.ru</title>'},100);
 	applyAudio();
 	makeMenuSwitch();
+	makeHead();
+};
+
+function makeHead()
+{
+	head=document.getElementsByTagName('head')[0];
+
+	var link = document.createElement('meta');
+	head.appendChild(link);
+	link.setAttribute('http-equiv','content-type');
+	link.setAttribute('content','text/html; charset=utf-8');
+
+	var title = document.createElement('title');
+	head.appendChild(title);
+	title.innerHTML = 'AHarlamov.ru';
+	
 };
 
 function makeMenuSwitch()
@@ -86,8 +106,8 @@ function makeMenuSwitch()
 	a = a[a.length-1];
 	a.onclick=function()
 	{
-		mainMenuIE=document.getElementById('mainMenuIE');
-		mainMenu=document.getElementById('mainMenu');
+		var mainMenuIE=document.getElementById('mainMenuIE');
+		var mainMenu=document.getElementById('mainMenu');
 		if(mainMenuIE)
 			mainMenuIE.id='mainMenu';
 		if(mainMenu)
