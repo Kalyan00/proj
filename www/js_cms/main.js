@@ -1,4 +1,4 @@
-
+﻿
 var menuGlobal = new Array(new Array("Меню","", new Array(
 	new Array("Привет","index.htm"),
 	new Array("Физическое искусство","", new Array(
