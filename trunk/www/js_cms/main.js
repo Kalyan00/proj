@@ -1,4 +1,4 @@
-﻿
+
 var menuGlobal = new Array(new Array("Меню","", new Array(
 	new Array("Привет","index.htm"),
 	new Array("Физическое искусство","", new Array(
@@ -123,7 +123,7 @@ function getMenuText(arr, clas)
 		navigator.userAgent.indexOf("Chrome")!=-1 ||
 		navigator.userAgent.indexOf("Safari")!=-1 ||
 		navigator.userAgent.indexOf("Opera")!=-1)
-		mainMenuClass = 'mainMenu';
+		mainMenuClass = 'mainMenuIE';
 	
 	if(	navigator.userAgent.indexOf("iPhone")!=-1||
 		navigator.userAgent.indexOf("MSIE")!=-1 ||
