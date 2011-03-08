@@ -17,6 +17,8 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 		)),
 		new Array("Агитбригады","agit.htm")
 	)),
+	new Array("58 группа","groop58.htm"),
+
 	new Array("Сахалин","", new Array(
 		new Array("Фото","sklphotos.htm"),
 		new Array("Аудио"/*,"sklaudi.htm"*/),
