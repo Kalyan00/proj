@@ -27,8 +27,9 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Саша Громов","gromov.htm"),
 			new Array("Галя Немченко","galka.htm"),
 			new Array("Разные лица","sklother.htm")
-			))
+			))		
 	)),
+	new Array("Просто красота","fines.htm"),
 	new Array(" ")	
 )));
 
