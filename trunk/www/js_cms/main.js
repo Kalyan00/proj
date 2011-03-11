@@ -17,7 +17,7 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 		)),
 		new Array("Агитбригады","agit.htm")
 	)),
-	new Array("58 группа","groop58.htm"),
+	new Array("58 группа","grup58.htm"),
 
 	new Array("Сахалин","", new Array(
 		new Array("Фото","sklphotos.htm"),
@@ -31,7 +31,7 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Разные лица","sklother.htm")
 			))		
 	)),
-	new Array("Всякая красота","fines.htm"),
+	new Array("Всякая красота","fins.htm"),
 	new Array(" ")	
 )));
 
