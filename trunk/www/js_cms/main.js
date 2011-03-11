@@ -31,7 +31,7 @@ var menuGlobal = new Array(new Array("Меню","", new Array(
 			new Array("Разные лица","sklother.htm")
 			))		
 	)),
-	new Array("Просто красота","fines.htm"),
+	new Array("Всякая красота","fines.htm"),
 	new Array(" ")	
 )));
 
