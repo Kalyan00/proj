@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#wget https://proj.googlecode.com/svn/trunk/puppets/register && chmod 700 register0 && ./register0 && rm ./register0
+# wget https://proj.googlecode.com/svn/trunk/puppets/register0 && chmod 700 ./register0 && ./register0 && rm ./register0
 
 echo OK!
 sudo su
