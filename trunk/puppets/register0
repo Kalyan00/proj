@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # wget https://proj.googlecode.com/svn/trunk/puppets/register0 && chmod 700 ./register0 && ./register0 && rm ./register0
 
