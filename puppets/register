@@ -1,7 +1,10 @@
 #!/bin/bash
 
+
 puppetsme=~/puppets.me
+puppetsrep=~/puppets
 me=$1
+
 if [[ '$me' == '' ]];
 then
   me=`cat $puppetsme` ;
@@ -9,5 +12,18 @@ else
   echo $me > $puppetsme ;
 fi
 
-ls 
+svn co http://proj.googlecode.com/svn/trunk/puppets $puppetsrep
+
+for pp in $(ls $puppetsrep/$me/*.pp; ls $puppetsrep/all/*.pp);
+do
+        echo
+        echo '*******************************'
+        echo $pp
+        echo '*******************************'
+        echo
+
+        puppet apply $pp
+done
 echo OK!
+
+
