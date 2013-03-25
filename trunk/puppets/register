@@ -2,7 +2,7 @@
 
 puppetsme=~/puppets.me
 me=$1
-if[['$me' == '']]
+if [[ '$me' == '' ]]
 then
   me=`cat $puppetsme`
 else
