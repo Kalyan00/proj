@@ -2,11 +2,11 @@
 
 puppetsme=~/puppets.me
 me=$1
-if [[ '$me' == '' ]]
+if [[ '$me' == '' ]];
 then
-  me=`cat $puppetsme`
+  me=`cat $puppetsme` ;
 else
-  echo $me > $puppetsme
+  echo $me > $puppetsme ;
 fi
 
 ls 
