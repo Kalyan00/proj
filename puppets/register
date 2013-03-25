@@ -1,3 +1,13 @@
 #!/bin/sh
 
+puppetsme=~/puppets.me
+me=$1
+if[['$me' == '']]
+then
+  me=`cat $puppetsme`
+else
+  echo $me > $puppetsme
+fi
+
+ls 
 echo OK!
