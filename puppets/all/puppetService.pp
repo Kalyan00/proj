@@ -22,6 +22,8 @@ file {'/root/scripts/pup-check':
     ensure  => present,          # файл должен существовать
     content => '#!/bin/bash
 
+date -R
+
 puppetsme=~/puppets.me
 puppetsrep=~/puppets
 
