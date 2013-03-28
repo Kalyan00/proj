@@ -15,9 +15,7 @@ file { '/root/scripts':
 }
 
 cron { puppetService:
-  command => "#!/bin/bash
-
-/root/scripts/pup-update",
+  command => "/root/scripts/pup-update",
   user    => root,
   hour    => '*/12'
 }
@@ -25,14 +23,16 @@ cron { puppetService:
 
 file { '/root/scripts/pup-update':
     ensure  => present,          # файл должен существовать
-    content => '/root/puppets/pup-check -update > /root/pup.log',  # содержимым файла должна являться строка "Hello, world!"
+    content =>  regsubst('#!/bin/bash
+/root/puppets/pup-check -update > /root/pup.log
+', '\x0d', '', 'G'),
     mode    => 0700, 
     owner   => 'root',
     group   => 'root'  
 }
 file {'/root/scripts/pup-check':
     ensure  => present,          # файл должен существовать
-    content => '#!/bin/bash
+    content => regsubst('#!/bin/bash
 
 date -R
 
@@ -67,8 +67,8 @@ do
         puppet apply $pp
 done
 echo OK!
+', '\x0d', '', 'G'),
 
-',
     mode    => 0700, 
     owner   => 'root',
     group   => 'root'  
