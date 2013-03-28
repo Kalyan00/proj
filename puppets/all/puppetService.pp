@@ -1,3 +1,13 @@
+
+
+package { 'subversion':
+    ensure => latest
+}
+
+package { 'puppet':
+    ensure => latest
+}
+
 file { '/root/scripts':
     ensure  => directory,
     owner   => 'root',
