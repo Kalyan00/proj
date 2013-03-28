@@ -17,7 +17,7 @@ file { '/root/scripts':
 cron { puppetService:
   command => "/root/scripts/pup-update",
   user    => root,
-  minute  => '*/1'
+  hour    => '*/12'
 }
 
 
