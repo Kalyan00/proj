@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 puppetsme=~/puppets.me
 puppetsrep=~/puppets
 
@@ -12,9 +11,9 @@ case "$1" in
 		;;
 	"-update")
 		;;
-	*)		
+	*)
 		echo "usage pup-check {-install <deviceName> | -update }" 
-		done;;
+		exit 1 ;;
 esac
 echo "updating" 
 me=`cat $puppetsme`
