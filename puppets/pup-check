@@ -3,18 +3,25 @@
 
 puppetsme=~/puppets.me
 puppetsrep=~/puppets
-me=$1
 
-if [[ '$me' == '' ]];
-then
-  me=`cat $puppetsme` ;
-else
-  echo $me > $puppetsme ;
-fi
+
+case "$1" in
+	"-install")
+		echo $2 > $puppetsme 
+		echo "installed"
+		;;
+	"-update")
+		;;
+	*)		
+		echo "usage pup-check {-install <deviceName> | -update }" 
+		done;;
+esac
+echo "updating" 
+me=`cat $puppetsme`
 
 svn co http://proj.googlecode.com/svn/trunk/puppets $puppetsrep
 
-for pp in $(ls $puppetsrep/$me/*.pp; ls $puppetsrep/all/*.pp);
+for pp in $(find $puppetsrep/$me/ -name *.pp;find $puppetsrep/all/ -name *.pp);
 do
         echo
         echo '*******************************'
