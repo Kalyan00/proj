@@ -29,6 +29,8 @@ cron { puppetService:
 file { '/root/scripts/svn-update':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
+        
+        date -R
         echo "/root/scripts/svn-update"
 
         svnlog="/root/svn.log"
@@ -38,7 +40,8 @@ file { '/root/scripts/svn-update':
         do
             $updater $svnlog
         done
-
+        echo "OK"
+        echo 
 
         ', '\x0d', '', 'G'),
     mode    => 0700, 
