@@ -33,7 +33,7 @@ file { '/root/scripts/svn-update':
         svnlog="/root/svn.log"
         svn co http://proj.googlecode.com/svn/trunk /root/proj.googlecode.com > $svnlog
          
-        for updater in $(ls /root/scripts/svn-updaters);
+        for updater in $(find /root/scripts/svn-updaters);
         do
             $updater $svnlog
         done
