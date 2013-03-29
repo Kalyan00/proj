@@ -24,7 +24,7 @@ cron { puppetService:
 file { '/root/scripts/pup-update':
     ensure  => present,          # файл должен существовать
     content =>  regsubst('#!/bin/bash
-/root/puppets/pup-check -update > /root/pup.log
+/root/scripts/pup-check -update > /root/pup.log
 ', '\x0d', '', 'G'),
     mode    => 0700, 
     owner   => 'root',
