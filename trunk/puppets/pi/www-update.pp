@@ -3,7 +3,7 @@ file { '/root/scripts/svn-updaters/www-update':
     content => regsubst('#!/bin/bash
 
 
-        if [[ `cat $1 | grep "js_cms"` != "" ]];
+        if [[ (  $1 == "" ) || (`cat $1 | grep "js_cms"` != "" ) ]];
         then
             echo wwwupdate
             echo svn export
