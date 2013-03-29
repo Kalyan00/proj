@@ -23,14 +23,14 @@ file { '/root/scripts/svn-updaters':
 cron { puppetService:
     command => "/root/scripts/svn-update",
     user    => root,
-    minute  => '*/10'
+    minute  => '*/3'
 }
 
 file { '/root/scripts/svn-update':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
 
-        svnlog="/root/scripts/svn-updaters/svn.log"
+        svnlog="/root/svn.log"
         svn co http://proj.googlecode.com/svn/trunk /root/proj.googlecode.com > $svnlog
          
         for updater in $(ls /root/scripts/svn-updaters);
