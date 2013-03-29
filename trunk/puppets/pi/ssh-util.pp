@@ -1,6 +1,8 @@
 file { '/root/scripts/ssh-util':
     ensure  => present,          # файл должен существовать
-    content => regsubst('#! /bin/sh
+    content => regsubst('#!/bin/bash
+
+        echo "/root/scripts/ssh-util"
 
         logfile=/var/log/ssh-util
         echo >> $logfile

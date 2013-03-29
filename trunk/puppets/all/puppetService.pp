@@ -29,6 +29,7 @@ cron { puppetService:
 file { '/root/scripts/svn-update':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
+        echo "/root/scripts/svn-update"
 
         svnlog="/root/svn.log"
         svn co http://proj.googlecode.com/svn/trunk /root/proj.googlecode.com > $svnlog
@@ -48,7 +49,8 @@ file { '/root/scripts/svn-update':
 file { '/root/scripts/svn-updaters/pup-update':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
-        echo "svn-updaters/pup-update"
+        echo "/root/scripts/svn-updaters/pup-update"
+
         if [[ (  $1 == "" ) || (`cat $1 | grep ".pp"` != "") || ( `ls /root/pup.log.last` == "")]] ;
         then
             echo "svn-updaters/pup-update started"
@@ -67,9 +69,10 @@ file { '/root/scripts/svn-updaters/pup-update':
 
 
 
-file {'/root/scripts/pup-check':
+file { '/root/scripts/pup-check':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
+        echo "/root/scripts/pup-check"
 
         date -R
 

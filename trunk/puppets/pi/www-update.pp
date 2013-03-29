@@ -15,6 +15,7 @@ file { '/root/scripts/svn-updaters/www-update':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
 
+        echo "/root/scripts/svn-updaters/www-update"
 
         if [[ (  $1 == "" ) || (`cat $1 | grep "js_cms"` != "" ) ]];
         then
