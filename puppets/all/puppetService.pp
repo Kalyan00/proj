@@ -21,7 +21,7 @@ file { '/root/scripts/svn-updaters':
 }
 
 cron { puppetService:
-    command => "/root/scripts/svn-update",
+    command => "/root/scripts/svn-update >> /var/log/puppetService",
     user    => root,
     minute  => '*/3'
 }
