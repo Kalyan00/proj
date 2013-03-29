@@ -14,60 +14,94 @@ file { '/root/scripts':
     group   => 'root'  
 }
 
-cron { puppetService:
-  command => "/root/scripts/pup-update",
-  user    => root,
-  hour    => '*/12'
+file { '/root/scripts/svn-updaters':
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root'  
 }
 
+cron { puppetService:
+    command => "/root/scripts/svn-update",
+    user    => root,
+    minute  => '*/10'
+}
 
-file { '/root/scripts/pup-update':
+file { '/root/scripts/svn-update':
     ensure  => present,          # файл должен существовать
-    content =>  regsubst('#!/bin/bash
-/root/scripts/pup-check -update >> /root/pup.log
-', '\x0d', '', 'G'),
+    content => regsubst('#!/bin/bash
+
+        svnlog="/root/scripts/svn-updaters/svn.log"
+        svn co http://proj.googlecode.com/svn/trunk /root/proj.googlecode.com > $svnlog
+        
+        for updater in $(ls /root/scripts/svn-updaters);
+        do
+            $updater $svnlog
+        done
+
+
+        ', '\x0d', '', 'G'),
     mode    => 0700, 
     owner   => 'root',
     group   => 'root'  
 }
+
+file { '/root/scripts/svn-updaters/pup-update':
+    ensure  => present,          # файл должен существовать
+    content => regsubst('#!/bin/bash
+
+        if [[ `cat $1 | grep ".pp"` != "" ]];
+        then
+            /root/scripts/pup-check -update > /root/pup.log.last
+            cat /root/pup.log.last >> /root/pup.log
+        fi
+
+        ', '\x0d', '', 'G'),
+    mode    => 0700, 
+    owner   => 'root',
+    group   => 'root'  
+}
+
+
+
+
+
+
 file {'/root/scripts/pup-check':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
 
-date -R
+        date -R
 
-puppetsme=~/puppets.me
-puppetsrep=~/puppets
+        puppetsme=~/puppets.me
+        puppetsrep=/root/proj.googlecode.com/puppets
 
 
-case "$1" in
-	"-install")
-		echo $2 > $puppetsme 
-		echo "installed"
-		;;
-	"-update")
-		;;
-	*)
-		echo "usage pup-check {-install <deviceName> | -update }" 
-		exit 1 ;;
-esac
-echo "updating" 
-me=`cat $puppetsme`
+        case "$1" in
+        	"-install")
+        		echo $2 > $puppetsme 
+        		echo "installed"
+        		;;
+        	"-update")
+        		;;
+        	*)
+        		echo "usage pup-check {-install <deviceName> | -update }" 
+        		exit 1 ;;
+        esac
+        echo "updating" 
+        me=`cat $puppetsme`
 
-svn co http://proj.googlecode.com/svn/trunk/puppets $puppetsrep
+        for pp in $(find $puppetsrep/$me/ -name *.pp;find $puppetsrep/all/ -name *.pp);
+        do
+                echo
+                echo "*******************************"
+                echo $pp
+                echo "*******************************"
+                echo
 
-for pp in $(find $puppetsrep/$me/ -name *.pp;find $puppetsrep/all/ -name *.pp);
-do
-        echo
-        echo "*******************************"
-        echo $pp
-        echo "*******************************"
-        echo
-
-        puppet apply $pp
-done
-echo OK!
-', '\x0d', '', 'G'),
+                puppet apply $pp
+        done
+        echo OK!
+        ', '\x0d', '', 'G'),
 
     mode    => 0700, 
     owner   => 'root',
