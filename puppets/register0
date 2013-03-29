@@ -1,2 +1,7 @@
 echo 'apt-get update && apt-get install puppet && wget http://proj.googlecode.com/svn/trunk/puppets/all/puppetService.pp && puppet apply puppetService.pp && rm -f puppetService.pp' > installKpuppet && chmod 777 installKpuppet && sudo ./installKpuppet && rm -f installKpuppet
 
+
+
+sudo raspi-config
+
+passwd
