@@ -1,3 +1,10 @@
+file { '/var/www/js_cms':
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root'  
+}
+
+
 package { 'lftp':
     ensure => latest
 }
