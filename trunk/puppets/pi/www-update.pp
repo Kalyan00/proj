@@ -1,7 +1,9 @@
 file { '/var/www/js_cms':
     ensure  => directory,
-    owner   => 'root',
-    group   => 'root'  
+}
+
+file { '/var/www':
+    ensure  => directory,
 }
 
 
