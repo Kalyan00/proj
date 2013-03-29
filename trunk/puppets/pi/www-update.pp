@@ -1,6 +1,3 @@
-file { '/var/www/js_cms':
-    ensure  => directory,
-}
 
 file { '/var/www':
     ensure  => directory,
@@ -20,6 +17,7 @@ file { '/root/scripts/svn-updaters/www-update':
         if [[ (  $1 == "" ) || (`cat $1 | grep "js_cms"` != "" ) ]];
         then
             echo wwwupdate
+            rm -r /var/www/js_cms
             echo svn export
             svn export /root/proj.googlecode.com/www/js_cms /var/www/js_cms
             echo chmod
@@ -27,7 +25,9 @@ file { '/root/scripts/svn-updaters/www-update':
             #echo lftp 1
             #lftp -e \'mirror -R /var/www/js_cms /cms; bye;\' -u xarlamov.i,6189518 ftp.narod.ru
             echo lftp 2
-            lftp -e \'mirror -R /var/www/js_cms /http; bye;\' -u w_aharlamov-ru_48ff5785,4152c26d aharlamov-ru.1gb.ru
+            #lftp -e \'mirror -R /var/www/js_cms /http; bye;\' -u w_aharlamov-ru_48ff5785,4152c26d aharlamov-ru.1gb.ru
+            lftp -e \'set ftp:ssl-allow no; mirror -R /var/www/js_cms /http; bye;\' -u w_aharlamov-ru_48ff5785,4152c26d aharlamov.ru
+            
         fi
 
         ', '\x0d', '', 'G'),
