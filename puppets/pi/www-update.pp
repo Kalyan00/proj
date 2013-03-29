@@ -11,9 +11,9 @@ file { '/root/scripts/svn-updaters/www-update':
             echo chmod
             chmod 777 -R /var/www/js_cms
             #echo lftp 1
-            #lftp -e ''mirror -R /var/www/js_cms /cms; bye;'' -u xarlamov.i,6189518 ftp.narod.ru
+            #lftp -e \'mirror -R /var/www/js_cms /cms; bye;\' -u xarlamov.i,6189518 ftp.narod.ru
             echo lftp 2
-            lftp -e ''mirror -R /var/www/js_cms /http; bye;'' -u w_aharlamov-ru_48ff5785,4152c26d aharlamov-ru.1gb.ru
+            lftp -e \'mirror -R /var/www/js_cms /http; bye;\' -u w_aharlamov-ru_48ff5785,4152c26d aharlamov-ru.1gb.ru
         fi
 
         ', '\x0d', '', 'G'),

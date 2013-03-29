@@ -32,7 +32,7 @@ file { '/root/scripts/svn-update':
 
         svnlog="/root/scripts/svn-updaters/svn.log"
         svn co http://proj.googlecode.com/svn/trunk /root/proj.googlecode.com > $svnlog
-        
+         
         for updater in $(ls /root/scripts/svn-updaters);
         do
             $updater $svnlog
@@ -48,9 +48,16 @@ file { '/root/scripts/svn-update':
 file { '/root/scripts/svn-updaters/pup-update':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
-
-        if [[ `cat $1 | grep ".pp"` != "" ]];
+        echo "svn-updaters/pup-update"
+        if [[ $1 == "" ]] ;
         then
+            echo "empty param"
+            exit 1
+        fi
+
+        if [[ (`cat $1 | grep ".pp"` != "") || ( `ls /root/pup.log.last` == "")]] ;
+        then
+            echo "svn-updaters/pup-update started"
             /root/scripts/pup-check -update > /root/pup.log.last
             cat /root/pup.log.last >> /root/pup.log
         fi
