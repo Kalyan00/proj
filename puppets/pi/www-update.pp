@@ -1,3 +1,7 @@
+package { 'lftp':
+    ensure => latest
+}
+
 file { '/root/scripts/svn-updaters/www-update':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
