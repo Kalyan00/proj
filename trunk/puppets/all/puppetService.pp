@@ -1,5 +1,4 @@
 
-
 package { 'subversion':
     ensure => latest
 }
@@ -23,7 +22,7 @@ file { '/root/scripts/svn-updaters':
 cron { puppetService:
     command => "/root/scripts/svn-update >> /var/log/puppetService",
     user    => root,
-    minute  => '*/3'
+    minute  => '*/15'
 }
 
 file { '/root/scripts/svn-update':
