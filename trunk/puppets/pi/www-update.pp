@@ -1,4 +1,3 @@
-
 file { '/var/www':
     ensure  => directory,
 }
@@ -13,8 +12,10 @@ file { '/root/scripts/svn-updaters/www-update':
     content => regsubst('#!/bin/bash
 
         echo "/root/scripts/svn-updaters/www-update"
+        jsfiles=`find /var/www|grep -c js_cms`
+        pupjsfiles=`find /root/proj.googlecode.com/www |grep -c js_cms`
 
-        if [[ (  $1 == "" ) || (`cat $1 | grep "js_cms"` != "" ) ]];
+        if [[ (  $1 == "" ) || (`cat $1 | grep "js_cms"` != "" ) || ( $jsfiles != $pupjsfiles ) ]];
         then
             echo wwwupdate
             rm -r /var/www/js_cms
