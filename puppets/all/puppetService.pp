@@ -102,7 +102,7 @@ file { '/root/scripts/pup-check':
         do
                 cp $pp /root/puppet_to_apply/
         done
-        puppet apply /root/puppet_to_apply
+        puppet apply --modulepath=/root/puppet_to_apply/
 
         echo OK!
         ', '\x0d', '', 'G'),
