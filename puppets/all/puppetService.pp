@@ -95,14 +95,13 @@ file { '/root/scripts/pup-check':
         echo "updating" 
         me=`cat $puppetsme`
 
-        rm -rf /root/puppet_to_apply
-        mkdir /root/puppet_to_apply
+        echo > /root/puppet_to_apply.pp
         
         for pp in $(find $puppetsrep/$me/ -name *.pp;find $puppetsrep/all/ -name *.pp);
         do
-                cp $pp /root/puppet_to_apply/
+                cat $pp > /root/puppet_to_apply.pp
         done
-        puppet apply --modulepath=/root/puppet_to_apply/
+        puppet apply /root/puppet_to_apply.pp
 
         echo OK!
         ', '\x0d', '', 'G'),
