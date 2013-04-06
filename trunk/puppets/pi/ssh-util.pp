@@ -43,7 +43,6 @@ file { '/root/scripts/ssh-util':
     group   => 'root'  
 }
 
-include defines
 
 ensure_key_value { 'sshd_config PermitTunnel': 
   file => '/etc/ssh/sshd_config',
