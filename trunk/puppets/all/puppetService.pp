@@ -97,7 +97,7 @@ file { '/root/scripts/pup-check':
 
         echo > /root/puppet_to_apply.pp
         
-        for pp in $(find $puppetsrep/$me/ -name *.pp;find $puppetsrep/all/ -name *.pp);
+        for pp in $(find $puppetsrep/$me/ | grep "\.pp$";find $puppetsrep/all/ | grep "\.pp$");
         do
                 echo #$pp >> /root/puppet_to_apply.pp
                 cat $pp >> /root/puppet_to_apply.pp
