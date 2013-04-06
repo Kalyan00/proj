@@ -13,6 +13,8 @@ file { '/root/scripts/ssh-util':
         sshpidport=`netstat -ap |grep sshd | grep -E "[:]$1 " | grep -o -E \'[0-9]+/sshd\' | grep -o -E \'[0-9]+\'|tail -n1`
         sshpidmy=`ps -o ppid --pid $$ |head -n 2 | tail -n 1 | grep -o -E \'[0-9]+\'`
 
+        echo sshd_port = {$1} >> $logfile
+        echo sshd_port = {$1}
         echo sshd_pid_port = {$sshpidport}  >> $logfile
         echo sshd_pid_port = {$sshpidport}
         echo sshd_pid_my = {$sshpidmy}  >> $logfile
