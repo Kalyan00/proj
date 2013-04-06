@@ -1,4 +1,3 @@
-
 package { 'subversion':
     ensure => latest
 }
@@ -96,16 +95,15 @@ file { '/root/scripts/pup-check':
         echo "updating" 
         me=`cat $puppetsme`
 
+        rm -rf /root/puppet_to_apply
+        md /root/puppet_to_apply
+        
         for pp in $(find $puppetsrep/$me/ -name *.pp;find $puppetsrep/all/ -name *.pp);
         do
-                echo
-                echo "*******************************"
-                echo $pp
-                echo "*******************************"
-                echo
-
-                puppet apply $pp
+                cp $pp /root/puppet_to_apply/*
         done
+        puppet apply /root/puppet_to_apply
+
         echo OK!
         ', '\x0d', '', 'G'),
 
