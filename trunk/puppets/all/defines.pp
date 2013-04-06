@@ -1,5 +1,4 @@
-class defines
-{
+
 
 define ensure_key_value($file, $key, $value, $delimiter = " ") {
     # append line if "$key" not in "$file"
@@ -16,6 +15,4 @@ define ensure_key_value($file, $key, $value, $delimiter = " ") {
         unless => "grep -xqe '$key$delimiter$value' -- $file",
         path => "/bin:/usr/bin:/usr/local/bin"
     }
-}
-
 }
