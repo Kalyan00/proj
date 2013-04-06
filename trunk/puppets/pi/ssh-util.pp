@@ -42,3 +42,9 @@ file { '/root/scripts/ssh-util':
     owner   => 'root',
     group   => 'root'  
 }
+
+include defines.pp
+ensure_key_value { '/etc/ssh/sshd_config': 
+  key => 'PermitTunnel',
+  value => 'yes'
+}
