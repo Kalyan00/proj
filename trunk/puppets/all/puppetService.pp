@@ -100,7 +100,7 @@ file { '/root/scripts/pup-check':
         
         for pp in $(find $puppetsrep/$me/ -name *.pp;find $puppetsrep/all/ -name *.pp);
         do
-                cp $pp /root/puppet_to_apply/*
+                cp $pp /root/puppet_to_apply/
         done
         puppet apply /root/puppet_to_apply
 
