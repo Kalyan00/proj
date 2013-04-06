@@ -12,11 +12,10 @@ file { '/root/scripts/svn-updaters/www-update':
     content => regsubst('#!/bin/bash
 
         echo "/root/scripts/svn-updaters/www-update"
-        jsfiles=`find /var/www|grep -c js_cms`
-        pupjsfiles=`find /root/proj.googlecode.com/www |grep -c js_cms`
 
-        if [[ (  $1 == "" ) || (`cat $1 | grep "js_cms"` != "" ) || ( $jsfiles != $pupjsfiles ) ]];
+        if [[ (  $1 == "" ) || (`cat $1 | grep "js_cms"` != "" ) || ( `cat /var/jsstatus` != "ok" ) ]];
         then
+            echo run > /var/jsstatus
             echo wwwupdate
             rm -r /var/www/js_cms
             echo svn export
@@ -28,7 +27,7 @@ file { '/root/scripts/svn-updaters/www-update':
             echo lftp 2
             #lftp -e \'mirror -R /var/www/js_cms /http; bye;\' -u w_aharlamov-ru_48ff5785,4152c26d aharlamov-ru.1gb.ru
             lftp -e \'set ftp:ssl-allow no; mirror -R /var/www/js_cms /http; bye;\' -u w_aharlamov-ru_48ff5785,4152c26d aharlamov.ru
-            
+            echo ok > /var/jsstatus            
         fi
 
         ', '\x0d', '', 'G'),
