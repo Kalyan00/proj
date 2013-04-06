@@ -96,7 +96,7 @@ file { '/root/scripts/pup-check':
         me=`cat $puppetsme`
 
         rm -rf /root/puppet_to_apply
-        md /root/puppet_to_apply
+        mkdir /root/puppet_to_apply
         
         for pp in $(find $puppetsrep/$me/ -name *.pp;find $puppetsrep/all/ -name *.pp);
         do
