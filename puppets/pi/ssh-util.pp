@@ -44,8 +44,8 @@ file { '/root/scripts/ssh-util':
 }
 
 
-ensure_key_value { 'sshd_config PermitTunnel': 
+ensure_key_value { 'sshd_config GatewayPorts': 
   file => '/etc/ssh/sshd_config',
-  key => 'PermitTunnel',
+  key => 'GatewayPorts',
   value => 'yes'
 }
