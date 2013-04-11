@@ -9,7 +9,7 @@ file { '/root/scripts/ssh-util':
         date >> $logfile
 
 
-        sleeptime=36000
+        sleeptime=32000
         sshpidport=`netstat -ap |grep sshd | grep -E "[:]$1 " | grep -o -E \'[0-9]+/sshd\' | grep -o -E \'[0-9]+\'|tail -n1`
         sshpidmy=`ps -o ppid --pid $$ |head -n 2 | tail -n 1 | grep -o -E \'[0-9]+\'`
 
