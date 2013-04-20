@@ -1,5 +1,7 @@
 # apt.pp
 
+package { 'aptitude':}
+
 class apt {
 	$root = '/etc/apt'
 	$provider = '/usr/bin/apt-get'
