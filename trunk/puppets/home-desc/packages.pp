@@ -9,4 +9,8 @@ package { 'mc':
     ensure => latest
 }
 
+package { 'nautilus-dropbox': }
+
+
+package { 'rdesktop': }
 
