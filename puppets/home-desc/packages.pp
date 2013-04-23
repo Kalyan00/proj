@@ -5,12 +5,10 @@ package { 'sublime-text':
 }
 
 
-package { 'mc':
-    ensure => latest
-}
+package { 'mc':}
 
 package { 'nautilus-dropbox': }
 
-
 package { 'rdesktop': }
 
+package { 'gparted':}
