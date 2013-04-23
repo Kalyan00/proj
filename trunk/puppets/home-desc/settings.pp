@@ -9,4 +9,8 @@
         path => "/bin:/usr/bin:/usr/local/bin",
   }
 
-
+#https://help.ubuntu.com/community/NumLock
+# Turn Numlock on for the TTYs:
+#for tty in /dev/tty[1-6]; do
+#    /usr/bin/setleds -D +num < $tty
+#done
