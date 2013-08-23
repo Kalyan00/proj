@@ -7,7 +7,7 @@ umount `cat /etc/mtab | grep $dev | grep -oE ^[a-z0-9/]*`
 
 echo dd bs=4M if=`ls *.img` of=$dev
 dd bs=4M if=`ls *.img` of=$dev
-rm *.img
+
 
 echo dd done!
 
