@@ -1,0 +1,3 @@
+#!/bin/sh
+wget `wget -q -O-  http://downloads.raspberrypi.org/raspbian/ |grep "zip\"" |grep -Eo "http[^\"]*"`
+
