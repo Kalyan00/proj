@@ -1,0 +1,27 @@
+echo "= wget java"   && wget --no-check-certificate http://www.java.net/download/jdk8/archive/b99/binaries/jdk-8-ea-b99-linux-arm-vfp-hflt-17_jul_2013.tar.gz &&
+echo "= tar java"    && tar zxvf jdk-8-ea-b99-linux-arm-vfp-hflt-17_jul_2013.tar.gz -C /opt &&
+echo "= ln java"     && ln -s /opt/jdk1.8.0/bin/java /bin/java &&
+echo "= check java"  && java -version &&
+echo "= rm java.tar" && rm jdk-8-ea-b99-linux-arm-vfp-hflt-17_jul_2013.tar.gz &&
+echo "= wget i2p"    && wget `wget -q -O-  http://www.i2p2.de/download.html | grep -m1 ".jar\"" | grep -P -o  "http:[^\"]*\.jar"` &&
+echo "= i2p install" && java -jar `ls *.jar` -console &&
+echo "= done"
+
+
+#1
+#/home/pi/i2p/
+#1
+
+#cd /home/pi/i2p/
+#./runplain.sh
+#kill -9 `cat /tmp/router.pid`
+#cd ~/.i2p
+#nano clients.config
+
+#Найдите
+#clientApp.0.args=7657 ::1,127.0.0.1 ./webapps/
+#и замените на
+#clientApp.0.args=7657 0.0.0.0 ./webapps/
+
+#Продолжаем:
+#nano i2ptunnel.config
