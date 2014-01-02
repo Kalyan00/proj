@@ -5,3 +5,7 @@ package { 'mc':
 package { 'proftpd':
     ensure => latest
 }
+
+package { 'samba':
+    ensure => latest
+}
