@@ -9,3 +9,8 @@ package { 'proftpd':
 package { 'samba':
     ensure => latest
 }
+
+package { 'transmission-daemon':
+    ensure => latest
+}
+
