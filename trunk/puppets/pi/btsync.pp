@@ -1,4 +1,4 @@
-file { '~/.btsync/install':
+file { '/root/.btsync/install':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
 
