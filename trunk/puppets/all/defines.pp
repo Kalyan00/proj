@@ -20,7 +20,9 @@ define ensure_key_value($file, $key, $value, $delimiter = " ") {
 
 define create_daemon($name, $args = "", $path = "/usr/sbin/"){
     
-    $tail = '
+    $tail = 'PIDFILE=/var/run/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+
 [ -x "$DAEMON" ] || exit 0
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 . /lib/init/vars.sh
@@ -125,10 +127,8 @@ esac
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC=\"$path$name $args daemon\"
 NAME=$name
-DAEMON=$path$NAME
 DAEMON_ARGS=\"$args\"
-PIDFILE=/var/run/$NAME.pid
-SCRIPTNAME=/etc/init.d/$NAME
+DAEMON=$path$name
 
 $tail
 ", '\x0d', '', 'G'),
