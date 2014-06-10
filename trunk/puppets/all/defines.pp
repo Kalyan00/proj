@@ -1,4 +1,3 @@
-
 define ensure_key_value($file, $key, $value, $delimiter = " ") {
     # append line if "$key" not in "$file"
     exec { "append $key$delimiter$value $file":
@@ -131,5 +130,10 @@ esac
         mode    => 0700, 
         owner   => 'root',
         group   => 'root'  
-    }    
+    }
+    
+    
+    exec{'autostart update-rc.d $name': 
+      command =>"update-rc.d $name default 97 03"
+    }
 }
