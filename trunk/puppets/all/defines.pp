@@ -133,7 +133,8 @@ esac
     }
     
     
-    exec{'autostart update-rc.d $name': 
-      command =>"update-rc.d $name default 97 03"
+    exec{'autostart_update-rc.d_ $name': 
+      command =>"update-rc.d $name default 97 03",
+      path => "/bin:/usr/bin:/usr/local/bin"
     }
 }
