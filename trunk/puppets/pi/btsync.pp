@@ -1,4 +1,3 @@
-
 file { '~/.btsync/install':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
@@ -18,7 +17,7 @@ exec { "install btsync":
 }
 
 create_daemon {'btsync':
-    $name='btsync',
-    $path = "/root/.btsync/"
+    $name => "btsync",
+    $path => "/root/.btsync/"
 }
 
