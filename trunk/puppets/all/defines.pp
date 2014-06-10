@@ -139,7 +139,7 @@ $tail
     
     
     exec{'autostart_update-rc.d_ $name': 
-      command =>"update-rc.d $name default 97 03",
+      command =>"update-rc.d $name defaults 97 03",
       path => "/bin:/usr/bin:/usr/local/bin:/usr/sbin"
     }
 }
