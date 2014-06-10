@@ -11,9 +11,9 @@ file { '~/.btsync/install':
 }
 
 exec { "install btsync":
-    command => "~/.btsync/install",
+    command => "/root/.btsync/install",
     path => "/bin:/usr/bin:/usr/local/bin",
-    creates => "~/.btsync/btsync"
+    creates => "/root/.btsync/btsync"
 }
 
 create_daemon {'btsync':
