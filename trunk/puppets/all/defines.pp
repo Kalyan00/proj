@@ -138,6 +138,6 @@ $tail
     }
     
     service{$name":
-        enable => "true"
+        enable => true
     }
 }
