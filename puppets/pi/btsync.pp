@@ -1,3 +1,9 @@
+file { '/root/.btsync':
+    ensure  => directory,          
+    mode    => 0700, 
+    owner   => 'root',
+    group   => 'root'  
+}
 file { '/root/.btsync/install':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
