@@ -17,7 +17,7 @@ exec { "install btsync":
 }
 
 create_daemon {'btsync':
-    $name => "btsync",
-    $path => "/root/.btsync/"
+    name => "btsync",
+    path => "/root/.btsync/"
 }
 
