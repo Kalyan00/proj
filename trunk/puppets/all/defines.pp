@@ -19,28 +19,8 @@ define ensure_key_value($file, $key, $value, $delimiter = " ") {
 
 
 define create_daemon($name, $args = "", $path = "/usr/sbin/"){
-    file { "/etc/init.d/$name":
-        ensure  => present,  
-        content => regsubst('#!/bin/bash
-### BEGIN INIT INFO
-# Provides:          skeleton
-# Required-Start:    $remote_fs $syslog
-# Required-Stop:     $remote_fs $syslog
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: $name daemon
-# Description:       $path$name $args daemon, created by create_daemon.pp
-#
-### END INIT INFO
-
-PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="$path$name $args daemon"
-NAME=$name
-DAEMON=$path$NAME
-DAEMON_ARGS="$args"
-PIDFILE=/var/run/$NAME.pid
-SCRIPTNAME=/etc/init.d/$NAME
-
+    
+    $tail = '
 [ -x "$DAEMON" ] || exit 0
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 . /lib/init/vars.sh
@@ -126,7 +106,32 @@ case "$1" in
 esac
 
 :
-             ', '\x0d', '', 'G'),
+             '
+
+    file { "/etc/init.d/$name":
+        ensure  => present,  
+        content => regsubst("#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          skeleton
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: $name daemon
+# Description:       $path$name $args daemon, created by create_daemon.pp
+#
+### END INIT INFO
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+DESC=\"$path$name $args daemon\"
+NAME=$name
+DAEMON=$path$NAME
+DAEMON_ARGS=\"$args\"
+PIDFILE=/var/run/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+
+$tail
+", '\x0d', '', 'G'),
         mode    => 0700, 
         owner   => 'root',
         group   => 'root'  
