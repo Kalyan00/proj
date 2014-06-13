@@ -137,7 +137,7 @@ $tail
         group   => 'root'  
     }
     
-    service{$name":
+    service{"$name":
         enable => true
     }
 }
