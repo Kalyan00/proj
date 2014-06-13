@@ -8,7 +8,9 @@ file { '/root/.btsync/install':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
 
-        cd ~/.btsync && wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_arm.tar.gz && tar -xvf btsync_arm.tar.gz || cd ~ && rm -rf ~/.btsync 
+        cd ~/.btsync 
+        wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_arm.tar.gz 
+        tar -xvf btsync_arm.tar.gz
         
         ', '\x0d', '', 'G'),
     mode    => 0700, 
