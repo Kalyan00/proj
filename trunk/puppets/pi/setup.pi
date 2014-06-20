@@ -1,18 +1,45 @@
-#!/bin/sh
+#!/bin/bash
 
-dev="/dev/sdd"
-echo $dev
-
-umount `cat /etc/mtab | grep $dev | grep -oE ^[a-z0-9/]*`
-
-echo dd bs=4M if=`ls *.img` of=$dev
-dd bs=4M if=`ls *.img` of=$dev
+dev="/dev/`ls -l /dev/disk/by-path/\`ls /dev/disk/by-path/ |grep usb | head -n1\` | grep -E -o [a-z]+ |tail -n1`"
+dev2="$dev"2
+echo && echo dev = $dev
+echo && blkid |grep $dev
+echo && df | grep $dev && echo
 
 
-echo dd done!
+while true; do
+    read -p "Do you wish to download Raspberian and install it to $dev? " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+
+if [ "$dev" == "" ]
+then
+    echo usb not found
+    exit
+fi
+
+umountStr=`cat /etc/mtab | grep $dev | grep -oE ^[a-z0-9/]*`
+if [ "$umountStr" != "" ]
+then
+    umount $umountStr
+fi
+
+echo "wget | funzip | dd of=$dev" && echo && echo && echo
+wget http://downloads.raspberrypi.org/raspbian_latest -O - | funzip | dd bs=4M of=$dev
+
+
+echo && echo && echo dd done!
+
+echo && echo patching
 
 mkdir rpi
-mount /dev/sdd2 ./rpi/
+mount $dev2 ./rpi/
 mkdir ./rpi/etc/runonce
 
 pupstart="./rpi/etc/runonce/pup"
@@ -26,10 +53,10 @@ echo rm -f puppetService.pp >> $pupstart
 chmod 777 $pupstart
 
 echo @reboot          root  sleep 60\; for e in \$\(find /etc/runonce -type f -executable\)\;do \$e\; rm \$e\; done >> ./rpi/etc/crontab
-
 echo pi > ./rpi/root/puppets.me
 
 sleep 1
 umount ./rpi/
 sleep 1
 rm -rf ./rpi
+echo "all done"
