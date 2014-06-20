@@ -50,7 +50,14 @@ echo apt-get install -y puppet >> $pupstart
 echo wget http://proj.googlecode.com/svn/trunk/puppets/all/puppetService.pp >> $pupstart
 echo puppet apply puppetService.pp >> $pupstart
 echo rm -f puppetService.pp >> $pupstart
+echo passwd -d pi >> $pupstart
+echo "echo \"Europe/Moscow\" > /etc/timezone" >> $pupstart
+echo "dpkg-reconfigure -f noninteractive tzdata" >> $pupstart
+echo "raspi-config --expand-rootfs" >> $pupstart
+echo "" >> $pupstart
+
 chmod 777 $pupstart
+
 
 echo @reboot          root  sleep 60\; for e in \$\(find /etc/runonce -type f -executable\)\;do \$e\; rm \$e\; done >> ./rpi/etc/crontab
 echo pi > ./rpi/root/puppets.me
