@@ -45,21 +45,21 @@ mkdir rpi
 mount $dev2 ./rpi/
 mkdir ./rpi/etc/runonce
 
-pupstart="./rpi/etc/runonce/pup"
-# pupstart="/etc/runonce/pup"
-echo '#!/bin/sh' > $pupstart
-echo apt-get update >> $pupstart
-echo apt-get install -y puppet >> $pupstart
-echo wget http://proj.googlecode.com/svn/trunk/puppets/all/puppetService.pp >> $pupstart
-echo puppet apply puppetService.pp >> $pupstart
-echo rm -f puppetService.pp >> $pupstart
-echo passwd -d pi >> $pupstart
-echo "echo \"Europe/Moscow\" > /etc/timezone" >> $pupstart
-echo "dpkg-reconfigure -f noninteractive tzdata" >> $pupstart
-echo "raspi-config --expand-rootfs" >> $pupstart
-echo "" >> $pupstart
 
-chmod 777 $pupstart
+cat > ./rpi/etc/runonce/pup <<EOF
+#!/bin/bash
+apt-get update
+apt-get install -y puppet
+wget http://proj.googlecode.com/svn/trunk/puppets/all/puppetService.pp
+puppet apply puppetService.pp
+rm -f puppetService.pp
+passwd -d pi
+echo "Europe/Moscow" > /etc/timezone
+dpkg-reconfigure -f noninteractive tzdata
+raspi-config --expand-rootfs
+EOF
+
+chmod 777 ./rpi/etc/runonce/pup
 
 
 echo @reboot          root  sleep 60\; for e in \$\(find /etc/runonce -type f -executable\)\;do \$e\; rm \$e\; done >> ./rpi/etc/crontab
