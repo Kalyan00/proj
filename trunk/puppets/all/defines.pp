@@ -138,6 +138,7 @@ $tail
     }
     
     service{"$name":
-        enable => true
+        enable => true,
+        require => File["/etc/init.d/$name"]
     }
 }
