@@ -1,6 +1,14 @@
 #!/bin/bash
 
-dev="/dev/`ls -l /dev/disk/by-path/\`ls /dev/disk/by-path/ |grep usb | head -n1\` | grep -E -o [a-z]+ |tail -n1`"
+dev="/dev/`readlink \`find /dev/disk/by-path/ |grep usb |sort |head -n1\` 2>/dev/null | grep -E -o "[a-z]+"`"
+
+if [ "$dev" == "/dev/" ]
+then
+    echo usb not found
+    exit
+fi
+
+
 dev2="$dev"2
 echo && echo dev = $dev
 echo && blkid |grep $dev
@@ -18,11 +26,6 @@ done
 
 
 
-if [ "$dev" == "" ]
-then
-    echo usb not found
-    exit
-fi
 
 umountStr=`cat /etc/mtab | grep $dev | grep -oE ^[a-z0-9/]*`
 if [ "$umountStr" != "" ]
