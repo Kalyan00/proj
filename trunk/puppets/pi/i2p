@@ -3,25 +3,24 @@ echo "= tar java"    && tar zxvf jdk-8-ea-b99-linux-arm-vfp-hflt-17_jul_2013.tar
 echo "= ln java"     && ln -s /opt/jdk1.8.0/bin/java /bin/java &&
 echo "= check java"  && java -version &&
 echo "= rm java.tar" && rm jdk-8-ea-b99-linux-arm-vfp-hflt-17_jul_2013.tar.gz &&
-echo "= wget i2p"    && wget `wget -q -O-  http://www.i2p2.de/download.html | grep -m1 ".jar\"" | grep -P -o  "http:[^\"]*\.jar"` &&
-echo "= i2p install" && java -jar `ls *.jar` -console &&
-echo "= done"
+echo "= wget i2p"    && wget http://download.i2p2.de`wget -O- http://download.i2p2.de/current/ |grep -oP "(?<=HREF=\")(.*\.jar)(?=\")"| sed "s|i2p/|releases/|" ` -O i2p.jar &&
+echo "= i2p install" && java -jar i2p.jar -console && 
+echo "= rm jar"      && rm i2p.jar &&
+echo "= cd i2p"      && cd /home/pi/i2p/ &&
+echo "= runplain.sh" && ./runplain.sh &&
+echo "= sleep"       && sleep 5 &&
+echo "= kill"        && kill -9 `cat /tmp/router.pid` &&
+echo "= sleep"       && sleep 5 &&
+echo "= cd ~/.i2p"   && cd ~/.i2p &&
+echo "= cp bak"      && cp  clients.config clients.config.bak &&
+echo "= sed"         && cat clients.config.bak | sed "s|clientApp.0.args=7657 ::1,127.0.0.1 ./webapps/|clientApp.0.args=7657 0.0.0.0 ./webapps/|" > clients.config &&
+echo "= cd i2p"      && cd /home/pi/i2p/ &&
+echo "= runplain.sh" && ./runplain.sh &&
+echo "= done"        || echo "= !!! FAILED !!!"
 
 
 #1
 #/home/pi/i2p/
 #1
 
-#cd /home/pi/i2p/
-#./runplain.sh
-#kill -9 `cat /tmp/router.pid`
-#cd ~/.i2p
-#nano clients.config
 
-#Найдите
-#clientApp.0.args=7657 ::1,127.0.0.1 ./webapps/
-#и замените на
-#clientApp.0.args=7657 0.0.0.0 ./webapps/
-
-#Продолжаем:
-#nano i2ptunnel.config
