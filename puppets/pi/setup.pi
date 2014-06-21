@@ -1,8 +1,8 @@
 #!/bin/bash
 
-dev="/dev/`readlink \`find /dev/disk/by-path/ |grep usb |sort |head -n1\` 2>/dev/null | grep -E -o "[a-z]+"`"
+dev="`readlink -f \`find /dev/disk/by-path/ |grep usb |sort |head -n1\` 2>/dev/null`"
 
-if [ "$dev" == "/dev/" ]
+if [ "$dev" == "" ]
 then
     echo usb not found
     exit
