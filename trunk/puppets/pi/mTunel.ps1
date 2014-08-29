@@ -1,15 +1,24 @@
-$TunnelPort = 18281
-$ListenerPort = 18282
+#update RSA
+#echo. > "c:\Program Files (x86)\OpenSSH\.ssh\known_hosts" && ssh root@kalyan00.no-ip.biz -p 443 -C exit
+#
+$TunnelPort = 18284
+$ListenerPort = 18285
+#		"root@kalyan00.homeip.net"       # Host
+
 $SshStr = ""+ @(
-		"root@kalyan00.homeip.net"       # Host
-	,	" -p 10222"                      # Port 
-	,	" -R 3369:msk-0069:3389"         # RDP msk-0069 Kalyan00
+		"root@kalyan00.mooo.com"        # Host
+#		"root@kalyan00.no-ip.biz"        # Host
+	,	" -p 443"                        # Port 
+	,	" -R 3369:msk-1371:3389"         # RDP msk-1371 Kalyan00
+	,	" -R 3301:msk-figa-01:3389"         # RDP msk-1371 Kalyan00
 	,	" -R 1101:msk-1101:3389"         # RDP msk-1101 DVolodko
 	,	" -R 3346:msk-0946:3389"         # RDP msk-0946 0946
 	,	" -R 3368:msk-0068:3389"         # RDP msk-0068 Overlord
 	,	" -R 3318:msk-1118:3389"         # RDP msk-1118 EEremina
+	,	" -R 3311:msk-n1001:3389"         # RDP msk-n1001 ABernadskiy
 	,	" -D 5192"                       # Socks 5
 	,	" -L 5191:127.0.0.1:5190"        # WC: Squid http_port 5190
+	,	" -L 4444:127.0.0.1:4444"        # WC: I2P
 )
 $logfile = 'c:\temp\mTunnel.log'
 $debug=$True
@@ -241,15 +250,31 @@ function CheckTunnel
 }
 
 $SshStr = $SshStr  +  @(
-		" -L $($TunnelPort):127.0.0.1:$ListenerPort"     # ñ ëîêàëüíîãî1 äî ñåðâàêà
-	,	" -R $($ListenerPort):127.0.0.1:$ListenerPort"   # ñ ñåðâàêà íà ëîêàëüíûé2
+		" -L $($TunnelPort):127.0.0.1:$ListenerPort"     # Ñ Ð»Ð¾ÐºÐ°Ð»ÑŒÐ½Ð¾Ð³Ð¾1 Ð´Ð¾ ÑÐµÑ€Ð²Ð°ÐºÐ°
+	,	" -R $($ListenerPort):127.0.0.1:$ListenerPort"   # Ñ ÑÐµÑ€Ð²Ð°ÐºÐ° Ð½Ð° Ð»Ð¾ÐºÐ°Ð»ÑŒÐ½Ñ‹Ð¹2
 	
-	,	" -C ./scripts/ssh-util $ListenerPort"           # âûïîëíÿåì ñïåö.ñêðèïò äëÿ óáèåíèÿ ïîäâèñøèõ sshd, çàëî÷èâøèõ ïîðò
+	,	" -C ./scripts/ssh-util $ListenerPort"           # Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÐ¼ ÑÐ¿ÐµÑ†.ÑÐºÑ€Ð¸Ð¿Ñ‚ Ð´Ð»Ñ ÑƒÐ±Ð¸ÐµÐ½Ð¸Ñ Ð¿Ð¾Ð´Ð²Ð¸ÑÑˆÐ¸Ñ… sshd, Ð·Ð°Ð»Ð¾Ñ‡Ð¸Ð²ÑˆÐ¸Ñ… Ð¿Ð¾Ñ€Ñ‚
 )
 
 log("ssh $SshStr")
 
 $pssh = Start-Process ssh -ArgumentList $SshStr -NoNewWindow -PassThru 2>>$logfile
+
+#$ProcessInfo = New-Object System.Diagnostics.ProcessStartInfo 
+#$ProcessInfo.FileName = "ssh" 
+#$ProcessInfo.RedirectStandardError = $true 
+#$ProcessInfo.RedirectStandardOutput = $true 
+#$ProcessInfo.UseShellExecute = $false 
+#$ProcessInfo.Arguments = $SshStr
+#$pssh = New-Object System.Diagnostics.Process 
+#$pssh.StartInfo = $ProcessInfo 
+#$pssh.Start() | Out-Null 
+##$pssh.WaitForExit() 
+#sleep 10
+#
+#$Out = ($pssh.StandardOutput.ReadToEnd()) +  ($pssh.StandardError.ReadToEnd())
+#$Out >> $logfile
+
 sleep 10
 
 $loggerCounter = 0
@@ -269,4 +294,5 @@ if(!$pssh.HasExited)
 	sleep 1
 }
 log("Exit")
+
 
