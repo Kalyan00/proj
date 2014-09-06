@@ -3,39 +3,46 @@ file { '/root/scripts/ssh-util':
     content => regsubst('#!/bin/bash
 
         echo "/root/scripts/ssh-util"
-
         logfile=/var/log/ssh-util
-        echo >> $logfile
-        date >> $logfile
+        if [[ "$1" == ""  ]]
+        then
+            port=`cat $logfile |tail |grep sshd_port|tail -n1 |grep -o -E '[0-9]+'`
+            cat /var/log/ssh-util |tail
+            echo
+            echo port=$port
+            netstat -apn |grep sshd | grep -E "[:]$port "
+        else
+            echo >> $logfile
+            date >> $logfile
 
 
-        sleeptime=32000
-        sshpidport=`netstat -apn |grep sshd | grep -E "[:]$1 " | grep -o -E \'[0-9]+/sshd\' | grep -o -E \'[0-9]+\'|tail -n1`
-        sshpidmy=`ps -o ppid --pid $$ |head -n 2 | tail -n 1 | grep -o -E \'[0-9]+\'`
+            sleeptime=32000
+            sshpidport=`netstat -apn |grep sshd | grep -E "[:]$1 " | grep -o -E \'[0-9]+/sshd\' | grep -o -E \'[0-9]+\'|tail -n1`
+            sshpidmy=`ps -o ppid --pid $$ |head -n 2 | tail -n 1 | grep -o -E \'[0-9]+\'`
 
-        echo sshd_port = {$1} >> $logfile
-        echo sshd_port = {$1}
-        echo sshd_pid_port = {$sshpidport}  >> $logfile
-        echo sshd_pid_port = {$sshpidport}
-        echo sshd_pid_my = {$sshpidmy}  >> $logfile
-        echo sshd_pid_my = {$sshpidmy}
-        case "$sshpidport" in
-          "" |"$sshpidmy" )
-              echo nothing to kill. sleepeng $sleeptime  >> $logfile
-              echo nothing to kill. sleepeng $sleeptime
-              sleep $sleeptime
-              date  >> $logfile
-              echo sleepdone  >> $logfile
-              echo sleepdone
-              ;;
-          *)      
-              kill $sshpidport
-              echo $sshpidport killed  >> $logfile
-              echo $sshpidport killed
-              ;;
-            
-        esac
+            echo sshd_port = {$1} >> $logfile
+            echo sshd_port = {$1}
+            echo sshd_pid_port = {$sshpidport}  >> $logfile
+            echo sshd_pid_port = {$sshpidport}
+            echo sshd_pid_my = {$sshpidmy}  >> $logfile
+            echo sshd_pid_my = {$sshpidmy}
+            case "$sshpidport" in
+              "" |"$sshpidmy" )
+                  echo nothing to kill. sleepeng $sleeptime  >> $logfile
+                  echo nothing to kill. sleepeng $sleeptime
+                  sleep $sleeptime
+                  date  >> $logfile
+                  echo sleepdone  >> $logfile
+                  echo sleepdone
+                  ;;
+              *)      
+                  kill $sshpidport
+                  echo $sshpidport killed  >> $logfile
+                  echo $sshpidport killed
+                  ;;
 
+            esac
+        fi
 
         ', '\x0d', '', 'G'),
     mode    => 0700, 
