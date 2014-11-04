@@ -6,7 +6,7 @@ file { '/root/scripts/ssh-util':
         logfile=/var/log/ssh-util
         if [[ "$1" == ""  ]]
         then
-            port=`cat $logfile |tail |grep sshd_port|tail -n1 |grep -o -E '[0-9]+'`
+            port=`cat $logfile |tail |grep sshd_port|tail -n1 |grep -o -E "[0-9]+"`
             cat /var/log/ssh-util |tail
             echo
             echo port=$port
