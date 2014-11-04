@@ -2,7 +2,7 @@ package { 'openvpn':
     ensure => latest
 }
 
-file { '/root/.openvpn/':
+file { '/root/.openvpn/openvpnd':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
 
