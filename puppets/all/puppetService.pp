@@ -24,6 +24,19 @@ cron { puppetService:
     minute  => '*/15'
 }
 
+file { '/root/scripts/pup-manual-update':
+    ensure  => present,          # файл должен существовать
+    content => regsubst('#!/bin/bash
+        
+        /root/scripts/svn-update >> /var/log/puppetService &
+        watch "cat /var/log/puppetService | tail && cat /root/pup.log.last"
+
+        ', '\x0d', '', 'G'),
+    mode    => 0700, 
+    owner   => 'root',
+    group   => 'root'  
+}
+
 file { '/root/scripts/svn-update':
     ensure  => present,          # файл должен существовать
     content => regsubst('#!/bin/bash
