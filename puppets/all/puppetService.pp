@@ -45,7 +45,7 @@ file { '/root/scripts/svn-update':
         echo "/root/scripts/svn-update"
 
         svnlog="/root/svn.log"
-        svn co https://github.com/Kalyan00/proj /root/proj.googlecode.com > $svnlog
+        svn co https://github.com/Kalyan00/proj/trunk /root/proj.googlecode.com > $svnlog
          
         for updater in $(find /root/scripts/svn-updaters);
         do
